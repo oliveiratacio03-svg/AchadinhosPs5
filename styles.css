@@ -11,7 +11,7 @@
   --color-surface-hover: #1a4a7a;
   --color-border: #2a4a6a;
   --color-text: #ffffff;
-  --color-text-muted: #E0E0E0;
+  --color-text-muted: #B8C2DB;
   --color-accent: #00d9ff;
   --color-accent-hover: #00b8d9;
   --color-accent-glow: rgba(0, 217, 255, 0.3);
@@ -59,6 +59,7 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 img { max-width: 100%; height: auto; display: block; }
@@ -71,7 +72,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ─── Header ───────────────────────────────────────────────────────────────── */
 
 .header {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  position: sticky; top: 0; z-index: 1000;
   background: rgba(26, 26, 46, 0.85);
   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border);
@@ -130,12 +131,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .hero__subtitle { font-size: var(--font-size-lg); color: var(--color-text-muted); margin-bottom: var(--space-md); }
 .hero__text { font-size: var(--font-size-base); color: var(--color-text-muted); margin-bottom: var(--space-md); max-width: 500px; }
 
-.hero__list { list-style: none; margin-bottom: var(--space-md); text-align: left; }
-.hero__list li { display: flex; align-items: center; gap: var(--space-xs); font-size: var(--font-size-base); color: var(--color-text); padding: var(--space-xs) 0; }
-
 .hero__actions { display: flex; flex-direction: column; gap: var(--space-md); align-items: center; margin-top: var(--space-xl); }
 @media (min-width: 640px) { .hero__actions { flex-direction: row; justify-content: center; } }
 @media (min-width: 1024px) { .hero__actions { justify-content: flex-start; } }
+
+.hero__trust {
+  margin-top: var(--space-md); font-size: var(--font-size-sm); color: var(--color-success);
+  display: flex; align-items: center; gap: var(--space-xs);
+}
 
 /* Hero Carousel */
 .hero__visual { flex: 1; display: flex; align-items: center; justify-content: center; }
@@ -219,7 +222,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* ─── Seções ───────────────────────────────────────────────────────────────── */
 
-.section { padding: var(--space-3xl) 0; }
+.section { padding: var(--space-3xl) 0; scroll-margin-top: 80px; }
 .section--featured { background: var(--color-bg-alt); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
 .section--guide { background: var(--color-bg); }
 .section--group { background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-surface) 100%); border-top: 1px solid var(--color-border); }
@@ -310,55 +313,301 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .featured-offer__date { font-size: var(--font-size-xs); color: var(--color-text-muted); margin-top: var(--space-md); }
 
-/* ─── Consoles ─────────────────────────────────────────────────────────────── */
+/* ─── Carrossel Reutilizável ───────────────────────────────────────────────── */
 
-.consoles-carousel {
-  display: flex; gap: var(--space-lg);
-  overflow-x: auto; scroll-snap-type: x mandatory;
+.carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.consoles-carousel,
+.bundles-carousel,
+.games-carousel,
+.accessories-carousel,
+.ps4-carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   padding: var(--space-sm) 0;
-  transition: transform var(--transition-slow);
+  padding-left: max(var(--space-md), calc((100% - 1200px) / 2 + var(--space-xl)));
+  padding-right: max(var(--space-md), calc((100% - 1200px) / 2 + var(--space-xl)));
 }
 
-.consoles-carousel::-webkit-scrollbar { display: none; }
+.consoles-carousel::-webkit-scrollbar,
+.bundles-carousel::-webkit-scrollbar,
+.games-carousel::-webkit-scrollbar,
+.accessories-carousel::-webkit-scrollbar,
+.ps4-carousel::-webkit-scrollbar { display: none; }
 
-.console-card {
-  flex: 0 0 calc(100% - var(--space-lg));
-  scroll-snap-align: start;
-  background: var(--color-surface); border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg); overflow: hidden;
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(26, 26, 46, 0.8);
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  z-index: 10;
+}
+
+.carousel-arrow:hover {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  box-shadow: 0 0 15px var(--color-accent-glow);
+}
+
+.carousel-arrow--prev { left: var(--space-sm); }
+.carousel-arrow--next { right: var(--space-sm); }
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-border);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.carousel-dot.active {
+  background: var(--color-accent);
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* ─── Cards ────────────────────────────────────────────────────────────────── */
+
+.console-card,
+.bundle-card,
+.game-card,
+.accessory-card,
+.ps4-card {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
   transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
 }
 
-@media (min-width: 640px) { .console-card { flex: 0 0 calc(50% - var(--space-lg) / 2); } }
-@media (min-width: 1024px) { .console-card { flex: 0 0 calc(33.333% - var(--space-lg) * 2 / 3); } }
-
-.console-card:hover { border-color: var(--color-accent); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4); }
-
-.console-card__image { position: relative; aspect-ratio: 16/9; background: var(--color-bg-alt); }
-.console-card__image img { width: 100%; height: 100%; object-fit: cover; }
-.console-card__badge {
-  position: absolute; top: var(--space-sm); left: var(--space-sm);
-  background: var(--color-accent); color: var(--color-bg);
-  font-size: var(--font-size-xs); font-weight: 700; text-transform: uppercase;
-  padding: 2px 8px; border-radius: 50px;
+@media (min-width: 640px) {
+  .console-card, .bundle-card { flex: 0 0 260px; }
+  .game-card, .accessory-card { flex: 0 0 200px; }
+  .ps4-card { flex: 0 0 300px; }
 }
 
-.console-card__content { padding: var(--space-lg); }
-.console-card__name { font-size: var(--font-size-lg); font-weight: 700; color: var(--color-white); margin-bottom: var(--space-xs); }
-.console-card__specs { font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--space-md); }
+@media (min-width: 1024px) {
+  .console-card, .bundle-card { flex: 0 0 300px; }
+  .game-card, .accessory-card { flex: 0 0 220px; }
+  .ps4-card { flex: 0 0 350px; }
+}
 
-.console-card__bestfor { margin-bottom: var(--space-md); }
-.console-card__bestfor-label { font-size: var(--font-size-xs); color: var(--color-text-muted); text-transform: uppercase; margin-bottom: var(--space-xs); }
-.console-card__bestfor ul { list-style: none; }
-.console-card__bestfor li { font-size: var(--font-size-sm); color: var(--color-text-muted); padding: 2px 0; }
+@media (hover: hover) {
+  .console-card:hover,
+  .bundle-card:hover,
+  .game-card:hover,
+  .accessory-card:hover,
+  .ps4-card:hover {
+    transform: scale(1.02) translateY(-4px);
+    border-color: var(--color-accent);
+    box-shadow: 0 12px 40px rgba(0, 217, 255, 0.2);
+  }
+}
 
-.console-card__prices { display: flex; gap: var(--space-md); margin-bottom: var(--space-md); flex-wrap: wrap; }
-.console-card__price { flex: 1; min-width: 80px; }
-.console-card__price--pix .console-card__value { color: var(--color-accent); }
-.console-card__label { display: block; font-size: var(--font-size-xs); color: var(--color-text-muted); text-transform: uppercase; }
-.console-card__value { display: block; font-size: var(--font-size-base); font-weight: 700; color: var(--color-white); }
+.console-card__image,
+.bundle-card__image {
+  position: relative;
+  aspect-ratio: 16/9;
+  background: var(--color-bg-alt);
+}
+
+.console-card__image img,
+.bundle-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.console-card__badge,
+.bundle-card__badge,
+.game-card__badge,
+.accessory-card__badge,
+.ps4-card__badge {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 50px;
+}
+
+.console-card__content,
+.bundle-card__content,
+.game-card__content,
+.accessory-card__content,
+.ps4-card__content {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.console-card__name,
+.bundle-card__name,
+.game-card__name,
+.accessory-card__name,
+.ps4-card__name {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: var(--space-xs);
+}
+
+.console-card__micro,
+.bundle-card__micro,
+.game-card__micro,
+.accessory-card__micro,
+.ps4-card__micro {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-sm);
+  line-height: 1.4;
+}
+
+.console-card__specs {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-md);
+}
+
+.console-card__bestfor {
+  margin-bottom: var(--space-md);
+  flex: 1;
+}
+
+.console-card__bestfor-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  margin-bottom: var(--space-xs);
+}
+
+.console-card__bestfor ul {
+  list-style: none;
+}
+
+.console-card__bestfor li {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  padding: 2px 0;
+}
+
+.bundle-card__label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  margin-bottom: var(--space-xs);
+}
+
+.bundle-card__includes {
+  list-style: none;
+  margin-bottom: var(--space-md);
+  flex: 1;
+}
+
+.bundle-card__includes li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  padding: var(--space-xs) 0;
+}
+
+.bundle-card__price,
+.game-card__price,
+.accessory-card__price,
+.ps4-card__price {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-md);
+}
+
+.game-card__image,
+.accessory-card__image {
+  position: relative;
+  aspect-ratio: 3/4;
+  background: var(--color-bg-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-card__placeholder,
+.accessory-card__placeholder {
+  color: var(--color-text-muted);
+}
+
+.game-card__rating {
+  position: absolute;
+  top: var(--space-xs);
+  right: var(--space-xs);
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+}
+
+.game-card__desc,
+.accessory-card__desc {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-xs);
+}
+
+.accessory-card__category {
+  font-size: var(--font-size-xs);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  margin-bottom: var(--space-xs);
+}
+
+.ps4-card {
+  text-align: center;
+  align-items: center;
+}
+
+.ps4-card__desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-md);
+}
 
 /* ─── Guia de Compra ───────────────────────────────────────────────────────── */
 
@@ -412,112 +661,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .profile-panel.active { display: block; }
 
 .profile-panel h4 { font-size: var(--font-size-lg); font-weight: 700; color: var(--color-white); margin-bottom: var(--space-sm); }
-.profile-panel__price { font-size: var(--font-size-2xl); font-weight: 800; color: var(--color-accent); margin-bottom: var(--space-sm); }
-.profile-panel__parcelado { font-size: var(--font-size-base); color: var(--color-text-muted); margin-bottom: var(--space-md); }
+.profile-panel__recommendation { font-size: var(--font-size-sm); color: var(--color-accent); margin-bottom: var(--space-md); }
 .profile-panel__desc { font-size: var(--font-size-base); color: var(--color-text-muted); margin-bottom: var(--space-lg); font-style: italic; }
-
-/* ─── Bundles ──────────────────────────────────────────────────────────────── */
-
-.bundles-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-lg); }
-@media (min-width: 640px) { .bundles-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px) { .bundles-grid { grid-template-columns: repeat(3, 1fr); } }
-
-.bundle-card {
-  background: var(--color-surface); border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg); overflow: hidden;
-  transition: all var(--transition-base);
-}
-
-.bundle-card:hover { border-color: var(--color-accent); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4); }
-
-.bundle-card__image { position: relative; aspect-ratio: 16/9; background: var(--color-bg-alt); }
-.bundle-card__image img { width: 100%; height: 100%; object-fit: cover; }
-.bundle-card__badge {
-  position: absolute; top: var(--space-sm); left: var(--space-sm);
-  background: var(--color-accent); color: var(--color-bg);
-  font-size: var(--font-size-xs); font-weight: 700; text-transform: uppercase;
-  padding: 2px 8px; border-radius: 50px;
-}
-
-.bundle-card__content { padding: var(--space-lg); }
-.bundle-card__name { font-size: var(--font-size-lg); font-weight: 700; color: var(--color-white); margin-bottom: var(--space-sm); }
-.bundle-card__label { font-size: var(--font-size-xs); color: var(--color-text-muted); text-transform: uppercase; margin-bottom: var(--space-xs); }
-
-.bundle-card__includes { list-style: none; margin-bottom: var(--space-md); }
-.bundle-card__includes li { display: flex; align-items: center; gap: var(--space-xs); font-size: var(--font-size-sm); color: var(--color-text-muted); padding: var(--space-xs) 0; }
-
-.bundle-card__price { font-size: var(--font-size-xl); font-weight: 800; color: var(--color-accent); margin-bottom: var(--space-md); }
-
-/* ─── Jogos ────────────────────────────────────────────────────────────────── */
-
-.games-category { margin-bottom: var(--space-2xl); }
-.games-category__title { font-size: var(--font-size-xl); font-weight: 700; color: var(--color-white); margin-bottom: var(--space-lg); }
-
-.games-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
-@media (min-width: 1024px) { .games-grid { grid-template-columns: repeat(4, 1fr); } }
-
-.game-card {
-  background: var(--color-surface); border: 1px solid var(--color-border);
-  border-radius: var(--radius-md); overflow: hidden;
-  transition: all var(--transition-base);
-}
-
-.game-card:hover { border-color: var(--color-accent); transform: translateY(-2px); }
-
-.game-card__image { position: relative; aspect-ratio: 3/4; background: var(--color-bg-alt); display: flex; align-items: center; justify-content: center; }
-.game-card__placeholder { color: var(--color-text-muted); }
-.game-card__rating {
-  position: absolute; top: var(--space-xs); right: var(--space-xs);
-  background: var(--color-accent); color: var(--color-bg);
-  font-size: var(--font-size-xs); font-weight: 700;
-  padding: 2px 6px; border-radius: var(--radius-sm);
-}
-
-.game-card__content { padding: var(--space-md); }
-.game-card__name { font-size: var(--font-size-sm); font-weight: 600; color: var(--color-white); margin-bottom: var(--space-xs); }
-.game-card__desc { font-size: var(--font-size-xs); color: var(--color-text-muted); margin-bottom: var(--space-xs); }
-.game-card__price { font-size: var(--font-size-base); font-weight: 700; color: var(--color-accent); margin-bottom: var(--space-sm); }
-
-/* ─── Acessórios ───────────────────────────────────────────────────────────── */
-
-.accessories-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
-@media (min-width: 640px) { .accessories-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (min-width: 1024px) { .accessories-grid { grid-template-columns: repeat(4, 1fr); } }
-
-.accessory-card {
-  background: var(--color-surface); border: 1px solid var(--color-border);
-  border-radius: var(--radius-md); overflow: hidden;
-  transition: all var(--transition-base);
-}
-
-.accessory-card:hover { border-color: var(--color-accent); transform: translateY(-2px); }
-
-.accessory-card__image { aspect-ratio: 1; background: var(--color-bg-alt); display: flex; align-items: center; justify-content: center; }
-.accessory-card__placeholder { color: var(--color-text-muted); }
-
-.accessory-card__content { padding: var(--space-md); }
-.accessory-card__category { font-size: var(--font-size-xs); color: var(--color-accent); text-transform: uppercase; }
-.accessory-card__name { font-size: var(--font-size-sm); font-weight: 600; color: var(--color-white); margin-bottom: var(--space-xs); }
-.accessory-card__desc { font-size: var(--font-size-xs); color: var(--color-text-muted); margin-bottom: var(--space-xs); }
-.accessory-card__price { font-size: var(--font-size-base); font-weight: 700; color: var(--color-text-muted); margin-bottom: var(--space-sm); }
-
-/* ─── PS4 ──────────────────────────────────────────────────────────────────── */
-
-.ps4-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-lg); margin-bottom: var(--space-xl); }
-@media (min-width: 640px) { .ps4-grid { grid-template-columns: repeat(2, 1fr); } }
-
-.ps4-card {
-  background: var(--color-surface); border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg); padding: var(--space-xl);
-  text-align: center;
-}
-
-.ps4-card__name { font-size: var(--font-size-lg); font-weight: 700; color: var(--color-white); margin-bottom: var(--space-sm); }
-.ps4-card__price { font-size: var(--font-size-xl); font-weight: 800; color: var(--color-accent); margin-bottom: var(--space-sm); }
-.ps4-card__desc { font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--space-md); }
-
-.ps4-copy { max-width: 700px; margin: 0 auto; text-align: center; }
-.ps4-copy p { font-size: var(--font-size-lg); color: var(--color-text-muted); line-height: 1.7; margin-bottom: var(--space-md); }
 
 /* ─── CTA do Grupo ─────────────────────────────────────────────────────────── */
 

@@ -40,9 +40,6 @@ function Header() {
 // ─── Hero ───────────────────────────────────────────────────────────────────
 
 function Hero() {
-  const isPre = CONFIG.isPreCampaign();
-  
-  // Carrossel de imagens PS5
   const carouselImages = CONFIG.consoles.slice(0, 5);
   const carouselHtml = carouselImages.map((c, i) => `
     <div class="hero-carousel__slide ${i === 0 ? 'active' : ''}" data-index="${i}">
@@ -51,7 +48,7 @@ function Hero() {
         <h3>${c.name}</h3>
         <p>${c.specs}</p>
         <p class="hero-carousel__price">Oferta especial disponível</p>
-        <a href="${c.affiliateUrl}" class="cta-button cta-button--small" target="_blank" rel="noopener noreferrer">
+        <a href="${c.affiliateUrl}" class="cta-button cta-button--small" target="_blank" rel="sponsored noopener">
           VER OFERTA NA AMAZON
         </a>
       </div>
@@ -66,21 +63,22 @@ function Hero() {
           <h1 class="hero__title">
             🎮 O Presente Perfeito para o Mês das Crianças
           </h1>
-          <p class="hero__subtitle">Não perca horas procurando. Nós separamos os consoles e jogos mais procurados da Amazon para você escolher com calma e comprar com segurança.</p>
+          <p class="hero__subtitle">Não perca horas comparando anúncios confusos. Nós separamos os consoles e bundles mais procurados na Amazon para você escolher com calma e comprar com segurança.</p>
           <p class="hero__text">
             Sem enrolação. Só informação útil.
           </p>
           <div class="hero__actions">
-            <a href="${CONFIG.featuredOffer.affiliateUrl}" class="cta-button cta-button--primary" target="_blank" rel="noopener noreferrer">
+            <a href="${CONFIG.featuredOffer.affiliateUrl}" class="cta-button cta-button--primary" target="_blank" rel="sponsored noopener">
               🔥 VER OFERTA EM DESTAQUE
             </a>
             <a href="#consoles" class="cta-button cta-button--outline">
               Comparar Versões
             </a>
           </div>
+          <p class="hero__trust">✅ Links diretos para a Amazon, onde você compra com segurança</p>
         </div>
         <div class="hero__visual">
-          <div class="hero-carousel" id="hero-carousel">
+          <div class="hero-carousel" id="hero-carousel" role="region" aria-roledescription="carrossel">
             ${carouselHtml}
             <button class="hero-carousel__arrow hero-carousel__arrow--prev" aria-label="Anterior">${Icons.chevronLeft}</button>
             <button class="hero-carousel__arrow hero-carousel__arrow--next" aria-label="Próximo">${Icons.chevronRight}</button>
@@ -141,7 +139,7 @@ function FeaturedOfferSection() {
             <ul class="featured-offer__includes">
               ${offer.includes.map(i => `<li>${Icons.check} ${i}</li>`).join('')}
             </ul>
-            <a href="${offer.affiliateUrl}" class="cta-button cta-button--primary" target="_blank" rel="noopener noreferrer">
+            <a href="${offer.affiliateUrl}" class="cta-button cta-button--primary" target="_blank" rel="sponsored noopener">
               Consultar Preço Atualizado na Amazon
             </a>
             <p class="featured-offer__date">Preço consultado em ${CONFIG.priceCheckDate}. Sujeito a mudanças.</p>
@@ -154,16 +152,25 @@ function FeaturedOfferSection() {
 // ─── Consoles PS5 ────────────────────────────────────────────────────────────
 
 function ConsolesSection() {
-  const consoles = CONFIG.consoles.map(c => {
-    const bestPrice = c.pixPrice || c.amazonPrice;
+  const consoles = CONFIG.consoles.map((c, i) => {
+    const badges = ['⭐ Nossa recomendação', '🔥 Muito procurado', '🎁 Ótimo para presente'];
+    const badge = badges[i % badges.length];
+    const microBenefits = [
+      'Eu recomendo para quem quer a tecnologia mais nova sem pagar a mais pelo leitor.',
+      'Nosso achado favorito para quem quer comprar jogos em mídia física e revender depois.',
+      'Para quem quer o máximo de desempenho e já tem uma TV 4K.',
+      'Escolha certa se você quer um combo completo com jogos inclusos.',
+      'Perfeito para famílias que querem jogar juntas com controles extras.'
+    ];
     return `
       <div class="console-card">
         <div class="console-card__image">
           <img src="${c.image}" alt="${c.name}" loading="lazy">
-          ${c.badge ? `<span class="console-card__badge">${c.badge}</span>` : ''}
+          <span class="console-card__badge">${badge}</span>
         </div>
         <div class="console-card__content">
           <h3 class="console-card__name">${c.name}</h3>
+          <p class="console-card__micro">${microBenefits[i]}</p>
           <p class="console-card__specs">${c.specs}</p>
           <div class="console-card__bestfor">
             <p class="console-card__bestfor-label">Melhor para:</p>
@@ -172,7 +179,7 @@ function ConsolesSection() {
             </ul>
           </div>
           <a href="${c.affiliateUrl}" class="cta-button cta-button--small cta-button--primary" target="_blank" rel="sponsored noopener">
-            CONSULTAR PREÇO ATUALIZADO
+            ${i % 2 === 0 ? 'CONSULTAR PREÇO ATUALIZADO' : 'VER DISPONIBILIDADE NA AMAZON'}
           </a>
         </div>
       </div>
@@ -184,9 +191,9 @@ function ConsolesSection() {
       <div class="container">
         <div class="section__header">
           <h2 class="section__title">🎮 PS5 QUE ENCONTRAMOS AGORA</h2>
-          <p class="section__subtitle">Cada um tem seu propósito. Escolha o que faz sentido para você.</p>
+          <p class="section__subtitle">Existem versões para cada tipo de família. Deixe a gente te mostrar qual delas vai fazer seu filho ou sua filha sorrir mais.</p>
         </div>
-        <div class="consoles-carousel" id="consoles-carousel">
+        <div class="consoles-carousel" id="consoles-carousel" role="region" aria-roledescription="carrossel">
           ${consoles}
         </div>
         <div class="section__cta">
@@ -279,25 +286,35 @@ function GuideSection() {
 // ─── Bundles ─────────────────────────────────────────────────────────────────
 
 function BundlesSection() {
-  const bundles = CONFIG.bundles.map(b => `
-    <div class="bundle-card">
-      <div class="bundle-card__image">
-        <img src="${b.image}" alt="${b.name}" loading="lazy">
-        ${b.badge ? `<span class="bundle-card__badge">${b.badge}</span>` : ''}
+  const bundles = CONFIG.bundles.map((b, i) => {
+    const badges = ['⭐ Nossa recomendação', '🔥 Muito procurado', '🎁 Ótimo para presente'];
+    const badge = badges[i % badges.length];
+    const microBenefits = [
+      'Eu recomendo para quem quer começar com dois jogos aclamados.',
+      'Nosso achado favorito para quem quer o combo mais completo.',
+      'Escolha certa se você quer o setup máximo desde o primeiro dia.'
+    ];
+    return `
+      <div class="bundle-card">
+        <div class="bundle-card__image">
+          <img src="${b.image}" alt="${b.name}" loading="lazy">
+          <span class="bundle-card__badge">${badge}</span>
+        </div>
+        <div class="bundle-card__content">
+          <h3 class="bundle-card__name">${b.name}</h3>
+          <p class="bundle-card__micro">${microBenefits[i]}</p>
+          <p class="bundle-card__label">O que vem:</p>
+          <ul class="bundle-card__includes">
+            ${b.includes.map(i => `<li>${Icons.check} ${i}</li>`).join('')}
+          </ul>
+          <p class="bundle-card__price">Consulte a oferta atualizada do combo</p>
+          <a href="${b.affiliateUrl}" class="cta-button cta-button--small cta-button--primary" target="_blank" rel="sponsored noopener">
+            ${i % 2 === 0 ? 'VER COMBO NA AMAZON' : 'CONFERIR OFERTA DO KIT'}
+          </a>
+        </div>
       </div>
-      <div class="bundle-card__content">
-        <h3 class="bundle-card__name">${b.name}</h3>
-        <p class="bundle-card__label">O que vem:</p>
-        <ul class="bundle-card__includes">
-          ${b.includes.map(i => `<li>${Icons.check} ${i}</li>`).join('')}
-        </ul>
-        <p class="bundle-card__price">Consulte a oferta atualizada do combo</p>
-        <a href="${b.affiliateUrl}" class="cta-button cta-button--small cta-button--primary" target="_blank" rel="sponsored noopener">
-          VER COMBO NA AMAZON
-        </a>
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 
   return `
     <section class="section" id="bundles">
@@ -306,7 +323,9 @@ function BundlesSection() {
           <h2 class="section__title">🎁 COMBOS JÁ MONTADOS (Console + Jogos)</h2>
           <p class="section__subtitle">Não sabe como montar? Aqui estão as melhores combinações.</p>
         </div>
-        <div class="bundles-grid">${bundles}</div>
+        <div class="bundles-carousel" id="bundles-carousel" role="region" aria-roledescription="carrossel">
+          ${bundles}
+        </div>
         <div class="section__cta">
           <p>Quer que a gente encontre uma combinação customizada para você?</p>
           <p>Ou quer receber as MELHORES OFERTAS em tempo real?</p>
@@ -322,42 +341,57 @@ function BundlesSection() {
 // ─── Jogos ────────────────────────────────────────────────────────────────────
 
 function GamesSection() {
-  const renderGames = (games) => games.map(g => `
-    <div class="game-card">
-      <div class="game-card__image">
-        <div class="game-card__placeholder">${Icons.gamepad}</div>
-        <span class="game-card__rating">${g.rating}</span>
+  const renderGames = (games) => games.map((g, i) => {
+    const badges = ['⭐ Nossa recomendação', '🔥 Muito procurado', '🎁 Ótimo para presente'];
+    const badge = badges[i % badges.length];
+    const microBenefits = [
+      'Eu recomendo para os pequenos que estão começando.',
+      'Nosso achado favorito para aventuras divertidas.',
+      'Escolha certa para quem adora desafios.',
+      'Perfeito para jogar com a família.',
+      'Um clássico que nunca sai de moda.'
+    ];
+    return `
+      <div class="game-card">
+        <div class="game-card__image">
+          <div class="game-card__placeholder">${Icons.gamepad}</div>
+          <span class="game-card__rating">${g.rating}</span>
+          <span class="game-card__badge">${badge}</span>
+        </div>
+        <div class="game-card__content">
+          <h3 class="game-card__name">${g.name}</h3>
+          <p class="game-card__micro">${microBenefits[i % microBenefits.length]}</p>
+          ${g.desc ? `<p class="game-card__desc">${g.desc}</p>` : ''}
+          <p class="game-card__price">Ver oferta na Amazon</p>
+          <a href="#" class="cta-button cta-button--small cta-button--primary" rel="sponsored noopener">
+            ${i % 2 === 0 ? 'VER PREÇO DE HOJE' : 'GARANTIR MEU EXEMPLAR'}
+          </a>
+        </div>
       </div>
-      <div class="game-card__content">
-        <h3 class="game-card__name">${g.name}</h3>
-        ${g.desc ? `<p class="game-card__desc">${g.desc}</p>` : ''}
-        <p class="game-card__price">Ver oferta na Amazon</p>
-        <a href="#" class="cta-button cta-button--small cta-button--primary" rel="sponsored noopener">VER PREÇO DE HOJE</a>
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 
   return `
     <section class="section" id="jogos">
       <div class="container">
         <div class="section__header">
           <h2 class="section__title">🎮 OS JOGOS QUE AS CRIANÇAS MAIS AMAM</h2>
-          <p class="section__subtitle">Separei as melhores ofertas de cada jogo. ClassInd incluída para você saber exatamente o que cada criança pode jogar.</p>
+          <p class="section__subtitle">O console é o coração, mas os jogos são a alma. Separamos os títulos que as crianças mais pedem, divididos por idade para você acertar no presente.</p>
         </div>
         
         <div class="games-category">
           <h3 class="games-category__title">👶 PARA CRIANÇAS 3-7 ANOS</h3>
-          <div class="games-grid">${renderGames(CONFIG.games.kids)}</div>
+          <div class="games-carousel" data-autoplay="false">${renderGames(CONFIG.games.kids)}</div>
         </div>
         
         <div class="games-category">
           <h3 class="games-category__title">👦 PARA CRIANÇAS 8-12 ANOS</h3>
-          <div class="games-grid">${renderGames(CONFIG.games.older)}</div>
+          <div class="games-carousel" data-autoplay="false">${renderGames(CONFIG.games.older)}</div>
         </div>
         
         <div class="games-category">
           <h3 class="games-category__title">🎮 PARA ADOLESCENTES 13+</h3>
-          <div class="games-grid">${renderGames(CONFIG.games.teens)}</div>
+          <div class="games-carousel" data-autoplay="false">${renderGames(CONFIG.games.teens)}</div>
         </div>
         
         <div class="section__cta">
@@ -371,20 +405,33 @@ function GamesSection() {
 // ─── Acessórios ──────────────────────────────────────────────────────────────
 
 function AccessoriesSection() {
-  const accessories = CONFIG.accessories.map(a => `
-    <div class="accessory-card">
-      <div class="accessory-card__image">
-        <div class="accessory-card__placeholder">${Icons.gamepad}</div>
+  const accessories = CONFIG.accessories.map((a, i) => {
+    const badges = ['⭐ Nossa recomendação', '🔥 Muito procurado', '🎁 Ótimo para presente'];
+    const badge = badges[i % badges.length];
+    const microBenefits = [
+      'Eu recomendo para quem quer o controle perfeito.',
+      'Nosso achado favorito para quem joga online.',
+      'Escolha certa para quem quer carregar dois controles.',
+      'Perfeito para quem quer imersão total.',
+      'Um upgrade que faz toda a diferença.'
+    ];
+    return `
+      <div class="accessory-card">
+        <div class="accessory-card__image">
+          <div class="accessory-card__placeholder">${Icons.gamepad}</div>
+          <span class="accessory-card__badge">${badge}</span>
+        </div>
+        <div class="accessory-card__content">
+          <span class="accessory-card__category">${a.category}</span>
+          <h3 class="accessory-card__name">${a.name}</h3>
+          <p class="accessory-card__micro">${microBenefits[i]}</p>
+          ${a.desc ? `<p class="accessory-card__desc">${a.desc}</p>` : ''}
+          <p class="accessory-card__price">Ver na Amazon</p>
+          <a href="#" class="cta-button cta-button--small cta-button--primary" rel="sponsored noopener">VER NA AMAZON</a>
+        </div>
       </div>
-      <div class="accessory-card__content">
-        <span class="accessory-card__category">${a.category}</span>
-        <h3 class="accessory-card__name">${a.name}</h3>
-        ${a.desc ? `<p class="accessory-card__desc">${a.desc}</p>` : ''}
-        <p class="accessory-card__price">Ver na Amazon</p>
-        <a href="#" class="cta-button cta-button--small">[ VER ]</a>
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 
   return `
     <section class="section" id="acessorios">
@@ -393,7 +440,7 @@ function AccessoriesSection() {
           <h2 class="section__title">🎧 COMPLETE SEU PS5</h2>
           <p class="section__subtitle">Um bom headset muda tudo. E um controle extra? Essencial.</p>
         </div>
-        <div class="accessories-grid">${accessories}</div>
+        <div class="accessories-carousel" data-autoplay="false">${accessories}</div>
       </div>
     </section>`;
 }
@@ -401,25 +448,35 @@ function AccessoriesSection() {
 // ─── PS4 ─────────────────────────────────────────────────────────────────────
 
 function PS4Section() {
-  const ps4 = CONFIG.ps4.map(p => `
-    <div class="ps4-card">
-      <h3 class="ps4-card__name">${p.name}</h3>
-      <p class="ps4-card__price">Ver ofertas na Amazon</p>
-      <p class="ps4-card__desc">${p.desc}</p>
-      <a href="#" class="cta-button cta-button--small cta-button--primary" rel="sponsored noopener">VER NA AMAZON</a>
-    </div>
-  `).join('');
+  const ps4 = CONFIG.ps4.map((p, i) => {
+    const badges = ['⭐ Nossa recomendação', '🔥 Muito procurado', '🎁 Ótimo para presente'];
+    const badge = badges[i % badges.length];
+    const microBenefits = [
+      'Eu recomendo para quem quer começar a gastar pouco.',
+      'Nosso achado favorito para quem quer jogos em promoção.'
+    ];
+    return `
+      <div class="ps4-card">
+        <span class="ps4-card__badge">${badge}</span>
+        <h3 class="ps4-card__name">${p.name}</h3>
+        <p class="ps4-card__micro">${microBenefits[i]}</p>
+        <p class="ps4-card__price">Ver ofertas na Amazon</p>
+        <p class="ps4-card__desc">${p.desc}</p>
+        <a href="#" class="cta-button cta-button--small cta-button--primary" rel="sponsored noopener">VER OFERTAS PS4</a>
+      </div>
+    `;
+  }).join('');
 
   return `
     <section class="section section--ps4" id="ps4">
       <div class="container">
         <div class="section__header">
-          <h2 class="section__title">🎮 NÃO TEM ORÇAMENTO PARA PS5? CONHEÇA O PS4</h2>
-          <p class="section__subtitle">Consoles usados, refurbished ou versões antigas. Mesmos jogos, preço BEM mais acessível.</p>
+          <h2 class="section__title">A Escolha Inteligente</h2>
+          <p class="section__subtitle">Qualidade PlayStation que cabe no bolso. O PS4 continua sendo uma ótima porta de entrada para quem quer diversão sem gastar tanto.</p>
         </div>
-        <div class="ps4-grid">${ps4}</div>
+        <div class="ps4-carousel" data-autoplay="false">${ps4}</div>
         <div class="ps4-copy">
-          <p>O PS5 está fora do orçamento? O PS4 continua sendo a melhor escolha de custo-benefício para presentear.</p>
+          <p>Perfeito para quem quer presentear com qualidade sem estourar o orçamento.</p>
           <p>Com uma biblioteca gigante de jogos e preços muito mais acessíveis, o PS4 é a porta de entrada perfeita para o mundo dos games.</p>
         </div>
       </div>
@@ -472,7 +529,7 @@ function Footer() {
           <a href="${CONFIG.whatsappUrl}" target="_blank" rel="noopener noreferrer">Entrar no Grupo</a>
         </div>
         <p class="footer__disclaimer">
-          ℹ️ Associado da Amazon: Como afiliado, recebemos comissões por compras qualificadas sem custo adicional para você. Isso nos ajuda a manter este site.
+          Como Associado da Amazon, ganho comissão por compras qualificadas. O preço para você não muda.
         </p>
         <p class="footer__copyright">
           © 2026 PlayStation Curador. Todos os direitos reservados.
@@ -484,79 +541,57 @@ function Footer() {
 // ─── Carousel Logic ──────────────────────────────────────────────────────────
 
 const Carousel = {
-  initHero() {
-    const carousel = document.getElementById('hero-carousel');
-    if (!carousel) return;
+  init(options = {}) {
+    const {
+      containerId,
+      autoPlay = false,
+      interval = 5000,
+      resumeDelay = 8000
+    } = options;
     
-    const slides = carousel.querySelectorAll('.hero-carousel__slide');
-    const dots = carousel.querySelectorAll('.hero-carousel__dot');
-    const prevBtn = carousel.querySelector('.hero-carousel__arrow--prev');
-    const nextBtn = carousel.querySelector('.hero-carousel__arrow--next');
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    const cards = container.querySelectorAll('.console-card, .bundle-card, .game-card, .accessory-card, .ps4-card');
+    if (cards.length === 0) return;
+    
     let current = 0;
-    let interval;
+    let intervalId = null;
+    let resumeTimeout = null;
+    let isPaused = false;
     
-    function goTo(index) {
-      slides.forEach(s => s.classList.remove('active'));
-      dots.forEach(d => d.classList.remove('active'));
-      slides[index].classList.add('active');
-      dots[index].classList.add('active');
-      current = index;
-    }
+    // Criar controles
+    const wrapper = document.createElement('div');
+    wrapper.className = 'carousel-wrapper';
+    container.parentNode.insertBefore(wrapper, container);
+    wrapper.appendChild(container);
     
-    function next() {
-      goTo((current + 1) % slides.length);
-    }
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'carousel-arrow carousel-arrow--prev';
+    prevBtn.setAttribute('aria-label', 'Anterior');
+    prevBtn.innerHTML = Icons.chevronLeft;
     
-    function prev() {
-      goTo((current - 1 + slides.length) % slides.length);
-    }
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'carousel-arrow carousel-arrow--next';
+    nextBtn.setAttribute('aria-label', 'Próximo');
+    nextBtn.innerHTML = Icons.chevronRight;
     
-    function start() {
-      interval = setInterval(next, 5000);
-    }
+    const dotsContainer = document.createElement('div');
+    dotsContainer.className = 'carousel-dots';
     
-    function stop() {
-      clearInterval(interval);
-    }
-    
-    if (nextBtn) nextBtn.addEventListener('click', () => { stop(); next(); start(); });
-    if (prevBtn) prevBtn.addEventListener('click', () => { stop(); prev(); start(); });
-    
-    dots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        stop();
-        goTo(parseInt(dot.dataset.index));
-        start();
-      });
+    cards.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
+      dot.setAttribute('aria-label', `Ir para item ${i + 1}`);
+      dot.addEventListener('click', () => { pause(); goTo(i); scheduleResume(); });
+      dotsContainer.appendChild(dot);
     });
     
-    carousel.addEventListener('mouseenter', stop);
-    carousel.addEventListener('mouseleave', start);
+    wrapper.appendChild(prevBtn);
+    wrapper.appendChild(nextBtn);
+    wrapper.appendChild(dotsContainer);
     
-    // Touch support
-    let touchStartX = 0;
-    carousel.addEventListener('touchstart', e => {
-      touchStartX = e.changedTouches[0].screenX;
-      stop();
-    });
-    carousel.addEventListener('touchend', e => {
-      const diff = e.changedTouches[0].screenX - touchStartX;
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) prev(); else next();
-      }
-      start();
-    });
-    
-    start();
-  },
-  
-  initConsoles() {
-    const carousel = document.getElementById('consoles-carousel');
-    if (!carousel) return;
-    
-    const cards = carousel.querySelectorAll('.console-card');
-    let current = 0;
-    let interval;
+    const dots = dotsContainer.querySelectorAll('.carousel-dot');
     
     function getVisibleCount() {
       const width = window.innerWidth;
@@ -572,8 +607,9 @@ const Carousel = {
     function goTo(index) {
       const max = getMaxScroll();
       current = Math.max(0, Math.min(index, max));
-      const cardWidth = cards[0].offsetWidth + 24;
-      carousel.style.transform = `translateX(-${current * cardWidth}px)`;
+      const cardWidth = cards[0].offsetWidth + 20;
+      container.scrollTo({ left: current * cardWidth, behavior: 'smooth' });
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
     }
     
     function next() {
@@ -581,17 +617,78 @@ const Carousel = {
       goTo(current >= max ? 0 : current + 1);
     }
     
+    function prev() {
+      const max = getMaxScroll();
+      goTo(current <= 0 ? max : current - 1);
+    }
+    
     function start() {
-      interval = setInterval(next, 5000);
+      if (!autoPlay || isPaused) return;
+      intervalId = setInterval(next, interval);
     }
     
     function stop() {
-      clearInterval(interval);
+      if (intervalId) clearInterval(intervalId);
+      intervalId = null;
     }
     
-    carousel.addEventListener('mouseenter', stop);
-    carousel.addEventListener('mouseleave', start);
+    function pause() {
+      isPaused = true;
+      stop();
+    }
     
+    function scheduleResume() {
+      if (resumeTimeout) clearTimeout(resumeTimeout);
+      resumeTimeout = setTimeout(() => { isPaused = false; start(); }, resumeDelay);
+    }
+    
+    // Eventos
+    prevBtn.addEventListener('click', () => { pause(); prev(); scheduleResume(); });
+    nextBtn.addEventListener('click', () => { pause(); next(); scheduleResume(); });
+    
+    container.addEventListener('mouseenter', pause);
+    container.addEventListener('mouseleave', scheduleResume);
+    container.addEventListener('focusin', pause);
+    container.addEventListener('focusout', scheduleResume);
+    
+    // Touch
+    let touchStartX = 0;
+    container.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+      pause();
+    }, { passive: true });
+    container.addEventListener('touchend', e => {
+      const diff = e.changedTouches[0].screenX - touchStartX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) prev(); else next();
+      }
+      scheduleResume();
+    }, { passive: true });
+    
+    // Teclado
+    container.setAttribute('tabindex', '0');
+    container.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') { pause(); prev(); scheduleResume(); }
+      if (e.key === 'ArrowRight') { pause(); next(); scheduleResume(); }
+    });
+    
+    // IntersectionObserver
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) { scheduleResume(); }
+          else { pause(); }
+        });
+      }, { threshold: 0.1 });
+      observer.observe(container);
+    }
+    
+    // prefers-reduced-motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      isPaused = true;
+    }
+    
+    // Resize
     window.addEventListener('resize', () => goTo(current));
     
     start();
@@ -640,8 +737,12 @@ document.addEventListener('DOMContentLoaded', () => {
   `;
 
   // Inicializa carrosséis
-  Carousel.initHero();
-  Carousel.initConsoles();
+  Carousel.init({ containerId: 'hero-carousel', autoPlay: true, interval: 5000 });
+  Carousel.init({ containerId: 'consoles-carousel', autoPlay: true, interval: 5000 });
+  Carousel.init({ containerId: 'bundles-carousel', autoPlay: true, interval: 5000 });
+  Carousel.init({ containerId: 'jogos-carousel', autoPlay: false });
+  Carousel.init({ containerId: 'acessorios-carousel', autoPlay: false });
+  Carousel.init({ containerId: 'ps4-carousel', autoPlay: false });
   
   // Inicializa abas
   Tabs.init();

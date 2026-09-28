@@ -71,7 +71,7 @@ function Hero() {
         <div class="hero__content">
           <span class="hero__eyebrow">🎮 MÊS DAS CRIANÇAS - 2026</span>
           <h1 class="hero__title">
-            Encontre o PlayStation perfeito para presentear
+            O presente perfeito para o Mês das Crianças: Guia Completo de PlayStation 5
           </h1>
           <p class="hero__subtitle">Toda criança merece começar sua jornada nos games com o console certo.</p>
           <p class="hero__text">
@@ -91,10 +91,10 @@ function Hero() {
           </p>
           <div class="hero__actions">
             <a href="${CONFIG.featuredOffer.affiliateUrl}" class="cta-button cta-button--primary" target="_blank" rel="noopener noreferrer">
-              🔥 VER MELHOR OFERTA
+              Consultar Preço Atualizado na Amazon
             </a>
             <a href="#consoles" class="cta-button cta-button--outline">
-              📋 VER GUIA DE DECISÃO
+              Comparar Versões
             </a>
           </div>
         </div>
@@ -166,7 +166,7 @@ function FeaturedOfferSection() {
               ${offer.includes.map(i => `<li>${Icons.check} ${i}</li>`).join('')}
             </ul>
             <a href="${offer.affiliateUrl}" class="cta-button cta-button--primary" target="_blank" rel="noopener noreferrer">
-              [ VER OFERTA NA AMAZON ]
+              Consultar Preço Atualizado na Amazon
             </a>
             <p class="featured-offer__date">Preço consultado em ${CONFIG.priceCheckDate}. Sujeito a mudanças.</p>
           </div>
@@ -195,24 +195,8 @@ function ConsolesSection() {
               ${c.bestFor.map(b => `<li>${b}</li>`).join('')}
             </ul>
           </div>
-          <div class="console-card__prices">
-            <div class="console-card__price">
-              <span class="console-card__label">Amazon</span>
-              <span class="console-card__value">${formatPrice(c.amazonPrice)}</span>
-            </div>
-            ${c.pixPrice ? `
-            <div class="console-card__price console-card__price--pix">
-              <span class="console-card__label">PIX</span>
-              <span class="console-card__value">${formatPrice(c.pixPrice)} ✓</span>
-            </div>
-            ` : ''}
-            <div class="console-card__price">
-              <span class="console-card__label">Mercado L</span>
-              <span class="console-card__value">${formatPrice(c.mercadolivrePrice)}</span>
-            </div>
-          </div>
-          <a href="${c.affiliateUrl}" class="cta-button cta-button--small" target="_blank" rel="noopener noreferrer">
-            [ VER OFERTA ]
+          <a href="${c.affiliateUrl}" class="cta-button cta-button--small cta-button--primary" target="_blank" rel="noopener noreferrer">
+            Consultar Preço Atualizado na Amazon
           </a>
         </div>
       </div>
@@ -267,7 +251,7 @@ function GuideSection() {
               <ul class="comparison__list">
                 ${comp.digitalVsLeitor.digital.ideal.map(i => `<li>→ ${i}</li>`).join('')}
               </ul>
-              <a href="#" class="cta-button cta-button--small">[ VER OFERTA ]</a>
+              <a href="#" class="cta-button cta-button--small cta-button--primary">Consultar Preço Atualizado na Amazon</a>
             </div>
             <div class="comparison__card">
               <h4>🔵 COM LEITOR</h4>
@@ -282,7 +266,7 @@ function GuideSection() {
               <ul class="comparison__list">
                 ${comp.digitalVsLeitor.leitor.ideal.map(i => `<li>→ ${i}</li>`).join('')}
               </ul>
-              <a href="#" class="cta-button cta-button--small">[ VER OFERTA ]</a>
+              <a href="#" class="cta-button cta-button--small cta-button--primary">Consultar Preço Atualizado na Amazon</a>
             </div>
           </div>
         </div>
@@ -304,7 +288,7 @@ function GuideSection() {
                 <p class="profile-panel__price">${formatPrice(p.price)}</p>
                 <p class="profile-panel__parcelado">Parcelado: ${p.parcelado}</p>
                 <p class="profile-panel__desc">"${p.desc}"</p>
-                <a href="#" class="cta-button cta-button--small">[ VER OFERTA ]</a>
+                <a href="#" class="cta-button cta-button--small cta-button--primary">Consultar Preço Atualizado na Amazon</a>
               </div>
             `).join('')}
           </div>
@@ -333,8 +317,8 @@ function BundlesSection() {
           ${b.includes.map(i => `<li>${Icons.check} ${i}</li>`).join('')}
         </ul>
         <p class="bundle-card__price">Por apenas: ${formatPrice(b.price)}</p>
-        <a href="${b.affiliateUrl}" class="cta-button cta-button--small" target="_blank" rel="noopener noreferrer">
-          [ VER BUNDLE ]
+        <a href="${b.affiliateUrl}" class="cta-button cta-button--small cta-button--primary" target="_blank" rel="noopener noreferrer">
+          Consultar Preço Atualizado na Amazon
         </a>
       </div>
     </div>
@@ -373,7 +357,7 @@ function GamesSection() {
         <h3 class="game-card__name">${g.name}</h3>
         ${g.desc ? `<p class="game-card__desc">${g.desc}</p>` : ''}
         <p class="game-card__price">${formatPrice(g.price)}</p>
-        <a href="#" class="cta-button cta-button--small">[ VER OFERTA ]</a>
+        <a href="#" class="cta-button cta-button--small cta-button--primary">Consultar Preço Atualizado na Amazon</a>
       </div>
     </div>
   `).join('');
@@ -447,7 +431,7 @@ function PS4Section() {
       <h3 class="ps4-card__name">${p.name}</h3>
       <p class="ps4-card__price">${formatPrice(p.price)}</p>
       <p class="ps4-card__desc">${p.desc}</p>
-      <a href="#" class="cta-button cta-button--small">[ VER OFERTAS ]</a>
+      <a href="#" class="cta-button cta-button--small cta-button--primary">Consultar Preço Atualizado na Amazon</a>
     </div>
   `).join('');
 
@@ -460,9 +444,8 @@ function PS4Section() {
         </div>
         <div class="ps4-grid">${ps4}</div>
         <div class="ps4-copy">
-          <p>Se a criança está começando agora, o PS4 é uma excelente porta de entrada para o mundo dos games.</p>
-          <p>A biblioteca é GIGANTE, os preços dos jogos usados são muito mais acessíveis, e ainda sai jogo novo toda semana (exceto exclusivos de PS5).</p>
-          <p>Vale muito a pena se o orçamento for apertado.</p>
+          <p>O PS5 está fora do orçamento? O PS4 continua sendo a melhor escolha de custo-benefício para presentear.</p>
+          <p>Com uma biblioteca gigante de jogos e preços muito mais acessíveis, o PS4 é a porta de entrada perfeita para o mundo dos games.</p>
         </div>
       </div>
     </section>`;
@@ -475,7 +458,7 @@ function GroupCTASection() {
     <section class="section section--group" id="grupo">
       <div class="container">
         <div class="group-cta">
-          <h2 class="group-cta__title">⏰ NÃO PERCA A PROMOÇÃO DE 80% OFF</h2>
+          <h2 class="group-cta__title">⏰ NÃO PERCA AS OFERTAS DO MÊS DAS CRIANÇAS</h2>
           <div class="group-cta__content">
             <p>De 5 a 11 de OUTUBRO:</p>
             <ul class="group-cta__list">
@@ -514,7 +497,7 @@ function Footer() {
           <a href="${CONFIG.whatsappUrl}" target="_blank" rel="noopener noreferrer">Entrar no Grupo</a>
         </div>
         <p class="footer__disclaimer">
-          ℹ️ Somos afiliados da Amazon. Você paga o mesmo, mas nos ajuda a manter este site.
+          ℹ️ Associado da Amazon: Como afiliado, recebemos comissões por compras qualificadas sem custo adicional para você. Isso nos ajuda a manter este site.
         </p>
         <p class="footer__copyright">
           © 2026 PlayStation Curador. Todos os direitos reservados.

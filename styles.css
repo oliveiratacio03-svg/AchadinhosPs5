@@ -11,7 +11,7 @@
   --color-surface-hover: #1a4a7a;
   --color-border: #2a4a6a;
   --color-text: #ffffff;
-  --color-text-muted: #b0b0c0;
+  --color-text-muted: #E0E0E0;
   --color-accent: #00d9ff;
   --color-accent-hover: #00b8d9;
   --color-accent-glow: rgba(0, 217, 255, 0.3);
@@ -56,7 +56,7 @@ body {
   font-family: var(--font-family);
   background-color: var(--color-bg);
   color: var(--color-text);
-  line-height: 1.6;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -209,7 +209,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .cta-button:active { transform: translateY(0); }
 
 .cta-button--primary { background: var(--color-accent); color: var(--color-bg); }
-.cta-button--outline { background: transparent; border: 2px solid var(--color-accent); color: var(--color-accent); box-shadow: none; }
+.cta-button--primary:hover { box-shadow: 0 0 20px var(--color-accent-glow), 0 0 40px var(--color-accent-glow); }
+.cta-button--outline { background: transparent; border: 2px solid var(--color-accent); color: var(--color-white); box-shadow: none; }
 .cta-button--outline:hover { background: var(--color-accent); color: var(--color-bg); }
 .cta-button--small { padding: var(--space-sm) var(--space-md); font-size: var(--font-size-sm); }
 .cta-button--large { padding: var(--space-lg) var(--space-2xl); font-size: var(--font-size-lg); }
@@ -241,16 +242,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .promo-alert__box {
   position: relative;
   max-width: 800px; margin: 0 auto;
-  background: linear-gradient(135deg, var(--color-bg-alt) 0%, rgba(45, 10, 78, 0.05) 100%);
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d0a4e 100%);
   border-radius: var(--radius-lg);
-  padding: var(--space-xl) var(--space-xl) var(--space-xl) calc(var(--space-xl) + 6px);
-  box-shadow: 0 4px 15px rgba(255, 152, 0, 0.1);
+  padding: var(--space-xl) var(--space-xl) var(--space-xl) calc(var(--space-xl) + 5px);
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.15);
 }
 
 .promo-alert__box::before {
   content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-  width: 6px; border-radius: var(--radius-lg) 0 0 var(--radius-lg);
-  background: var(--color-gold);
+  width: 5px; border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+  background: #FFD700;
   animation: pulse-bar 2s ease-in-out infinite;
 }
 
@@ -452,9 +453,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .games-category { margin-bottom: var(--space-2xl); }
 .games-category__title { font-size: var(--font-size-xl); font-weight: 700; color: var(--color-white); margin-bottom: var(--space-lg); }
 
-.games-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
-@media (min-width: 640px) { .games-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (min-width: 1024px) { .games-grid { grid-template-columns: repeat(5, 1fr); } }
+.games-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+@media (min-width: 1024px) { .games-grid { grid-template-columns: repeat(4, 1fr); } }
 
 .game-card {
   background: var(--color-surface); border: 1px solid var(--color-border);

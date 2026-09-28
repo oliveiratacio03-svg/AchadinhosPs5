@@ -1,24 +1,23 @@
 /**
- * Configuração central — PlayStation Mês das Crianças
- * 
- * Landing page de afiliado Amazon/Mercado Livre
- * Foco: PS5, bundles, jogos e acessórios
+ * PlayStation Mês das Crianças — Landing Page
+ * Afiliado Amazon + Mercado Livre
+ * Setembro - Outubro 2026
  */
 
 const CONFIG = {
   // ─── Identidade ────────────────────────────────────────────────────────────
-  siteName: 'PlayStation Mês das Crianças',
+  siteName: 'PS5 Mês das Crianças',
   siteTagline: 'Curadoria Independente',
 
-  // ─── Links de afiliado ────────────────────────────────────────────────────
+  // ─── Links ─────────────────────────────────────────────────────────────────
   amazonTag: 'oliveirat-20',
-  mercadolivreTag: 'SEU_TAG_MERCADO_LIVRE',
+  whatsappUrl: 'https://wa.me/5500000000000',
   channelUrl: 'https://t.me/seu-canal-de-ofertas',
 
   // ─── Datas ─────────────────────────────────────────────────────────────────
   campaignStart: '2026-10-05T00:00:00-03:00',
   campaignEnd: '2026-10-12T23:59:59-03:00',
-  priceCheckDate: '2026-09-28',
+  priceCheckDate: '28/09/2026',
 
   // ─── Fases ─────────────────────────────────────────────────────────────────
   getPhase() {
@@ -32,16 +31,27 @@ const CONFIG = {
   isPreCampaign() { return this.getPhase() === 'pre'; },
   isCampaignActive() { return this.getPhase() === 'active'; },
 
-  // ─── Oferta em destaque ───────────────────────────────────────────────────
+  // ─── Alerta de Promoção ───────────────────────────────────────────────────
+  promoAlert: {
+    title: '🔔 AVISO: Oferta Especial de 80% OFF',
+    text: 'De 5 a 11 de OUTUBRO:',
+    text2: 'Cupons extras + ofertas exclusivas para quem entra no nosso grupo.',
+    text3: 'Vamos anunciar PRIMEIRO lá. Não perca!',
+    button: '[ ENTRAR NO GRUPO WHATSAPP ]'
+  },
+
+  // ─── Oferta em Destaque ───────────────────────────────────────────────────
   featuredOffer: {
     id: 'featured-ps5-bundle',
     name: 'PS5 Slim Digital + Astro Bot + Gran Turismo 7',
     image: '/images/products/ps5-slim-digital-astro-gt7.webp',
     affiliateUrl: 'https://www.amazon.com.br/gp/aw/d/B0FPGF9J2J?pd_rd_plhdr=t&hsa_cr_id=0&qid=1790564133&sr=1-1-fec03104-6f11-4242-8f79-15fae2896f66&i=videogames&aref=qSZduTclaX&_encoding=UTF8&pd_rd_w=tFqrJ&content-id=amzn1.sym.6cdfbb79-51ae-4c0d-8769-7c90679f83e4%3Aamzn1.sym.6cdfbb79-51ae-4c0d-8769-7c90679f83e4&pf_rd_p=6cdfbb79-51ae-4c0d-8769-7c90679f83e4&pf_rd_r=TAQVHZKYWT6QHM5YFQNW&pd_rd_wg=VS3Sm&pd_rd_r=12b7f119-fa2a-40b2-ab4f-e563cf9b5580&linkCode=ll2&tag=oliveirat-20&linkId=34d01548720932fd7f15f7a07b5dd1e6&ref_=as_li_ss_tl',
-    badge: 'MELHOR PREÇO ENCONTRADO',
-    price: null,
-    originalPrice: null,
-    discount: null
+    badge: 'MELHOR CUSTO-BENEFÍCIO',
+    price: 4277.90,
+    pixPrice: 4277.90,
+    parcelado: '12x R$ 383,38',
+    description: 'Dois jogos aclamados inclusos. O Astro Bot foi Jogo do Ano.',
+    includes: ['SSD 1TB', '2 jogos aclamados', 'DualSense incluso', 'Design slim + fino']
   },
 
   // ─── Consoles PS5 ─────────────────────────────────────────────────────────
@@ -49,32 +59,62 @@ const CONFIG = {
     {
       id: 'ps5-slim-digital',
       name: 'PS5 Slim Digital',
+      specs: '1TB SSD • Branco',
       image: '/images/products/ps5-edition-digital-825gb.webp',
-      amazonPrice: null,
-      mercadolivrePrice: null,
+      amazonPrice: 4599.90,
+      pixPrice: 4277.90,
+      mercadolivrePrice: 4650.00,
       affiliateUrl: 'https://www.amazon.com.br/Sony-PlayStation-Edi%C3%A7%C3%A3o-Digital-Controle/dp/B0GWNKJDCZ?dib=eyJ2IjoiMSJ9.c1P2n-sBpSVWo60U69soAAvZc_MH3zlPhUMrUNdO2QYnPZmkUS-HMRNMjTGGAMwvExqm6bOCGVD_GoxdAy2vstAvZgudlFw6WPjZG2f3Et48-iY55N3YQwngmcqP3nd566gkG8ntTtFJ6OkXT_Pm7sLM06JL8WvbtTckessTY9KSLIrObA842KJ-Kcxnc6H2.jbqD-7bRqtXo5dTc2T-rpZKk5KpPNUjAjTj_-EoujFU&dib_tag=se&keywords=PlayStation+5+Slim+Digital+825GB&qid=1790571365&s=videogames&sr=1-4&ufe=app_do%3Aamzn1.fos.95de73c3-5dda-43a7-bd1f-63af03b14751&utm_source=chatgpt.com&linkCode=ll2&tag=oliveirat-20&linkId=d933c412012b78008e901205b5b2017c&ref_=as_li_ss_tl',
-      badge: 'DIGITAL',
-      description: 'Versão sem leitor de disco. Ideal para jogos digitais.'
+      badge: 'Mais compacto',
+      bestFor: ['Quem compra jogos na Store', 'Quer economia máxima', 'Prefere design compacto']
     },
     {
       id: 'ps5-slim-leitor',
-      name: 'PS5 Slim com Leitor',
+      name: 'PS5 Slim Com Leitor',
+      specs: '1TB SSD • Branco',
       image: '/images/products/ps5-slim-digital-astro-gt7.webp',
-      amazonPrice: null,
-      mercadolivrePrice: null,
+      amazonPrice: 4999.00,
+      pixPrice: 4649.06,
+      mercadolivrePrice: 5099.90,
       affiliateUrl: 'https://www.amazon.com.br/gp/aw/d/B0FPGF9J2J?pd_rd_plhdr=t&hsa_cr_id=0&qid=1790564133&sr=1-1-fec03104-6f11-4242-8f79-15fae2896f66&i=videogames&aref=qSZduTclaX&_encoding=UTF8&pd_rd_w=tFqrJ&content-id=amzn1.sym.6cdfbb79-51ae-4c0d-8769-7c90679f83e4%3Aamzn1.sym.6cdfbb79-51ae-4c0d-8769-7c90679f83e4&pf_rd_p=6cdfbb79-51ae-4c0d-8769-7c90679f83e4&pf_rd_r=TAQVHZKYWT6QHM5YFQNW&pd_rd_wg=VS3Sm&pd_rd_r=12b7f119-fa2a-40b2-ab4f-e563cf9b5580&linkCode=ll2&tag=oliveirat-20&linkId=34d01548720932fd7f15f7a07b5dd1e6&ref_=as_li_ss_tl',
-      badge: 'COM LEITOR',
-      description: 'Versão com leitor de disco. Permite jogos físicos e usados.'
+      badge: 'Jogos físicos',
+      bestFor: ['Quem quer jogar físicos', 'Aprecia flexibilidade', 'Pode comprar jogos usados']
     },
     {
       id: 'ps5-pro',
       name: 'PS5 Pro',
+      specs: '2TB SSD • Preto',
       image: '/images/products/ps5-slim-digital-astro-gt7.webp',
-      amazonPrice: null,
+      amazonPrice: 7399.00,
+      pixPrice: null,
+      mercadolivrePrice: 7699.00,
+      affiliateUrl: 'https://www.amazon.com.br/dp/B0FPGF9J2J?tag=oliveirat-20',
+      badge: 'Máximo desempenho',
+      bestFor: ['Máximo desempenho', '4K 120fps garantido', 'Hardcore gamers', 'Futuro-prova']
+    },
+    {
+      id: 'bundle-gta6',
+      name: 'Bundle PS5 Digital + GTA6',
+      specs: 'Inclusos: Astro Bot + GT7 + GTA6',
+      image: '/images/products/bundle-gta6-ps5-slim-digital.webp',
+      amazonPrice: 4727.82,
+      pixPrice: null,
+      mercadolivrePrice: null,
+      affiliateUrl: 'https://www.amazon.com.br/Bundle-PlayStation-Digital-Pacote-Turismo/dp/B0H6LVH152?dib=eyJ2IjoiMSJ9.AEB0uzujtV1-21Nt0m-SxhnjkLeew8H1SNdKtJCsPD7GjHj071QN20LucGBJIEps.6x9FqE20OtN6pVlvg0hQtFMqfp2cWxQmjslJXFj4Qjw&dib_tag=se&keywords=PlayStation+5+Slim+Digital+825GB+ASTRO+BOT+Gran+Turismo+7&qid=1790571280&s=videogames&sr=1-3&utm_source=chatgpt.com&linkCode=ll2&tag=oliveirat-20&linkId=ee4793671760295add1fbd564fa92526&ref_=as_li_ss_tl',
+      badge: 'MELHOR VALOR',
+      bestFor: ['Console + 2 jogos iniciais', 'GTA6 (quando lançar)', 'Setup completo']
+    },
+    {
+      id: 'bundle-2-controles',
+      name: 'Bundle PS5 Leitor + 2 Controles',
+      specs: 'Para jogar com amigos',
+      image: '/images/products/ps5-slim-digital-astro-gt7.webp',
+      amazonPrice: 5299.90,
+      pixPrice: null,
       mercadolivrePrice: null,
       affiliateUrl: 'https://www.amazon.com.br/dp/B0FPGF9J2J?tag=oliveirat-20',
-      badge: 'PRO',
-      description: 'Versão mais poderosa. GPU avançada e SSD de 2TB.'
+      badge: null,
+      bestFor: ['2 controles inclusos', 'Multijogador local', 'Melhor para famílias']
     }
   ],
 
@@ -83,24 +123,24 @@ const CONFIG = {
     digitalVsLeitor: {
       digital: {
         name: 'PS5 Digital',
-        price: null,
-        advantages: ['Mais barato', 'Mais compacto', 'Silencioso'],
-        disadvantages: ['Sem jogos físicos', 'Sem revenda', 'Preço digital alto'],
-        games: 'Apenas jogos digitais'
+        price: 4277.90,
+        pros: ['Mais econômico', 'Design mais compacto', 'Mais leve', 'Perfeito para Store'],
+        cons: ['Sem jogos físicos', 'Sem blu-ray', 'Sem mídia física'],
+        ideal: ['Criança é digital-first', 'Quer economizar', 'Ama inovação']
       },
       leitor: {
-        name: 'PS5 com Leitor',
-        price: null,
-        advantages: ['Jogos físicos', 'Pode revender', 'Jogos usados mais baratos', 'Blu-ray'],
-        disadvantages: ['Mais caro', 'Maio', 'Faz barulho'],
-        games: 'Todos os jogos'
+        name: 'PS5 Com Leitor',
+        price: 4649.06,
+        pros: ['Flexibilidade máxima', 'Compra jogos usados', 'Jogos em físico', 'Resale value alto'],
+        cons: ['Um pouco mais caro', 'Leitor pode estragar', 'Menos compacto'],
+        ideal: ['Quer máxima liberdade', 'Gosta de física', 'Quer economizar jogos']
       }
     },
     profiles: [
-      { id: 'economizar', label: 'Quero economizar', product: 'PS5 Digital', price: null },
-      { id: 'fisicos', label: 'Prefiro jogos físicos', product: 'PS5 com Leitor', price: null },
-      { id: 'presente', label: 'Quero dar de presente', product: 'PS5 + 2 Jogos', price: null },
-      { id: 'desempenho', label: 'Máximo desempenho', product: 'PS5 Pro', price: null }
+      { id: 'economizar', label: '💰 Quero economizar', product: 'PS5 Slim Digital', price: 4277.90, parcelado: '12x R$ 383,38', desc: 'A entrada perfeita. Astro Bot é Jogo do Ano. Gran Turismo 7 oferece diversão garantida. Ambos com alta replay value.' },
+      { id: 'fisicos', label: '🎮 Criança já gama jogos físicos', product: 'PS5 Slim Com Leitor', price: 4649.06, parcelado: '12x R$ 416,62', desc: 'Máxima flexibilidade. Compra jogos usados por metade do preço. Seu filho/filha não sente falta de nada.' },
+      { id: 'presente', label: '🎁 Quero dar o melhor', product: 'Bundle (Digital + GTA6)', price: 4727.82, parcelado: '12x R$ 427,16', desc: 'Console + 2 jogos iniciais + GTA6 (quando lançar em nov). Setup completo sem gastar mais.' },
+      { id: 'pro', label: '🚀 Máximo poder / Futuro', product: 'PS5 Pro', price: 7399.00, parcelado: '10x R$ 739,90', desc: 'GPU 67% mais potente. 4K 120fps em praticamente tudo. 2TB de SSD. O console mais poderoso da geração.' }
     ]
   },
 
@@ -110,52 +150,70 @@ const CONFIG = {
       id: 'bundle-astro-gt7',
       name: 'PS5 Slim Digital + Astro Bot + Gran Turismo 7',
       image: '/images/products/ps5-slim-digital-astro-gt7.webp',
-      includes: ['Console PS5 Slim Digital', 'Jogo Astro Bot', 'Jogo Gran Turismo 7'],
-      price: null,
+      includes: ['Console 1TB', 'Astro Bot (Jogo do Ano)', 'Gran Turismo 7', 'DualSense'],
+      price: 4277.90,
+      badge: 'MELHOR CUSTO-BENEFÍCIO',
       affiliateUrl: 'https://www.amazon.com.br/gp/aw/d/B0FPGF9J2J?pd_rd_plhdr=t&hsa_cr_id=0&qid=1790564133&sr=1-1-fec03104-6f11-4242-8f79-15fae2896f66&i=videogames&aref=qSZduTclaX&_encoding=UTF8&pd_rd_w=tFqrJ&content-id=amzn1.sym.6cdfbb79-51ae-4c0d-8769-7c90679f83e4%3Aamzn1.sym.6cdfbb79-51ae-4c0d-8769-7c90679f83e4&pf_rd_p=6cdfbb79-51ae-4c0d-8769-7c90679f83e4&pf_rd_r=TAQVHZKYWT6QHM5YFQNW&pd_rd_wg=VS3Sm&pd_rd_r=12b7f119-fa2a-40b2-ab4f-e563cf9b5580&linkCode=ll2&tag=oliveirat-20&linkId=34d01548720932fd7f15f7a07b5dd1e6&ref_=as_li_ss_tl'
     },
     {
       id: 'bundle-gta6',
-      name: 'Bundle GTA VI + PS5 Slim Digital',
+      name: 'PS5 Slim Digital + GTA6 + Astro Bot + GT7',
       image: '/images/products/bundle-gta6-ps5-slim-digital.webp',
-      includes: ['Console PS5 Slim Digital', 'Jogo GTA VI', 'Jogo Astro Bot', 'Jogo Gran Turismo 7'],
-      price: null,
+      includes: ['Console 1TB', 'Astro Bot', 'Gran Turismo 7', 'GTA6 (pré-venda)'],
+      price: 4727.82,
+      badge: 'RECOMENDADO',
       affiliateUrl: 'https://www.amazon.com.br/Bundle-PlayStation-Digital-Pacote-Turismo/dp/B0H6LVH152?dib=eyJ2IjoiMSJ9.AEB0uzujtV1-21Nt0m-SxhnjkLeew8H1SNdKtJCsPD7GjHj071QN20LucGBJIEps.6x9FqE20OtN6pVlvg0hQtFMqfp2cWxQmjslJXFj4Qjw&dib_tag=se&keywords=PlayStation+5+Slim+Digital+825GB+ASTRO+BOT+Gran+Turismo+7&qid=1790571280&s=videogames&sr=1-3&utm_source=chatgpt.com&linkCode=ll2&tag=oliveirat-20&linkId=ee4793671760295add1fbd564fa92526&ref_=as_li_ss_tl'
+    },
+    {
+      id: 'bundle-pro-completo',
+      name: 'PS5 Pro + Headset Pulse 3D + 2 DualSense + GTA6',
+      image: '/images/products/ps5-slim-digital-astro-gt7.webp',
+      includes: ['Console Pro 2TB', 'Headset Pulse 3D', '2 Controles extras', 'GTA6 (pré-venda)'],
+      price: 8848.70,
+      badge: 'SETUP COMPLETO',
+      affiliateUrl: 'https://www.amazon.com.br/dp/B0FPGF9J2J?tag=oliveirat-20'
     }
   ],
 
-  // ─── Jogos por faixa etária ────────────────────────────────────────────────
+  // ─── Jogos ─────────────────────────────────────────────────────────────────
   games: {
     kids: [
-      { id: 'astro-playroom', name: "Astro's Playroom", rating: 'L', image: null, price: null },
-      { id: 'ratchet-clank', name: 'Ratchet & Clank: Rift Apart', rating: '10', image: null, price: null },
-      { id: 'sackboy', name: 'Sackboy: A Big Adventure', rating: 'L', image: null, price: null },
-      { id: 'sonic', name: 'Sonic Superstars', rating: 'L', image: null, price: null },
-      { id: 'minecraft', name: 'Minecraft', rating: 'L', image: null, price: null }
+      { id: 'astro-bot', name: 'Astro Bot', rating: 'L', price: 299.90, desc: '⭐ Jogo do Ano 2024' },
+      { id: 'ratchet-clank', name: 'Ratchet & Clank', rating: '10', price: 80.10, desc: '30% OFF' },
+      { id: 'sackboy', name: 'Sackboy: A Big Adventure', rating: 'L', price: 129.90, desc: '' },
+      { id: 'sonic', name: 'Sonic Superstars', rating: 'L', price: 109.90, desc: '' },
+      { id: 'minecraft', name: 'Minecraft', rating: 'L', price: 149.90, desc: '' }
     ],
     older: [
-      { id: 'spiderman-miles', name: 'Spider-Man: Miles Morales', rating: '12', image: null, price: null },
-      { id: 'crash', name: 'Crash Bandicoot N. Sane Trilogy', rating: 'L', image: null, price: null },
-      { id: 'lego-horizon', name: 'LEGO Horizon Adventures', rating: 'L', image: null, price: null },
-      { id: 'horizon-fw', name: 'Horizon Forbidden West', rating: '14', image: null, price: null }
+      { id: 'spiderman-miles', name: 'Spider-Man: Miles Morales', rating: '12', price: 179.90, desc: '' },
+      { id: 'spiderman-2', name: 'Spider-Man 2', rating: '12', price: 299.90, desc: 'Dois heróis, dobro da diversão' },
+      { id: 'gt7', name: 'Gran Turismo 7', rating: '3', price: null, desc: 'Incluído em bundles' },
+      { id: 'sackboy-2', name: 'Sackboy: A Big Adventure', rating: 'L', price: 129.90, desc: '' },
+      { id: 'horizon-zd', name: 'Horizon Zero Dawn', rating: '12', price: 89.90, desc: '' }
     ],
     teens: [
-      { id: 'gt7', name: 'Gran Turismo 7', rating: 'L', image: null, price: null },
-      { id: 'ff7', name: 'Final Fantasy VII Rebirth', rating: '14', image: null, price: null },
-      { id: 'gow-ragnarok', name: 'God of War Ragnarök', rating: '18', image: null, price: null },
-      { id: 'spiderman-2', name: 'Marvel\'s Spider-Man 2', rating: '12', image: null, price: null }
+      { id: 'gta6', name: 'GTA 6', rating: '18', price: 449.90, desc: '⚠️ SOMENTE MAIORES DE IDADE', isNew: true },
+      { id: 'gow-ragnarok', name: 'God of War Ragnarök', rating: '16', price: 249.90, desc: '' },
+      { id: 'ff7', name: 'Final Fantasy VII Rebirth', rating: '16', price: 299.90, desc: '' },
+      { id: 'wolverine', name: "Marvel's Wolverine", rating: '16', price: 349.90, desc: 'Pré-venda' },
+      { id: 'tekken8', name: 'Tekken 8', rating: '12', price: 289.90, desc: '' }
     ]
   },
 
   // ─── Acessórios ───────────────────────────────────────────────────────────
   accessories: [
-    { id: 'dualsense', name: 'DualSense', category: 'Controle', image: null, price: null },
-    { id: 'dualsense-edge', name: 'DualSense Edge', category: 'Controle', image: null, price: null },
-    { id: 'pulse-elite', name: 'PULSE Elite', category: 'Headset', image: null, price: null },
-    { id: 'pulse-explore', name: 'PULSE Explore', category: 'Headset', image: null, price: null },
-    { id: 'ssd-1tb', name: 'SSD M.2 1TB', category: 'Armazenamento', image: null, price: null },
-    { id: 'ssd-2tb', name: 'SSD M.2 2TB', category: 'Armazenamento', image: null, price: null },
-    { id: 'stand', name: 'Suporte Vertical', category: 'Suporte', image: null, price: null },
-    { id: 'hdmi', name: 'Cabo HDMI 2.1', category: 'Cabos', image: null, price: null }
+    { id: 'dualsense-branco', name: 'DualSense Branco', category: 'Controle', price: 369.90, desc: 'Feedback háptico + gatilhos adaptativos' },
+    { id: 'dualsense-camo', name: 'DualSense Gray Camouflage', category: 'Controle', price: 429.90, desc: '' },
+    { id: 'base-carregamento', name: 'Base de Carregamento (2 Controles)', category: 'Controle', price: 169.90, desc: '' },
+    { id: 'pulse-3d', name: 'Pulse 3D Headset', category: 'Headset', price: 259.90, desc: 'Áudio 3D, microfone built-in' },
+    { id: 'arctis-nova', name: 'SteelSeries Arctis Nova', category: 'Headset', price: 599.90, desc: '' },
+    { id: 'ssd-1tb', name: 'SSD M.2 1TB', category: 'Armazenamento', price: 399.90, desc: 'Expanda seu armazenamento' },
+    { id: 'leitor-slim', name: 'Leitor Externo (Slim)', category: 'Armazenamento', price: 690.00, desc: 'Para versão Digital' }
+  ],
+
+  // ─── PS4 ──────────────────────────────────────────────────────────────────
+  ps4: [
+    { id: 'ps4-slim', name: 'PS4 Slim 1TB', price: 1799.90, desc: '4.000+ jogos disponíveis' },
+    { id: 'ps4-slim-2jogos', name: 'PS4 Slim 1TB + 2 Jogos', price: 2199.90, desc: '' }
   ]
 };

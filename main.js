@@ -1,6 +1,7 @@
 /**
  * PlayStation Mês das Crianças — Landing Page
  * Afiliado Amazon + Mercado Livre
+ * Setembro - Outubro 2026
  */
 
 // ─── Ícones SVG ──────────────────────────────────────────────────────────────
@@ -18,8 +19,16 @@ const Icons = {
   clock: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
   chevronLeft: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>`,
   chevronRight: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>`,
-  external: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`
+  external: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`,
+  bell: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>`
 };
+
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+
+function formatPrice(price) {
+  if (!price) return 'Ver preço';
+  return 'R$ ' + price.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+}
 
 // ─── Header ──────────────────────────────────────────────────────────────────
 
@@ -28,7 +37,7 @@ function Header() {
     <header class="header">
       <div class="container header__inner">
         <div class="header__logo">PS5 <span>Mês das Crianças</span></div>
-        <a href="${CONFIG.channelUrl}" class="header__cta" target="_blank" rel="noopener noreferrer">
+        <a href="${CONFIG.whatsappUrl}" class="header__cta" target="_blank" rel="noopener noreferrer">
           ${Icons.users} Entrar no Grupo
         </a>
       </div>
@@ -40,31 +49,86 @@ function Header() {
 function Hero() {
   const isPre = CONFIG.isPreCampaign();
   
+  // Carrossel de imagens PS5
+  const carouselImages = CONFIG.consoles.slice(0, 5);
+  const carouselHtml = carouselImages.map((c, i) => `
+    <div class="hero-carousel__slide ${i === 0 ? 'active' : ''}" data-index="${i}">
+      <img src="${c.image}" alt="${c.name}">
+      <div class="hero-carousel__info">
+        <h3>${c.name}</h3>
+        <p>${c.specs}</p>
+        <p class="hero-carousel__price">A partir de ${formatPrice(c.pixPrice || c.amazonPrice)}</p>
+        <a href="${c.affiliateUrl}" class="cta-button cta-button--small" target="_blank" rel="noopener noreferrer">
+          VER OFERTA NA AMAZON
+        </a>
+      </div>
+    </div>
+  `).join('');
+
   return `
     <section class="hero">
       <div class="container hero__layout">
         <div class="hero__content">
-          <span class="hero__eyebrow">🎮 Mês das Crianças</span>
+          <span class="hero__eyebrow">🎮 MÊS DAS CRIANÇAS - 2026</span>
           <h1 class="hero__title">
-            ${isPre 
-              ? 'O presente de PlayStation que você estava procurando.'
-              : 'COMEÇOU A SEMANA DO DIA DAS CRIANÇAS'}
+            Encontre o PlayStation perfeito para presentear
           </h1>
-          <p class="hero__subtitle">Está procurando um PS5 para presentear?</p>
+          <p class="hero__subtitle">Toda criança merece começar sua jornada nos games com o console certo.</p>
           <p class="hero__text">
-            Separamos consoles, bundles, jogos e acessórios que encontramos nas lojas para você não precisar ficar procurando em dezenas de anúncios.
+            Mas com tantas opções, preços variados e promoções espalhadas, fica complicado saber qual escolher. Por isso separamos as MELHORES OFERTAS que encontramos na Amazon e Mercado Livre agora.
+          </p>
+          <p class="hero__text">
+            Aqui você encontra:
+          </p>
+          <ul class="hero__list">
+            <li>${Icons.check} Consoles com melhor custo-benefício</li>
+            <li>${Icons.check} Bundlers pré-montados (console + jogos)</li>
+            <li>${Icons.check} Preços atualizados HOJE</li>
+            <li>${Icons.check} Guia rápido para escolher a versão certa</li>
+          </ul>
+          <p class="hero__text">
+            Sem enrolação. Sem artigos infinitos. Só informação útil.
           </p>
           <div class="hero__actions">
             <a href="${CONFIG.featuredOffer.affiliateUrl}" class="cta-button cta-button--primary" target="_blank" rel="noopener noreferrer">
-              🔥 VER OFERTA EM DESTAQUE
+              🔥 VER MELHOR OFERTA
             </a>
             <a href="#consoles" class="cta-button cta-button--outline">
-              🔎 VER TODAS AS OPÇÕES
+              📋 VER GUIA DE DECISÃO
             </a>
           </div>
         </div>
         <div class="hero__visual">
-          <img src="${CONFIG.featuredOffer.image}" alt="${CONFIG.featuredOffer.name}" class="hero__image">
+          <div class="hero-carousel" id="hero-carousel">
+            ${carouselHtml}
+            <button class="hero-carousel__arrow hero-carousel__arrow--prev" aria-label="Anterior">${Icons.chevronLeft}</button>
+            <button class="hero-carousel__arrow hero-carousel__arrow--next" aria-label="Próximo">${Icons.chevronRight}</button>
+            <div class="hero-carousel__dots">
+              ${carouselImages.map((_, i) => `<span class="hero-carousel__dot ${i === 0 ? 'active' : ''}" data-index="${i}"></span>`).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>`;
+}
+
+// ─── Alerta de Promoção ──────────────────────────────────────────────────────
+
+function PromoAlert() {
+  const alert = CONFIG.promoAlert;
+  return `
+    <section class="promo-alert">
+      <div class="container">
+        <div class="promo-alert__box">
+          <div class="promo-alert__content">
+            <h2 class="promo-alert__title">${alert.title}</h2>
+            <p class="promo-alert__text">${alert.text}</p>
+            <p class="promo-alert__text">${alert.text2}</p>
+            <p class="promo-alert__text">${alert.text3}</p>
+            <a href="${CONFIG.whatsappUrl}" class="cta-button cta-button--primary" target="_blank" rel="noopener noreferrer">
+              ${alert.button}
+            </a>
+          </div>
         </div>
       </div>
     </section>`;
@@ -78,7 +142,7 @@ function FeaturedOfferSection() {
     <section class="section section--featured" id="destaque">
       <div class="container">
         <div class="section__header">
-          <h2 class="section__title">🔥 Oferta que encontramos hoje</h2>
+          <h2 class="section__title">🔥 OFERTA QUE ENCONTRAMOS HOJE</h2>
         </div>
         <div class="featured-offer">
           <div class="featured-offer__image">
@@ -87,17 +151,24 @@ function FeaturedOfferSection() {
           </div>
           <div class="featured-offer__content">
             <h3 class="featured-offer__name">${offer.name}</h3>
-            <p class="featured-offer__price">
-              ${offer.price 
-                ? `<span class="featured-offer__current">R$ ${offer.price.toLocaleString('pt-BR')}</span>
-                   ${offer.originalPrice ? `<span class="featured-offer__original">R$ ${offer.originalPrice.toLocaleString('pt-BR')}</span>` : ''}
-                   ${offer.discount ? `<span class="featured-offer__discount">-${offer.discount}%</span>` : ''}`
-                : '<span class="featured-offer__check">Ver preço na Amazon</span>'}
-            </p>
+            <p class="featured-offer__award">🏆 Jogo do Ano 2024 (Astro Bot)</p>
+            <div class="featured-offer__prices">
+              <p class="featured-offer__price">
+                <span class="featured-offer__label">Preço PIX:</span>
+                <span class="featured-offer__current">${formatPrice(offer.pixPrice)}</span>
+              </p>
+              <p class="featured-offer__price">
+                <span class="featured-offer__label">Parcelado:</span>
+                <span class="featured-offer__parcelado">${offer.parcelado}</span>
+              </p>
+            </div>
+            <ul class="featured-offer__includes">
+              ${offer.includes.map(i => `<li>${Icons.check} ${i}</li>`).join('')}
+            </ul>
             <a href="${offer.affiliateUrl}" class="cta-button cta-button--primary" target="_blank" rel="noopener noreferrer">
               [ VER OFERTA NA AMAZON ]
             </a>
-            <p class="featured-offer__date">Preço consultado em ${CONFIG.priceCheckDate}</p>
+            <p class="featured-offer__date">Preço consultado em ${CONFIG.priceCheckDate}. Sujeito a mudanças.</p>
           </div>
         </div>
       </div>
@@ -107,42 +178,60 @@ function FeaturedOfferSection() {
 // ─── Consoles PS5 ────────────────────────────────────────────────────────────
 
 function ConsolesSection() {
-  const consoles = CONFIG.consoles.map(c => `
-    <div class="console-card">
-      <div class="console-card__image">
-        <img src="${c.image}" alt="${c.name}" loading="lazy">
-        <span class="console-card__badge">${c.badge}</span>
-      </div>
-      <div class="console-card__content">
-        <h3 class="console-card__name">${c.name}</h3>
-        <p class="console-card__description">${c.description}</p>
-        <div class="console-card__prices">
-          <div class="console-card__price">
-            <span class="console-card__label">Amazon</span>
-            <span class="console-card__value">${c.amazonPrice ? 'R$ ' + c.amazonPrice.toLocaleString('pt-BR') : '—'}</span>
-          </div>
-          <div class="console-card__price">
-            <span class="console-card__label">Mercado Livre</span>
-            <span class="console-card__value">${c.mercadolivrePrice ? 'R$ ' + c.mercadolivrePrice.toLocaleString('pt-BR') : '—'}</span>
-          </div>
+  const consoles = CONFIG.consoles.map(c => {
+    const bestPrice = c.pixPrice || c.amazonPrice;
+    return `
+      <div class="console-card">
+        <div class="console-card__image">
+          <img src="${c.image}" alt="${c.name}" loading="lazy">
+          ${c.badge ? `<span class="console-card__badge">${c.badge}</span>` : ''}
         </div>
-        <a href="${c.affiliateUrl}" class="cta-button cta-button--small" target="_blank" rel="noopener noreferrer">
-          [ VER OFERTA ]
-        </a>
+        <div class="console-card__content">
+          <h3 class="console-card__name">${c.name}</h3>
+          <p class="console-card__specs">${c.specs}</p>
+          <div class="console-card__bestfor">
+            <p class="console-card__bestfor-label">Melhor para:</p>
+            <ul>
+              ${c.bestFor.map(b => `<li>${b}</li>`).join('')}
+            </ul>
+          </div>
+          <div class="console-card__prices">
+            <div class="console-card__price">
+              <span class="console-card__label">Amazon</span>
+              <span class="console-card__value">${formatPrice(c.amazonPrice)}</span>
+            </div>
+            ${c.pixPrice ? `
+            <div class="console-card__price console-card__price--pix">
+              <span class="console-card__label">PIX</span>
+              <span class="console-card__value">${formatPrice(c.pixPrice)} ✓</span>
+            </div>
+            ` : ''}
+            <div class="console-card__price">
+              <span class="console-card__label">Mercado L</span>
+              <span class="console-card__value">${formatPrice(c.mercadolivrePrice)}</span>
+            </div>
+          </div>
+          <a href="${c.affiliateUrl}" class="cta-button cta-button--small" target="_blank" rel="noopener noreferrer">
+            [ VER OFERTA ]
+          </a>
+        </div>
       </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 
   return `
     <section class="section" id="consoles">
       <div class="container">
         <div class="section__header">
-          <h2 class="section__title">🎮 PS5 que encontramos</h2>
+          <h2 class="section__title">🎮 PS5 QUE ENCONTRAMOS AGORA</h2>
+          <p class="section__subtitle">Cada um tem seu propósito. Escolha o que faz sentido para você.</p>
         </div>
-        <div class="consoles-grid">${consoles}</div>
+        <div class="consoles-carousel" id="consoles-carousel">
+          ${consoles}
+        </div>
         <div class="section__cta">
-          <p>Não tem certeza qual escolher? Veja nosso guia de decisão abaixo.</p>
-          <a href="#guia" class="cta-button cta-button--outline">[ GUIA: QUAL PS5 ESCOLHER? ]</a>
+          <p>Ainda em dúvida qual escolher?</p>
+          <p>Veja nosso GUIA DE DECISÃO abaixo para saber exatamente qual console é certo para sua criança.</p>
         </div>
       </div>
     </section>`;
@@ -157,8 +246,8 @@ function GuideSection() {
     <section class="section section--guide" id="guia">
       <div class="container">
         <div class="section__header">
-          <h2 class="section__title">Vai comprar um PS5? Antes de fechar a compra, olha isso.</h2>
-          <p class="section__subtitle">Existem diferentes versões, bundles e formas de comprar. Nós pesquisamos algumas das principais opções para você comparar.</p>
+          <h2 class="section__title">Vai comprar um PS5? Antes de fechar a compra, vê isso.</h2>
+          <p class="section__subtitle">Existem diferentes versões, e cada uma faz sentido para um tipo de pessoa. Deixa a gente te ajudar a decidir certo em menos de 2 minutos.</p>
         </div>
         
         <!-- Comparação 1: Digital vs Leitor -->
@@ -166,39 +255,55 @@ function GuideSection() {
           <h3 class="comparison__title">Digital vs. Com Leitor</h3>
           <div class="comparison__grid">
             <div class="comparison__card">
-              <h4>PS5 Digital</h4>
-              <p class="comparison__price">${comp.digitalVsLeitor.digital.price ? 'R$ ' + comp.digitalVsLeitor.digital.price.toLocaleString('pt-BR') : 'Ver preço'}</p>
+              <h4>🟢 DIGITAL</h4>
+              <p class="comparison__price">${formatPrice(comp.digitalVsLeitor.digital.price)} (PIX)</p>
               <ul class="comparison__list comparison__list--pros">
-                ${comp.digitalVsLeitor.digital.advantages.map(a => `<li>${Icons.check} ${a}</li>`).join('')}
+                ${comp.digitalVsLeitor.digital.pros.map(a => `<li>${Icons.check} ${a}</li>`).join('')}
               </ul>
               <ul class="comparison__list comparison__list--cons">
-                ${comp.digitalVsLeitor.digital.disadvantages.map(d => `<li>${Icons.x} ${d}</li>`).join('')}
+                ${comp.digitalVsLeitor.digital.cons.map(d => `<li>${Icons.x} ${d}</li>`).join('')}
+              </ul>
+              <p class="comparison__ideal"><strong>Ideal se:</strong></p>
+              <ul class="comparison__list">
+                ${comp.digitalVsLeitor.digital.ideal.map(i => `<li>→ ${i}</li>`).join('')}
               </ul>
               <a href="#" class="cta-button cta-button--small">[ VER OFERTA ]</a>
             </div>
             <div class="comparison__card">
-              <h4>PS5 com Leitor</h4>
-              <p class="comparison__price">${comp.digitalVsLeitor.leitor.price ? 'R$ ' + comp.digitalVsLeitor.leitor.price.toLocaleString('pt-BR') : 'Ver preço'}</p>
+              <h4>🔵 COM LEITOR</h4>
+              <p class="comparison__price">${formatPrice(comp.digitalVsLeitor.leitor.price)} (PIX)</p>
               <ul class="comparison__list comparison__list--pros">
-                ${comp.digitalVsLeitor.leitor.advantages.map(a => `<li>${Icons.check} ${a}</li>`).join('')}
+                ${comp.digitalVsLeitor.leitor.pros.map(a => `<li>${Icons.check} ${a}</li>`).join('')}
               </ul>
               <ul class="comparison__list comparison__list--cons">
-                ${comp.digitalVsLeitor.leitor.disadvantages.map(d => `<li>${Icons.x} ${d}</li>`).join('')}
+                ${comp.digitalVsLeitor.leitor.cons.map(d => `<li>${Icons.x} ${d}</li>`).join('')}
+              </ul>
+              <p class="comparison__ideal"><strong>Ideal se:</strong></p>
+              <ul class="comparison__list">
+                ${comp.digitalVsLeitor.leitor.ideal.map(i => `<li>→ ${i}</li>`).join('')}
               </ul>
               <a href="#" class="cta-button cta-button--small">[ VER OFERTA ]</a>
             </div>
           </div>
         </div>
 
-        <!-- Comparação 2: Perfis -->
+        <!-- Comparação 2: Perfis (Abas) -->
         <div class="comparison">
-          <h3 class="comparison__title">Qual perfil de criança?</h3>
-          <div class="profiles">
-            ${comp.profiles.map(p => `
-              <div class="profile-card" data-profile="${p.id}">
-                <span class="profile-card__label">${p.label}</span>
-                <span class="profile-card__product">${p.product}</span>
-                <span class="profile-card__price">${p.price ? 'R$ ' + p.price.toLocaleString('pt-BR') : 'Ver preço'}</span>
+          <h3 class="comparison__title">Qual Console Para Sua Criança?</h3>
+          <div class="profiles-tabs">
+            ${comp.profiles.map((p, i) => `
+              <button class="profiles-tab ${i === 0 ? 'active' : ''}" data-tab="${p.id}">
+                ${p.label}
+              </button>
+            `).join('')}
+          </div>
+          <div class="profiles-content">
+            ${comp.profiles.map((p, i) => `
+              <div class="profile-panel ${i === 0 ? 'active' : ''}" data-panel="${p.id}">
+                <h4>Recomendação: ${p.product}</h4>
+                <p class="profile-panel__price">${formatPrice(p.price)}</p>
+                <p class="profile-panel__parcelado">Parcelado: ${p.parcelado}</p>
+                <p class="profile-panel__desc">"${p.desc}"</p>
                 <a href="#" class="cta-button cta-button--small">[ VER OFERTA ]</a>
               </div>
             `).join('')}
@@ -206,7 +311,7 @@ function GuideSection() {
         </div>
 
         <div class="section__cta">
-          <p>Já decidiu qual versão? Confira nossas ofertas abaixo.</p>
+          <p>Já decidiu qual versão? Confira nossas ofertas dos consoles abaixo e clique para comprar.</p>
         </div>
       </div>
     </section>`;
@@ -219,13 +324,15 @@ function BundlesSection() {
     <div class="bundle-card">
       <div class="bundle-card__image">
         <img src="${b.image}" alt="${b.name}" loading="lazy">
+        ${b.badge ? `<span class="bundle-card__badge">${b.badge}</span>` : ''}
       </div>
       <div class="bundle-card__content">
         <h3 class="bundle-card__name">${b.name}</h3>
+        <p class="bundle-card__label">O que vem:</p>
         <ul class="bundle-card__includes">
           ${b.includes.map(i => `<li>${Icons.check} ${i}</li>`).join('')}
         </ul>
-        <p class="bundle-card__price">${b.price ? 'R$ ' + b.price.toLocaleString('pt-BR') : 'Ver preço'}</p>
+        <p class="bundle-card__price">Por apenas: ${formatPrice(b.price)}</p>
         <a href="${b.affiliateUrl}" class="cta-button cta-button--small" target="_blank" rel="noopener noreferrer">
           [ VER BUNDLE ]
         </a>
@@ -237,13 +344,17 @@ function BundlesSection() {
     <section class="section" id="bundles">
       <div class="container">
         <div class="section__header">
-          <h2 class="section__title">🎁 Bundles: Console + Jogo</h2>
-          <p class="section__subtitle">As melhores combinações que encontramos</p>
+          <h2 class="section__title">🎁 COMBOS JÁ MONTADOS (Console + Jogos)</h2>
+          <p class="section__subtitle">Não sabe como montar? Aqui estão as melhores combinações.</p>
         </div>
         <div class="bundles-grid">${bundles}</div>
         <div class="section__cta">
-          <p>Separamos as melhores ofertas e bundles para sua criança. Clique e compre agora mesmo.</p>
-          <a href="#jogos" class="cta-button cta-button--primary">[ VER TODAS AS OFERTAS ]</a>
+          <p>Quer que a gente encontre uma combinação customizada para você?</p>
+          <p>Ou quer receber as MELHORES OFERTAS em tempo real?</p>
+          <p>Entra no nosso grupo WhatsApp. Avisamos ASSIM que aparece algo bom.</p>
+          <a href="${CONFIG.whatsappUrl}" class="cta-button cta-button--whatsapp" target="_blank" rel="noopener noreferrer">
+            [ ENTRAR NO GRUPO WHATSAPP ]
+          </a>
         </div>
       </div>
     </section>`;
@@ -255,12 +366,14 @@ function GamesSection() {
   const renderGames = (games) => games.map(g => `
     <div class="game-card">
       <div class="game-card__image">
-        ${g.image ? `<img src="${g.image}" alt="${g.name}" loading="lazy">` : `<div class="game-card__placeholder">${Icons.gamepad}</div>`}
+        <div class="game-card__placeholder">${Icons.gamepad}</div>
         <span class="game-card__rating">${g.rating}</span>
       </div>
       <div class="game-card__content">
         <h3 class="game-card__name">${g.name}</h3>
-        <a href="#" class="cta-button cta-button--small">[ VER PREÇO ]</a>
+        ${g.desc ? `<p class="game-card__desc">${g.desc}</p>` : ''}
+        <p class="game-card__price">${formatPrice(g.price)}</p>
+        <a href="#" class="cta-button cta-button--small">[ VER OFERTA ]</a>
       </div>
     </div>
   `).join('');
@@ -269,27 +382,28 @@ function GamesSection() {
     <section class="section" id="jogos">
       <div class="container">
         <div class="section__header">
-          <h2 class="section__title">🎮 Os jogos que as crianças mais gostam</h2>
+          <h2 class="section__title">🎮 OS JOGOS QUE AS CRIANÇAS MAIS AMAM</h2>
+          <p class="section__subtitle">Separei as melhores ofertas de cada jogo. ClassInd incluída para você saber exatamente o que cada criança pode jogar.</p>
         </div>
         
         <div class="games-category">
-          <h3 class="games-category__title">📱 Para Crianças (3-7 anos)</h3>
+          <h3 class="games-category__title">👶 PARA CRIANÇAS 3-7 ANOS</h3>
           <div class="games-grid">${renderGames(CONFIG.games.kids)}</div>
         </div>
         
         <div class="games-category">
-          <h3 class="games-category__title">👦 Para Crianças (8-12 anos)</h3>
+          <h3 class="games-category__title">👦 PARA CRIANÇAS 8-12 ANOS</h3>
           <div class="games-grid">${renderGames(CONFIG.games.older)}</div>
         </div>
         
         <div class="games-category">
-          <h3 class="games-category__title">🎮 Para Adolescentes (13+)</h3>
+          <h3 class="games-category__title">🎮 PARA ADOLESCENTES 13+</h3>
           <div class="games-grid">${renderGames(CONFIG.games.teens)}</div>
         </div>
         
         <div class="section__cta">
-          <p>Separei as melhores ofertas. Clique no jogo que sua criança quer e compre agora.</p>
-          <a href="#" class="cta-button cta-button--primary">[ VER OFERTAS DOS JOGOS ]</a>
+          <p>Cada oferta foi atualizada HOJE da Amazon.</p>
+          <p>Se encontrou o jogo que a criança quer, clique e garanta agora mesmo antes que esgote.</p>
         </div>
       </div>
     </section>`;
@@ -301,13 +415,14 @@ function AccessoriesSection() {
   const accessories = CONFIG.accessories.map(a => `
     <div class="accessory-card">
       <div class="accessory-card__image">
-        ${a.image ? `<img src="${a.image}" alt="${a.name}" loading="lazy">` : `<div class="accessory-card__placeholder">${Icons.gamepad}</div>`}
+        <div class="accessory-card__placeholder">${Icons.gamepad}</div>
       </div>
       <div class="accessory-card__content">
         <span class="accessory-card__category">${a.category}</span>
         <h3 class="accessory-card__name">${a.name}</h3>
-        <p class="accessory-card__price">${a.price ? 'R$ ' + a.price.toLocaleString('pt-BR') : 'Ver preço'}</p>
-        <a href="#" class="cta-button cta-button--small">[ VER OFERTA ]</a>
+        ${a.desc ? `<p class="accessory-card__desc">${a.desc}</p>` : ''}
+        <p class="accessory-card__price">${formatPrice(a.price)}</p>
+        <a href="#" class="cta-button cta-button--small">[ VER ]</a>
       </div>
     </div>
   `).join('');
@@ -316,13 +431,38 @@ function AccessoriesSection() {
     <section class="section" id="acessorios">
       <div class="container">
         <div class="section__header">
-          <h2 class="section__title">🎧 Complete seu PS5</h2>
-          <p class="section__subtitle">Controles, headsets, armazenamento e mais</p>
+          <h2 class="section__title">🎧 COMPLETE SEU PS5</h2>
+          <p class="section__subtitle">Um bom headset muda tudo. E um controle extra? Essencial.</p>
         </div>
         <div class="accessories-grid">${accessories}</div>
-        <div class="section__cta">
-          <p>Deixe seu PS5 completo. Confira nossas seleções de acessórios.</p>
-          <a href="#" class="cta-button cta-button--primary">[ VER ACESSÓRIOS ]</a>
+      </div>
+    </section>`;
+}
+
+// ─── PS4 ─────────────────────────────────────────────────────────────────────
+
+function PS4Section() {
+  const ps4 = CONFIG.ps4.map(p => `
+    <div class="ps4-card">
+      <h3 class="ps4-card__name">${p.name}</h3>
+      <p class="ps4-card__price">${formatPrice(p.price)}</p>
+      <p class="ps4-card__desc">${p.desc}</p>
+      <a href="#" class="cta-button cta-button--small">[ VER OFERTAS ]</a>
+    </div>
+  `).join('');
+
+  return `
+    <section class="section section--ps4" id="ps4">
+      <div class="container">
+        <div class="section__header">
+          <h2 class="section__title">🎮 NÃO TEM ORÇAMENTO PARA PS5? CONHEÇA O PS4</h2>
+          <p class="section__subtitle">Consoles usados, refurbished ou versões antigas. Mesmos jogos, preço BEM mais acessível.</p>
+        </div>
+        <div class="ps4-grid">${ps4}</div>
+        <div class="ps4-copy">
+          <p>Se a criança está começando agora, o PS4 é uma excelente porta de entrada para o mundo dos games.</p>
+          <p>A biblioteca é GIGANTE, os preços dos jogos usados são muito mais acessíveis, e ainda sai jogo novo toda semana (exceto exclusivos de PS5).</p>
+          <p>Vale muito a pena se o orçamento for apertado.</p>
         </div>
       </div>
     </section>`;
@@ -335,20 +475,21 @@ function GroupCTASection() {
     <section class="section section--group" id="grupo">
       <div class="container">
         <div class="group-cta">
-          <h2 class="group-cta__title">⏰ Aviso Importante</h2>
-          <p class="group-cta__subtitle">Quer receber as melhores ofertas ANTES de todo mundo?</p>
+          <h2 class="group-cta__title">⏰ NÃO PERCA A PROMOÇÃO DE 80% OFF</h2>
           <div class="group-cta__content">
-            <p>De 5 a 11 de outubro, teremos um presente especial e 80% de desconto em selecionadas. Mas anunciaremos PRIMEIRO no nosso grupo exclusivo.</p>
-            <p>Além disso, no grupo você tem acesso a:</p>
+            <p>De 5 a 11 de OUTUBRO:</p>
             <ul class="group-cta__list">
-              <li>${Icons.check} Ofertas exclusivas diárias</li>
-              <li>${Icons.check} Avisos de Relâmpago</li>
-              <li>${Icons.check} Cupons e cashback</li>
-              <li>${Icons.check} Suporte para escolher o melhor PS5</li>
+              <li>→ Cupons extras que conseguimos negociar</li>
+              <li>→ Ofertas exclusivas TEMPO LIMITADO</li>
+              <li>→ Avisos de oferta RELÂMPAGO em tempo real</li>
+              <li>→ Suporte: dúvida sobre qual PS5? Respondo</li>
+              <li>→ Acesso antecipado antes do site</li>
             </ul>
+            <p>Anunciamos PRIMEIRO no grupo.</p>
+            <p>Não é obrigatório, mas economiza MUITO.</p>
           </div>
-          <a href="${CONFIG.channelUrl}" class="cta-button cta-button--large" target="_blank" rel="noopener noreferrer">
-            [ ENTRAR NO GRUPO AGORA ]
+          <a href="${CONFIG.whatsappUrl}" class="cta-button cta-button--large cta-button--whatsapp" target="_blank" rel="noopener noreferrer">
+            [ ENTRAR NO GRUPO WHATSAPP ]
           </a>
         </div>
       </div>
@@ -361,21 +502,164 @@ function Footer() {
   return `
     <footer class="footer">
       <div class="container">
+        <div class="footer__logo">PS5 <span>Mês das Crianças</span></div>
         <div class="footer__links">
           <a href="#destaque">Oferta em Destaque</a>
           <a href="#consoles">Consoles PS5</a>
-          <a href="#guia">Guia de Compra</a>
+          <a href="#guia">Guia de Decisão</a>
           <a href="#bundles">Bundles</a>
           <a href="#jogos">Jogos</a>
           <a href="#acessorios">Acessórios</a>
-          <a href="${CONFIG.channelUrl}" target="_blank" rel="noopener noreferrer">Entrar no Grupo</a>
+          <a href="#ps4">PS4</a>
+          <a href="${CONFIG.whatsappUrl}" target="_blank" rel="noopener noreferrer">Entrar no Grupo</a>
         </div>
         <p class="footer__disclaimer">
-          Somos afiliados Amazon e Mercado Livre. Você paga o mesmo, mas nos ajuda a manter este site.
+          ℹ️ Somos afiliados da Amazon. Você paga o mesmo, mas nos ajuda a manter este site.
+        </p>
+        <p class="footer__copyright">
+          © 2026 PlayStation Curador. Todos os direitos reservados.
         </p>
       </div>
     </footer>`;
 }
+
+// ─── Carousel Logic ──────────────────────────────────────────────────────────
+
+const Carousel = {
+  initHero() {
+    const carousel = document.getElementById('hero-carousel');
+    if (!carousel) return;
+    
+    const slides = carousel.querySelectorAll('.hero-carousel__slide');
+    const dots = carousel.querySelectorAll('.hero-carousel__dot');
+    const prevBtn = carousel.querySelector('.hero-carousel__arrow--prev');
+    const nextBtn = carousel.querySelector('.hero-carousel__arrow--next');
+    let current = 0;
+    let interval;
+    
+    function goTo(index) {
+      slides.forEach(s => s.classList.remove('active'));
+      dots.forEach(d => d.classList.remove('active'));
+      slides[index].classList.add('active');
+      dots[index].classList.add('active');
+      current = index;
+    }
+    
+    function next() {
+      goTo((current + 1) % slides.length);
+    }
+    
+    function prev() {
+      goTo((current - 1 + slides.length) % slides.length);
+    }
+    
+    function start() {
+      interval = setInterval(next, 5000);
+    }
+    
+    function stop() {
+      clearInterval(interval);
+    }
+    
+    if (nextBtn) nextBtn.addEventListener('click', () => { stop(); next(); start(); });
+    if (prevBtn) prevBtn.addEventListener('click', () => { stop(); prev(); start(); });
+    
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        stop();
+        goTo(parseInt(dot.dataset.index));
+        start();
+      });
+    });
+    
+    carousel.addEventListener('mouseenter', stop);
+    carousel.addEventListener('mouseleave', start);
+    
+    // Touch support
+    let touchStartX = 0;
+    carousel.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+      stop();
+    });
+    carousel.addEventListener('touchend', e => {
+      const diff = e.changedTouches[0].screenX - touchStartX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) prev(); else next();
+      }
+      start();
+    });
+    
+    start();
+  },
+  
+  initConsoles() {
+    const carousel = document.getElementById('consoles-carousel');
+    if (!carousel) return;
+    
+    const cards = carousel.querySelectorAll('.console-card');
+    let current = 0;
+    let interval;
+    
+    function getVisibleCount() {
+      const width = window.innerWidth;
+      if (width < 640) return 1;
+      if (width < 1024) return 2;
+      return 3;
+    }
+    
+    function getMaxScroll() {
+      return Math.max(0, cards.length - getVisibleCount());
+    }
+    
+    function goTo(index) {
+      const max = getMaxScroll();
+      current = Math.max(0, Math.min(index, max));
+      const cardWidth = cards[0].offsetWidth + 24;
+      carousel.style.transform = `translateX(-${current * cardWidth}px)`;
+    }
+    
+    function next() {
+      const max = getMaxScroll();
+      goTo(current >= max ? 0 : current + 1);
+    }
+    
+    function start() {
+      interval = setInterval(next, 5000);
+    }
+    
+    function stop() {
+      clearInterval(interval);
+    }
+    
+    carousel.addEventListener('mouseenter', stop);
+    carousel.addEventListener('mouseleave', start);
+    
+    window.addEventListener('resize', () => goTo(current));
+    
+    start();
+  }
+};
+
+// ─── Tabs Logic ──────────────────────────────────────────────────────────────
+
+const Tabs = {
+  init() {
+    const tabs = document.querySelectorAll('.profiles-tab');
+    const panels = document.querySelectorAll('.profile-panel');
+    
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.tab;
+        
+        tabs.forEach(t => t.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        
+        tab.classList.add('active');
+        document.querySelector(`[data-panel="${target}"]`).classList.add('active');
+      });
+    });
+  }
+};
 
 // ─── Init ───────────────────────────────────────────────────────────────────
 
@@ -385,13 +669,22 @@ document.addEventListener('DOMContentLoaded', () => {
     <main>
       ${Hero()}
       ${FeaturedOfferSection()}
+      ${PromoAlert()}
       ${ConsolesSection()}
       ${GuideSection()}
       ${BundlesSection()}
       ${GamesSection()}
       ${AccessoriesSection()}
+      ${PS4Section()}
       ${GroupCTASection()}
     </main>
     ${Footer()}
   `;
+
+  // Inicializa carrosséis
+  Carousel.initHero();
+  Carousel.initConsoles();
+  
+  // Inicializa abas
+  Tabs.init();
 });

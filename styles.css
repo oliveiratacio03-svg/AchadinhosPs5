@@ -286,11 +286,32 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 @media (min-width: 768px) {
-  .featured-offer { grid-template-columns: 1fr 1fr; }
+  .featured-offer { grid-template-columns: 2fr 3fr; }
 }
 
-.featured-offer__image { position: relative; aspect-ratio: 16/9; background: var(--color-bg-alt); }
-.featured-offer__image img { width: 100%; height: 100%; object-fit: cover; }
+.featured-offer__image {
+  position: relative;
+  background: var(--color-bg-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  min-height: 240px;
+  max-height: 360px;
+  overflow: hidden;
+}
+
+.featured-offer__image img {
+  max-width: 100%;
+  max-height: 360px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 767px) {
+  .featured-offer__image img { max-height: 240px; }
+}
 .featured-offer__badge {
   position: absolute; top: var(--space-md); left: var(--space-md);
   background: var(--color-accent); color: var(--color-bg);
@@ -437,15 +458,27 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .console-card__image,
 .bundle-card__image {
   position: relative;
-  aspect-ratio: 16/9;
+  height: 220px;
   background: var(--color-bg-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  overflow: hidden;
 }
 
 .console-card__image img,
 .bundle-card__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 767px) {
+  .console-card__image,
+  .bundle-card__image { height: 180px; }
 }
 
 .console-card__badge,
@@ -557,14 +590,39 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-bottom: var(--space-md);
 }
 
-.game-card__image,
-.accessory-card__image {
+.game-card__image {
   position: relative;
   aspect-ratio: 3/4;
   background: var(--color-bg-alt);
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+.game-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.accessory-card__image {
+  position: relative;
+  aspect-ratio: 1/1;
+  background: var(--color-bg-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  overflow: hidden;
+}
+
+.accessory-card__image img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
 
 .game-card__placeholder,
@@ -601,6 +659,30 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .ps4-card {
   text-align: center;
   align-items: center;
+}
+
+.ps4-card__image {
+  position: relative;
+  height: 180px;
+  background: var(--color-bg-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  overflow: hidden;
+}
+
+.ps4-card__image img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.ps4-card__placeholder {
+  text-align: center;
+  padding: var(--space-md);
 }
 
 .ps4-card__desc {

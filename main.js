@@ -124,7 +124,10 @@ function FeaturedOfferSection() {
         </div>
         <div class="featured-offer">
           <div class="featured-offer__image">
-            <img src="${offer.image}" alt="${offer.name}">
+            <img src="${offer.image}" alt="${offer.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="featured-offer__placeholder" style="display:none;align-items:center;justify-content:center;height:100%;color:var(--color-text-muted);">
+              <span>${offer.name}</span>
+            </div>
             <span class="featured-offer__badge">${offer.badge}</span>
           </div>
           <div class="featured-offer__content">
@@ -165,7 +168,10 @@ function ConsolesSection() {
     return `
       <div class="console-card">
         <div class="console-card__image">
-          <img src="${c.image}" alt="${c.name}" loading="lazy">
+          <img src="${c.image}" alt="${c.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="console-card__placeholder" style="display:none;align-items:center;justify-content:center;height:100%;color:var(--color-text-muted);">
+            <span>${c.name}</span>
+          </div>
           <span class="console-card__badge">${badge}</span>
         </div>
         <div class="console-card__content">
@@ -297,7 +303,10 @@ function BundlesSection() {
     return `
       <div class="bundle-card">
         <div class="bundle-card__image">
-          <img src="${b.image}" alt="${b.name}" loading="lazy">
+          <img src="${b.image}" alt="${b.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="bundle-card__placeholder" style="display:none;align-items:center;justify-content:center;height:100%;color:var(--color-text-muted);">
+            <span>${b.name}</span>
+          </div>
           <span class="bundle-card__badge">${badge}</span>
         </div>
         <div class="bundle-card__content">
@@ -354,7 +363,10 @@ function GamesSection() {
     return `
       <div class="game-card">
         <div class="game-card__image">
-          <div class="game-card__placeholder">${Icons.gamepad}</div>
+          <img src="${g.image}" alt="${g.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="game-card__placeholder" style="display:none;align-items:center;justify-content:center;height:100%;color:var(--color-text-muted);">
+            <span>${g.name}</span>
+          </div>
           <span class="game-card__rating">${g.rating}</span>
           <span class="game-card__badge">${badge}</span>
         </div>
@@ -418,7 +430,10 @@ function AccessoriesSection() {
     return `
       <div class="accessory-card">
         <div class="accessory-card__image">
-          <div class="accessory-card__placeholder">${Icons.gamepad}</div>
+          <img src="${a.image}" alt="${a.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="accessory-card__placeholder" style="display:none;align-items:center;justify-content:center;height:100%;color:var(--color-text-muted);">
+            <span>${a.name}</span>
+          </div>
           <span class="accessory-card__badge">${badge}</span>
         </div>
         <div class="accessory-card__content">
@@ -457,6 +472,12 @@ function PS4Section() {
     ];
     return `
       <div class="ps4-card">
+        <div class="ps4-card__image">
+          <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="ps4-card__placeholder" style="display:none;align-items:center;justify-content:center;height:100%;color:var(--color-text-muted);">
+            <span>${p.name}</span>
+          </div>
+        </div>
         <span class="ps4-card__badge">${badge}</span>
         <h3 class="ps4-card__name">${p.name}</h3>
         <p class="ps4-card__micro">${microBenefits[i]}</p>

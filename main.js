@@ -23,13 +23,6 @@ const Icons = {
   bell: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>`
 };
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
-
-function formatPrice(price) {
-  if (!price) return 'Ver preço';
-  return 'R$ ' + price.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-}
-
 // ─── Header ──────────────────────────────────────────────────────────────────
 
 function Header() {
@@ -57,7 +50,7 @@ function Hero() {
       <div class="hero-carousel__info">
         <h3>${c.name}</h3>
         <p>${c.specs}</p>
-        <p class="hero-carousel__price">A partir de ${formatPrice(c.pixPrice || c.amazonPrice)}</p>
+        <p class="hero-carousel__price">Oferta especial disponível</p>
         <a href="${c.affiliateUrl}" class="cta-button cta-button--small" target="_blank" rel="noopener noreferrer">
           VER OFERTA NA AMAZON
         </a>
@@ -141,12 +134,8 @@ function FeaturedOfferSection() {
             <p class="featured-offer__award">🏆 Jogo do Ano 2024 (Astro Bot)</p>
             <div class="featured-offer__prices">
               <p class="featured-offer__price">
-                <span class="featured-offer__label">Preço PIX:</span>
-                <span class="featured-offer__current">${formatPrice(offer.pixPrice)}</span>
-              </p>
-              <p class="featured-offer__price">
-                <span class="featured-offer__label">Parcelado:</span>
-                <span class="featured-offer__parcelado">${offer.parcelado}</span>
+                <span class="featured-offer__label">Disponibilidade:</span>
+                <span class="featured-offer__current">Em estoque</span>
               </p>
             </div>
             <ul class="featured-offer__includes">
@@ -227,7 +216,7 @@ function GuideSection() {
           <div class="comparison__grid">
             <div class="comparison__card">
               <h4>🟢 DIGITAL</h4>
-              <p class="comparison__price">${formatPrice(comp.digitalVsLeitor.digital.price)} (PIX)</p>
+              <p class="comparison__price">Opção recomendada para economia</p>
               <ul class="comparison__list comparison__list--pros">
                 ${comp.digitalVsLeitor.digital.pros.map(a => `<li>${Icons.check} ${a}</li>`).join('')}
               </ul>
@@ -242,7 +231,7 @@ function GuideSection() {
             </div>
             <div class="comparison__card">
               <h4>🔵 COM LEITOR</h4>
-              <p class="comparison__price">${formatPrice(comp.digitalVsLeitor.leitor.price)} (PIX)</p>
+              <p class="comparison__price">Opção recomendada para flexibilidade</p>
               <ul class="comparison__list comparison__list--pros">
                 ${comp.digitalVsLeitor.leitor.pros.map(a => `<li>${Icons.check} ${a}</li>`).join('')}
               </ul>
@@ -272,8 +261,7 @@ function GuideSection() {
             ${comp.profiles.map((p, i) => `
               <div class="profile-panel ${i === 0 ? 'active' : ''}" data-panel="${p.id}">
                 <h4>Recomendação: ${p.product}</h4>
-                <p class="profile-panel__price">${formatPrice(p.price)}</p>
-                <p class="profile-panel__parcelado">Parcelado: ${p.parcelado}</p>
+                <p class="profile-panel__recommendation">Recomendado para seu perfil</p>
                 <p class="profile-panel__desc">"${p.desc}"</p>
                 <a href="#" class="cta-button cta-button--small cta-button--primary" rel="sponsored noopener">GARANTIR MEU EXEMPLAR</a>
               </div>
@@ -303,7 +291,7 @@ function BundlesSection() {
         <ul class="bundle-card__includes">
           ${b.includes.map(i => `<li>${Icons.check} ${i}</li>`).join('')}
         </ul>
-        <p class="bundle-card__price">Por apenas: ${formatPrice(b.price)}</p>
+        <p class="bundle-card__price">Consulte a oferta atualizada do combo</p>
         <a href="${b.affiliateUrl}" class="cta-button cta-button--small cta-button--primary" target="_blank" rel="sponsored noopener">
           VER COMBO NA AMAZON
         </a>
@@ -343,7 +331,7 @@ function GamesSection() {
       <div class="game-card__content">
         <h3 class="game-card__name">${g.name}</h3>
         ${g.desc ? `<p class="game-card__desc">${g.desc}</p>` : ''}
-        <p class="game-card__price">${formatPrice(g.price)}</p>
+        <p class="game-card__price">Ver oferta na Amazon</p>
         <a href="#" class="cta-button cta-button--small cta-button--primary" rel="sponsored noopener">VER PREÇO DE HOJE</a>
       </div>
     </div>
@@ -392,7 +380,7 @@ function AccessoriesSection() {
         <span class="accessory-card__category">${a.category}</span>
         <h3 class="accessory-card__name">${a.name}</h3>
         ${a.desc ? `<p class="accessory-card__desc">${a.desc}</p>` : ''}
-        <p class="accessory-card__price">${formatPrice(a.price)}</p>
+        <p class="accessory-card__price">Ver na Amazon</p>
         <a href="#" class="cta-button cta-button--small">[ VER ]</a>
       </div>
     </div>
@@ -416,7 +404,7 @@ function PS4Section() {
   const ps4 = CONFIG.ps4.map(p => `
     <div class="ps4-card">
       <h3 class="ps4-card__name">${p.name}</h3>
-      <p class="ps4-card__price">${formatPrice(p.price)}</p>
+      <p class="ps4-card__price">Ver ofertas na Amazon</p>
       <p class="ps4-card__desc">${p.desc}</p>
       <a href="#" class="cta-button cta-button--small cta-button--primary" rel="sponsored noopener">VER NA AMAZON</a>
     </div>

@@ -1,0 +1,10 @@
+{
+  "name": "playstation-ofertas",
+  "version": "1.0.0",
+  "description": "Landing page de curadoria de ofertas PlayStation",
+  "scripts": {
+    "start": "npx serve -l 3000 ."
+  },
+  "keywords": ["playstation", "ofertas", "landing-page"],
+  "license": "MIT"
+}

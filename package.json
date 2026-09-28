@@ -5,6 +5,13 @@
   "scripts": {
     "start": "npx serve -l 3000 ."
   },
-  "keywords": ["playstation", "ofertas", "landing-page"],
-  "license": "MIT"
+  "keywords": [
+    "playstation",
+    "ofertas",
+    "landing-page"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "sharp": "^0.35.5"
+  }
 }

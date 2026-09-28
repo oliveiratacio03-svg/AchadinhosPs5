@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <rect width="800" height="450" fill="#1a1a25"/>
+  <rect x="250" y="150" width="150" height="110" rx="10" fill="#0a0a0f" stroke="#0070d1" stroke-width="2"/>
+  <text x="325" y="210" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#0070d1">PS5</text>
+  <rect x="420" y="150" width="130" height="110" rx="10" fill="#0a0a0f" stroke="#0070d1" stroke-width="2"/>
+  <text x="485" y="210" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#0070d1">GTA VI</text>
+  <text x="400" y="320" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="16" fill="#a0a0b5">Bundle Especial</text>
+</svg>

@@ -1,34 +1,24 @@
 /**
- * Componentes reutilizáveis e lógica principal.
- * Identidade neutra — nome do site ainda não definido.
- * Conceito: Mês das Crianças + PlayStation + presentes + nostalgia + ofertas
+ * PlayStation Mês das Crianças — Landing Page
+ * Afiliado Amazon + Mercado Livre
  */
 
-// ─── Ícones SVG inline ───────────────────────────────────────────────────────
+// ─── Ícones SVG ──────────────────────────────────────────────────────────────
 
 const Icons = {
-  arrowRight: `<svg class="cta-button__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`,
-  console: `<svg class="category-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4M8 10v4M15 13h.01M18 11h.01"/></svg>`,
-  gamepad: `<svg class="category-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="15" y1="13" x2="15.01" y2="13"/><line x1="18" y1="11" x2="18.01" y2="11"/><path d="M17.32 5H6.68a4 4 0 0 0-3.98 3.59C2.6 9.42 2 14.46 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.41-1.41A2 2 0 0 1 9.83 16h4.34a2 2 0 0 1 1.41.59L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.54-.6-6.58-.68-7.26A4 4 0 0 0 17.32 5z"/></svg>`,
-  controller: `<svg class="category-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h4M8 10v4M15 13h.01M18 11h.01"/><path d="M17.32 5H6.68a4 4 0 0 0-3.98 3.59C2.6 9.42 2 14.46 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.41-1.41A2 2 0 0 1 9.83 16h4.34a2 2 0 0 1 1.41.59L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.54-.6-6.58-.68-7.26A4 4 0 0 0 17.32 5z"/></svg>`,
-  headset: `<svg class="category-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm18 0h-3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-5Z"/><path d="M3 14v-2a9 9 0 0 1 18 0v2"/></svg>`,
-  star: `<svg class="category-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
-  gift: `<svg class="gift-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>`,
-  users: `<svg class="audience-badge__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
-  shield: `<svg class="rating-badge__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
-  tag: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>`,
-  eye: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
-  user: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
+  arrowRight: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`,
+  gamepad: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="15" y1="13" x2="15.01" y2="13"/><line x1="18" y1="11" x2="18.01" y2="11"/><path d="M17.32 5H6.68a4 4 0 0 0-3.98 3.59C2.6 9.42 2 14.46 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.41-1.41A2 2 0 0 1 9.83 16h4.34a2 2 0 0 1 1.41.59L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.54-.6-6.58-.68-7.26A4 4 0 0 0 17.32 5z"/></svg>`,
+  star: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+  shield: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
   check: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
+  x: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`,
+  users: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+  gift: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>`,
+  zap: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+  clock: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
   chevronLeft: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>`,
   chevronRight: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>`,
-  sparkles: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z"/><path d="M19 14l.75 2.25L22 17l-2.25.75L19 20l-.75-2.25L16 17l2.25-.75L19 14z"/><path d="M5 15l.75 2.25L8 18l-2.25.75L5 21l-.75-2.25L2 18l2.25-.75L5 15z"/></svg>`,
-  heart: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
-  calendar: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
-  award: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>`,
-  package: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 9.4L7.55 4.24"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>`,
-  vr: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-3l-2 3h-6l-2-3H4a2 2 0 0 1-2-2V8z"/></svg>`,
-  sparkle: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z"/></svg>`
+  external: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`
 };
 
 // ─── Header ──────────────────────────────────────────────────────────────────
@@ -37,272 +27,187 @@ function Header() {
   return `
     <header class="header">
       <div class="container header__inner">
-        <div class="header__logo">${CONFIG.siteName.replace('Ofertas', '')}<span>Ofertas</span></div>
-        <span class="header__badge">${CONFIG.siteTagline}</span>
+        <div class="header__logo">PS5 <span>Mês das Crianças</span></div>
+        <a href="${CONFIG.channelUrl}" class="header__cta" target="_blank" rel="noopener noreferrer">
+          ${Icons.users} Entrar no Grupo
+        </a>
       </div>
     </header>`;
-}
-
-// ─── CTA Buttons ────────────────────────────────────────────────────────────
-
-function ChannelCTA(text, source, size = '', variant = 'primary') {
-  const sizeClass = size === 'large' ? 'cta-button--large' : '';
-  return `
-    <a href="${CONFIG.channelUrl}" class="cta-button cta-button--${variant} ${sizeClass}"
-       onclick="Tracking.clickChannel('${source}')" target="_blank" rel="noopener noreferrer">
-      ${text} ${Icons.arrowRight}
-    </a>`;
-}
-
-function AnchorButton(text, targetId, source, size = '') {
-  const sizeClass = size === 'large' ? 'cta-button--large' : '';
-  return `
-    <a href="#${targetId}" class="cta-button ${sizeClass}"
-       onclick="Tracking.clickAnchor('${source}')">
-      ${text} ${Icons.arrowRight}
-    </a>`;
-}
-
-function AffiliateButton(product, text = 'VER OFERTA') {
-  const hasUrl = product.affiliateUrl && product.affiliateUrl.trim() !== '';
-  const url = hasUrl ? product.affiliateUrl : '#';
-  return `
-    <a href="${url}" class="affiliate-button"
-       onclick="Tracking.clickAffiliate('${product.id}', '${product.name.replace(/'/g, "\\'")}', '${product.affiliateNetwork || 'unknown'}')"
-       ${hasUrl ? 'target="_blank" rel="noopener noreferrer"' : 'aria-disabled="true" style="opacity:0.5;cursor:not-allowed;"'}
-       ${!hasUrl ? 'onclick="return false;"' : ''}>
-      ${text} ${Icons.arrowRight}
-    </a>`;
-}
-
-// ─── Badges ─────────────────────────────────────────────────────────────────
-
-function OfferBadge(text, variant = 'default') {
-  return `<span class="offer-badge offer-badge--${variant}">${text}</span>`;
-}
-
-function AudienceBadge(audience) {
-  const labels = { 'Crianças': 'CRIANÇAS', 'Adolescentes': 'ADOLESCENTES', 'Adultos': 'ADULTOS', 'Família': 'FAMÍLIA' };
-  return `<span class="audience-badge">${Icons.users} ${labels[audience] || audience}</span>`;
-}
-
-function RatingBadge(age, system) {
-  if (!age) return '';
-  return `<span class="rating-badge">${Icons.shield} ${age} ${system || 'ClassInd'}</span>`;
-}
-
-// ─── Product Image Placeholder ───────────────────────────────────────────────
-
-function ProductImagePlaceholder(name) {
-  return `<div class="product-card__image-placeholder" role="img" aria-label="${name}"><span>${name}</span></div>`;
-}
-
-// ─── Product Card ────────────────────────────────────────────────────────────
-
-function ProductCard(product) {
-  const hasImage = product.image && product.image.trim() !== '';
-  const hasPrice = product.price !== null && product.price !== undefined;
-  const hasOldPrice = product.oldPrice !== null && product.oldPrice !== undefined;
-  const hasDiscount = product.discount !== null && product.discount !== undefined;
-  const hasEditorial = product.whyWatch || product.whoIsItFor || product.buyingTips;
-
-  const imageHtml = hasImage
-    ? `<img src="${product.image}" alt="${product.name}" class="product-card__image" loading="lazy">`
-    : ProductImagePlaceholder(product.name);
-
-  const priceHtml = hasPrice ? `
-    <div class="product-card__pricing">
-      ${hasOldPrice ? `<span class="product-card__old-price">R$ ${product.oldPrice.toLocaleString('pt-BR')}</span>` : ''}
-      <span class="product-card__price">R$ ${product.price.toLocaleString('pt-BR')}</span>
-      ${hasDiscount ? `<span class="product-card__discount">-${product.discount}%</span>` : ''}
-    </div>` : '';
-
-  const platformHtml = product.platform ? `<span class="product-card__platform">${product.platform}</span>` : '';
-  const audienceHtml = product.audience ? AudienceBadge(product.audience) : '';
-  const ratingHtml = product.ageRating ? RatingBadge(product.ageRating, product.ratingSystem) : '';
-
-  const editorialHtml = hasEditorial ? `
-    <div class="product-card__editorial">
-      ${product.whyWatch ? `<p><strong>Por que observar:</strong> ${product.whyWatch}</p>` : ''}
-      ${product.whoIsItFor ? `<p><strong>Para quem:</strong> ${product.whoIsItFor}</p>` : ''}
-      ${product.buyingTips ? `<p><strong>Antes de comprar:</strong> ${product.buyingTips}</p>` : ''}
-    </div>` : '';
-
-  return `
-    <article class="product-card" data-product-id="${product.id}">
-      <div class="product-card__media">
-        ${imageHtml}
-        ${product.badge ? OfferBadge(product.badge, 'product') : ''}
-      </div>
-      <div class="product-card__content">
-        <div class="product-card__meta">
-          <span class="product-card__category">${product.category}</span>
-          ${platformHtml}
-          ${audienceHtml}
-          ${ratingHtml}
-        </div>
-        <h3 class="product-card__name">${product.name}</h3>
-        <p class="product-card__description">${product.description}</p>
-        ${priceHtml}
-        ${editorialHtml}
-        <div class="product-card__action">
-          ${AffiliateButton(product)}
-        </div>
-      </div>
-    </article>`;
-}
-
-// ─── Carrossel ───────────────────────────────────────────────────────────────
-
-function ProductCarousel(products, carouselId) {
-  const cards = products.map(ProductCard).join('');
-  return `
-    <div class="carousel" id="${carouselId}">
-      <button class="carousel__arrow carousel__arrow--prev" onclick="Carousel.scroll('${carouselId}', -1)" aria-label="Anterior">${Icons.chevronLeft}</button>
-      <div class="carousel__track">
-        ${cards}
-      </div>
-      <button class="carousel__arrow carousel__arrow--next" onclick="Carousel.scroll('${carouselId}', 1)" aria-label="Próximo">${Icons.chevronRight}</button>
-      <div class="carousel__indicators"></div>
-    </div>`;
 }
 
 // ─── Hero ───────────────────────────────────────────────────────────────────
 
 function Hero() {
-  const heroProductsHtml = CONFIG.heroProducts.map(p => `
-    <div class="hero-products__item">
-      ${p.badge ? OfferBadge(p.badge, 'hero') : ''}
-      <span class="hero-products__name">${p.name}</span>
-      <span class="hero-products__category">${p.category}</span>
-    </div>`).join('');
-
+  const isPre = CONFIG.isPreCampaign();
+  
   return `
     <section class="hero">
       <div class="container hero__layout">
         <div class="hero__content">
-          <span class="hero__eyebrow animate-in">${Icons.sparkle} Mês das Crianças — 5 a 11 de Outubro</span>
-          <h1 class="hero__title animate-in animate-in--delay-1">
-            ATÉ <span class="highlight">80% OFF</span> EM OFERTAS DE PLAYSTATION
+          <span class="hero__eyebrow">🎮 Mês das Crianças</span>
+          <h1 class="hero__title">
+            ${isPre 
+              ? 'O presente de PlayStation que você estava procurando.'
+              : 'COMEÇOU A SEMANA DO DIA DAS CRIANÇAS'}
           </h1>
-          <p class="hero__subtitle animate-in animate-in--delay-2">
-            De 5 a 11 de outubro, vamos acompanhar PS5, PS4, jogos e acessórios em busca das melhores oportunidades para o Dia das Crianças.
+          <p class="hero__subtitle">Está procurando um PS5 para presentear?</p>
+          <p class="hero__text">
+            Separamos consoles, bundles, jogos e acessórios que encontramos nas lojas para você não precisar ficar procurando em dezenas de anúncios.
           </p>
-          <p class="hero__text animate-in animate-in--delay-2">
-            Entre no canal e fique atento nessas datas. Vamos fazer uma curadoria especial de PlayStation, jogos, acessórios e produtos que podem virar aquele presente que você estava procurando.
-          </p>
-          <div class="hero__actions animate-in animate-in--delay-3">
-            ${AnchorButton('VER OFERTAS', 'ofertas-destaque', 'hero')}
-            ${ChannelCTA('ENTRAR NO CANAL', 'hero', '', 'outline')}
+          <div class="hero__actions">
+            <a href="${CONFIG.featuredOffer.affiliateUrl}" class="cta-button cta-button--primary" target="_blank" rel="noopener noreferrer">
+              🔥 VER OFERTA EM DESTAQUE
+            </a>
+            <a href="#consoles" class="cta-button cta-button--outline">
+              🔎 VER TODAS AS OPÇÕES
+            </a>
           </div>
         </div>
-        <aside class="hero__products animate-in animate-in--delay-2">
-          <div class="hero-products">
-            <p class="hero-products__label">Em destaque</p>
-            ${heroProductsHtml}
+        <div class="hero__visual">
+          <img src="${CONFIG.featuredOffer.image}" alt="${CONFIG.featuredOffer.name}" class="hero__image">
+        </div>
+      </div>
+    </section>`;
+}
+
+// ─── Oferta em Destaque ──────────────────────────────────────────────────────
+
+function FeaturedOfferSection() {
+  const offer = CONFIG.featuredOffer;
+  return `
+    <section class="section section--featured" id="destaque">
+      <div class="container">
+        <div class="section__header">
+          <h2 class="section__title">🔥 Oferta que encontramos hoje</h2>
+        </div>
+        <div class="featured-offer">
+          <div class="featured-offer__image">
+            <img src="${offer.image}" alt="${offer.name}">
+            <span class="featured-offer__badge">${offer.badge}</span>
           </div>
-        </aside>
+          <div class="featured-offer__content">
+            <h3 class="featured-offer__name">${offer.name}</h3>
+            <p class="featured-offer__price">
+              ${offer.price 
+                ? `<span class="featured-offer__current">R$ ${offer.price.toLocaleString('pt-BR')}</span>
+                   ${offer.originalPrice ? `<span class="featured-offer__original">R$ ${offer.originalPrice.toLocaleString('pt-BR')}</span>` : ''}
+                   ${offer.discount ? `<span class="featured-offer__discount">-${offer.discount}%</span>` : ''}`
+                : '<span class="featured-offer__check">Ver preço na Amazon</span>'}
+            </p>
+            <a href="${offer.affiliateUrl}" class="cta-button cta-button--primary" target="_blank" rel="noopener noreferrer">
+              [ VER OFERTA NA AMAZON ]
+            </a>
+            <p class="featured-offer__date">Preço consultado em ${CONFIG.priceCheckDate}</p>
+          </div>
+        </div>
       </div>
     </section>`;
 }
 
-// ─── Countdown ───────────────────────────────────────────────────────────────
+// ─── Consoles PS5 ────────────────────────────────────────────────────────────
 
-function CampaignCountdown() {
-  if (!CONFIG.countdownActive) return '';
-  const now = new Date();
-  const start = new Date(CONFIG.campaignStart);
-  const end = new Date(CONFIG.campaignEnd);
-  const isExpired = now > end;
-  const isBeforeStart = now < start;
-  let content = '';
-  if (isExpired) {
-    content = `<p class="countdown__expired">${CONFIG.countdownExpiredMessage}</p>`;
-  } else {
-    const target = isBeforeStart ? start : end;
-    content = `
-      <div class="countdown__timer" id="countdown-timer" data-target="${target.toISOString()}">
-        <div class="countdown__unit"><span class="countdown__number" id="cd-days">--</span><span class="countdown__unit-label">Dias</span></div>
-        <div class="countdown__unit"><span class="countdown__number" id="cd-hours">--</span><span class="countdown__unit-label">Horas</span></div>
-        <div class="countdown__unit"><span class="countdown__number" id="cd-minutes">--</span><span class="countdown__unit-label">Min</span></div>
-        <div class="countdown__unit"><span class="countdown__number" id="cd-seconds">--</span><span class="countdown__unit-label">Seg</span></div>
-      </div>`;
-  }
-  return `
-    <section class="countdown">
-      <div class="container">
-        <p class="countdown__label">Período da Campanha</p>
-        <h2 class="countdown__dates">5 A 11 DE OUTUBRO</h2>
-        <p class="countdown__tagline">Uma semana para ficar de olho</p>
-        ${content}
+function ConsolesSection() {
+  const consoles = CONFIG.consoles.map(c => `
+    <div class="console-card">
+      <div class="console-card__image">
+        <img src="${c.image}" alt="${c.name}" loading="lazy">
+        <span class="console-card__badge">${c.badge}</span>
       </div>
-    </section>`;
-}
-
-// ─── CTA Intermediário ───────────────────────────────────────────────────────
-
-function ChannelCTASection(headline, text, source, buttonText = 'ENTRAR NO CANAL') {
-  return `
-    <section class="cta-intermediate">
-      <div class="container cta-intermediate__content">
-        <h3 class="cta-intermediate__title">${headline}</h3>
-        <p class="cta-intermediate__text">${text}</p>
-        ${ChannelCTA(`${buttonText} →`, source, '', 'primary')}
+      <div class="console-card__content">
+        <h3 class="console-card__name">${c.name}</h3>
+        <p class="console-card__description">${c.description}</p>
+        <div class="console-card__prices">
+          <div class="console-card__price">
+            <span class="console-card__label">Amazon</span>
+            <span class="console-card__value">${c.amazonPrice ? 'R$ ' + c.amazonPrice.toLocaleString('pt-BR') : '—'}</span>
+          </div>
+          <div class="console-card__price">
+            <span class="console-card__label">Mercado Livre</span>
+            <span class="console-card__value">${c.mercadolivrePrice ? 'R$ ' + c.mercadolivrePrice.toLocaleString('pt-BR') : '—'}</span>
+          </div>
+        </div>
+        <a href="${c.affiliateUrl}" class="cta-button cta-button--small" target="_blank" rel="noopener noreferrer">
+          [ VER OFERTA ]
+        </a>
       </div>
-    </section>`;
-}
+    </div>
+  `).join('');
 
-// ─── Ofertas em Destaque ─────────────────────────────────────────────────────
-
-function FeaturedOffersSection() {
   return `
-    <section class="section" id="ofertas-destaque">
+    <section class="section" id="consoles">
       <div class="container">
         <div class="section__header">
-          <h2 class="section__title">Ofertas em Destaque</h2>
-          <p class="section__subtitle">Separamos as melhores oportunidades de cada categoria para você não precisar procurar em dezenas de páginas.</p>
+          <h2 class="section__title">🎮 PS5 que encontramos</h2>
         </div>
-        ${ProductCarousel(CONFIG.featuredProducts, 'carousel-featured')}
+        <div class="consoles-grid">${consoles}</div>
+        <div class="section__cta">
+          <p>Não tem certeza qual escolher? Veja nosso guia de decisão abaixo.</p>
+          <a href="#guia" class="cta-button cta-button--outline">[ GUIA: QUAL PS5 ESCOLHER? ]</a>
+        </div>
       </div>
     </section>`;
 }
 
-// ─── Categorias ──────────────────────────────────────────────────────────────
+// ─── Guia: Antes de Comprar ──────────────────────────────────────────────────
 
-function CategoryCard(category) {
+function GuideSection() {
+  const comp = CONFIG.comparisons;
+  
   return `
-    <article class="category-card" data-category="${category.id}">
-      ${Icons[category.icon] || Icons.star}
-      <h3 class="category-card__title">${category.title}</h3>
-      <p class="category-card__description">${category.description}</p>
-    </article>`;
-}
-
-function OfferCategorySection() {
-  const cards = CONFIG.categories.map(CategoryCard).join('');
-  return `
-    <section class="section section--alt" id="categorias">
+    <section class="section section--guide" id="guia">
       <div class="container">
         <div class="section__header">
-          <h2 class="section__title">O Que Vamos Procurar?</h2>
-          <p class="section__subtitle">De consoles a jogos e acessórios, vamos acompanhar diferentes tipos de produtos durante a semana de ofertas.</p>
+          <h2 class="section__title">Vai comprar um PS5? Antes de fechar a compra, olha isso.</h2>
+          <p class="section__subtitle">Existem diferentes versões, bundles e formas de comprar. Nós pesquisamos algumas das principais opções para você comparar.</p>
         </div>
-        <div class="categories-grid">${cards}</div>
-      </div>
-    </section>`;
-}
-
-// ─── PS5 ─────────────────────────────────────────────────────────────────────
-
-function PS5Section() {
-  return `
-    <section class="section" id="ps5">
-      <div class="container">
-        <div class="section__header">
-          <h2 class="section__title">PS5 em Destaque</h2>
-          <p class="section__subtitle">Para quem está pensando em entrar na nova geração, separamos diferentes versões e bundles para ficar de olho durante a campanha.</p>
+        
+        <!-- Comparação 1: Digital vs Leitor -->
+        <div class="comparison">
+          <h3 class="comparison__title">Digital vs. Com Leitor</h3>
+          <div class="comparison__grid">
+            <div class="comparison__card">
+              <h4>PS5 Digital</h4>
+              <p class="comparison__price">${comp.digitalVsLeitor.digital.price ? 'R$ ' + comp.digitalVsLeitor.digital.price.toLocaleString('pt-BR') : 'Ver preço'}</p>
+              <ul class="comparison__list comparison__list--pros">
+                ${comp.digitalVsLeitor.digital.advantages.map(a => `<li>${Icons.check} ${a}</li>`).join('')}
+              </ul>
+              <ul class="comparison__list comparison__list--cons">
+                ${comp.digitalVsLeitor.digital.disadvantages.map(d => `<li>${Icons.x} ${d}</li>`).join('')}
+              </ul>
+              <a href="#" class="cta-button cta-button--small">[ VER OFERTA ]</a>
+            </div>
+            <div class="comparison__card">
+              <h4>PS5 com Leitor</h4>
+              <p class="comparison__price">${comp.digitalVsLeitor.leitor.price ? 'R$ ' + comp.digitalVsLeitor.leitor.price.toLocaleString('pt-BR') : 'Ver preço'}</p>
+              <ul class="comparison__list comparison__list--pros">
+                ${comp.digitalVsLeitor.leitor.advantages.map(a => `<li>${Icons.check} ${a}</li>`).join('')}
+              </ul>
+              <ul class="comparison__list comparison__list--cons">
+                ${comp.digitalVsLeitor.leitor.disadvantages.map(d => `<li>${Icons.x} ${d}</li>`).join('')}
+              </ul>
+              <a href="#" class="cta-button cta-button--small">[ VER OFERTA ]</a>
+            </div>
+          </div>
         </div>
-        ${ProductCarousel(CONFIG.consoles, 'carousel-ps5')}
+
+        <!-- Comparação 2: Perfis -->
+        <div class="comparison">
+          <h3 class="comparison__title">Qual perfil de criança?</h3>
+          <div class="profiles">
+            ${comp.profiles.map(p => `
+              <div class="profile-card" data-profile="${p.id}">
+                <span class="profile-card__label">${p.label}</span>
+                <span class="profile-card__product">${p.product}</span>
+                <span class="profile-card__price">${p.price ? 'R$ ' + p.price.toLocaleString('pt-BR') : 'Ver preço'}</span>
+                <a href="#" class="cta-button cta-button--small">[ VER OFERTA ]</a>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="section__cta">
+          <p>Já decidiu qual versão? Confira nossas ofertas abaixo.</p>
+        </div>
       </div>
     </section>`;
 }
@@ -310,63 +215,82 @@ function PS5Section() {
 // ─── Bundles ─────────────────────────────────────────────────────────────────
 
 function BundlesSection() {
+  const bundles = CONFIG.bundles.map(b => `
+    <div class="bundle-card">
+      <div class="bundle-card__image">
+        <img src="${b.image}" alt="${b.name}" loading="lazy">
+      </div>
+      <div class="bundle-card__content">
+        <h3 class="bundle-card__name">${b.name}</h3>
+        <ul class="bundle-card__includes">
+          ${b.includes.map(i => `<li>${Icons.check} ${i}</li>`).join('')}
+        </ul>
+        <p class="bundle-card__price">${b.price ? 'R$ ' + b.price.toLocaleString('pt-BR') : 'Ver preço'}</p>
+        <a href="${b.affiliateUrl}" class="cta-button cta-button--small" target="_blank" rel="noopener noreferrer">
+          [ VER BUNDLE ]
+        </a>
+      </div>
+    </div>
+  `).join('');
+
   return `
-    <section class="section section--alt" id="bundles">
+    <section class="section" id="bundles">
       <div class="container">
         <div class="section__header">
-          <h2 class="section__title">Já Vem Com Jogo</h2>
-          <p class="section__subtitle">Às vezes, a melhor compra não é o console sozinho. Alguns bundles já chegam acompanhados de jogos, controles ou outros itens que podem mudar bastante o custo-benefício do conjunto.</p>
+          <h2 class="section__title">🎁 Bundles: Console + Jogo</h2>
+          <p class="section__subtitle">As melhores combinações que encontramos</p>
         </div>
-        ${ProductCarousel(CONFIG.bundles, 'carousel-bundles')}
+        <div class="bundles-grid">${bundles}</div>
+        <div class="section__cta">
+          <p>Separamos as melhores ofertas e bundles para sua criança. Clique e compre agora mesmo.</p>
+          <a href="#jogos" class="cta-button cta-button--primary">[ VER TODAS AS OFERTAS ]</a>
+        </div>
       </div>
     </section>`;
 }
 
-// ─── PS4 ─────────────────────────────────────────────────────────────────────
+// ─── Jogos ────────────────────────────────────────────────────────────────────
 
-function PS4Section() {
-  return `
-    <section class="section" id="ps4">
-      <div class="container">
-        <div class="section__header">
-          <h2 class="section__title">PS4 Ainda Tem Muito Para Oferecer</h2>
-          <p class="section__subtitle">Para quem já possui um PS4 ou procura uma opção mais acessível, também vamos acompanhar jogos, controles e oportunidades para a geração anterior.</p>
-        </div>
-        ${ProductCarousel(CONFIG.ps4Consoles, 'carousel-ps4')}
+function GamesSection() {
+  const renderGames = (games) => games.map(g => `
+    <div class="game-card">
+      <div class="game-card__image">
+        ${g.image ? `<img src="${g.image}" alt="${g.name}" loading="lazy">` : `<div class="game-card__placeholder">${Icons.gamepad}</div>`}
+        <span class="game-card__rating">${g.rating}</span>
       </div>
-    </section>`;
-}
-
-// ─── Jogos para Crianças e Família ────────────────────────────────────────────
-
-function KidsGamesSection() {
-  const games = CONFIG.kidsGames;
-  if (!games || games.length === 0) return '';
-  return `
-    <section class="section section--kids" id="jogos-criancas">
-      <div class="container">
-        <div class="section__header">
-          <h2 class="section__title">Jogos Para Os Pequenos</h2>
-          <p class="section__subtitle">Aventuras, criatividade e diversão para diferentes idades.</p>
-        </div>
-        ${ProductCarousel(games, 'carousel-kids')}
+      <div class="game-card__content">
+        <h3 class="game-card__name">${g.name}</h3>
+        <a href="#" class="cta-button cta-button--small">[ VER PREÇO ]</a>
       </div>
-    </section>`;
-}
+    </div>
+  `).join('');
 
-// ─── Jogos para Adolescentes ──────────────────────────────────────────────────
-
-function TeenGamesSection() {
-  const games = CONFIG.teenGames;
-  if (!games || games.length === 0) return '';
   return `
-    <section class="section section--alt" id="jogos-adolescentes">
+    <section class="section" id="jogos">
       <div class="container">
         <div class="section__header">
-          <h2 class="section__title">Jogos Para Adolescentes</h2>
-          <p class="section__subtitle">Aventuras, desafios e histórias que conversam com diferentes gostos e estilos.</p>
+          <h2 class="section__title">🎮 Os jogos que as crianças mais gostam</h2>
         </div>
-        ${ProductCarousel(games, 'carousel-teens')}
+        
+        <div class="games-category">
+          <h3 class="games-category__title">📱 Para Crianças (3-7 anos)</h3>
+          <div class="games-grid">${renderGames(CONFIG.games.kids)}</div>
+        </div>
+        
+        <div class="games-category">
+          <h3 class="games-category__title">👦 Para Crianças (8-12 anos)</h3>
+          <div class="games-grid">${renderGames(CONFIG.games.older)}</div>
+        </div>
+        
+        <div class="games-category">
+          <h3 class="games-category__title">🎮 Para Adolescentes (13+)</h3>
+          <div class="games-grid">${renderGames(CONFIG.games.teens)}</div>
+        </div>
+        
+        <div class="section__cta">
+          <p>Separei as melhores ofertas. Clique no jogo que sua criança quer e compre agora.</p>
+          <a href="#" class="cta-button cta-button--primary">[ VER OFERTAS DOS JOGOS ]</a>
+        </div>
       </div>
     </section>`;
 }
@@ -374,128 +298,59 @@ function TeenGamesSection() {
 // ─── Acessórios ──────────────────────────────────────────────────────────────
 
 function AccessoriesSection() {
+  const accessories = CONFIG.accessories.map(a => `
+    <div class="accessory-card">
+      <div class="accessory-card__image">
+        ${a.image ? `<img src="${a.image}" alt="${a.name}" loading="lazy">` : `<div class="accessory-card__placeholder">${Icons.gamepad}</div>`}
+      </div>
+      <div class="accessory-card__content">
+        <span class="accessory-card__category">${a.category}</span>
+        <h3 class="accessory-card__name">${a.name}</h3>
+        <p class="accessory-card__price">${a.price ? 'R$ ' + a.price.toLocaleString('pt-BR') : 'Ver preço'}</p>
+        <a href="#" class="cta-button cta-button--small">[ VER OFERTA ]</a>
+      </div>
+    </div>
+  `).join('');
+
   return `
     <section class="section" id="acessorios">
       <div class="container">
         <div class="section__header">
-          <h2 class="section__title">Complete o Setup</h2>
-          <p class="section__subtitle">Às vezes, a melhor oportunidade não está no console. Pode estar naquele controle, headset ou acessório que faltava.</p>
+          <h2 class="section__title">🎧 Complete seu PS5</h2>
+          <p class="section__subtitle">Controles, headsets, armazenamento e mais</p>
         </div>
-        ${ProductCarousel(CONFIG.accessories, 'carousel-accessories')}
-      </div>
-    </section>`;
-}
-
-// ─── Premium ─────────────────────────────────────────────────────────────────
-
-function PremiumSection() {
-  const products = CONFIG.premiumProducts;
-  if (!products || products.length === 0) return '';
-  return `
-    <section class="section section--premium" id="premium">
-      <div class="container">
-        <div class="section__header">
-          <h2 class="section__title">Para Quem Quer Um Presente Especial</h2>
-          <p class="section__subtitle">Alguns produtos não são apenas uma compra. São aqueles presentes que você lembra por muito tempo.</p>
-        </div>
-        ${ProductCarousel(products, 'carousel-premium')}
-      </div>
-    </section>`;
-}
-
-// ─── Edições Especiais ───────────────────────────────────────────────────────
-
-function SpecialEditionsSection() {
-  const products = CONFIG.specialEditions;
-  if (!products || products.length === 0) return '';
-  return `
-    <section class="section section--special" id="edicoes-especiais">
-      <div class="container">
-        <div class="section__header">
-          <h2 class="section__title">Para Quem Gosta de Algo Diferente</h2>
-          <p class="section__subtitle">Edições especiais, produtos temáticos e versões que chamam atenção também entram na nossa curadoria.</p>
-        </div>
-        ${ProductCarousel(products, 'carousel-special')}
-      </div>
-    </section>`;
-}
-
-// ─── Criança Interior ────────────────────────────────────────────────────────
-
-function InnerChildSection() {
-  const games = CONFIG.adultGames;
-  if (!games || games.length === 0) return '';
-  return `
-    <section class="section section--adult" id="crianca-interior">
-      <div class="container">
-        <div class="section__header">
-          <h2 class="section__title">E Quem Disse Que o Presente É Só Para as Crianças?</h2>
-          <p class="section__subtitle">Talvez você tenha crescido. Mas algumas coisas continuam fazendo você voltar a ser criança por algumas horas. Aquele console que você queria. Uma franquia que marcou sua adolescência. Um jogo que ficou na lista de desejos. Ou simplesmente algo novo para aproveitar depois de um dia cheio.</p>
-        </div>
-        <div class="section__banner">
-          <h3>PRESENTEIE A SUA CRIANÇA INTERIOR.</h3>
-          <p>O Dia das Crianças pode ser uma boa desculpa para lembrar que você também pode comprar algo que queria há muito tempo. Um jogo que marcou uma época. Um console novo. Um controle melhor. Uma edição especial. Porque crescer não significa deixar de gostar daquilo que fazia você se divertir.</p>
-        </div>
-        ${ProductCarousel(games, 'carousel-adult')}
+        <div class="accessories-grid">${accessories}</div>
         <div class="section__cta">
-          ${ChannelCTA('EU TAMBÉM MEREÇO →', 'crianca-interior', '', 'primary')}
+          <p>Deixe seu PS5 completo. Confira nossas seleções de acessórios.</p>
+          <a href="#" class="cta-button cta-button--primary">[ VER ACESSÓRIOS ]</a>
         </div>
       </div>
     </section>`;
 }
 
-// ─── Guia de Presentes ───────────────────────────────────────────────────────
+// ─── CTA do Grupo ────────────────────────────────────────────────────────────
 
-function GiftIdeasSection() {
-  const cards = CONFIG.giftIdeas.map(g => `
-    <article class="gift-card">
-      ${Icons[g.icon] || Icons.gift}
-      <h3 class="gift-card__title">${g.title}</h3>
-      <p class="gift-card__description">${g.description}</p>
-    </article>`).join('');
+function GroupCTASection() {
   return `
-    <section class="section section--alt" id="presentes">
+    <section class="section section--group" id="grupo">
       <div class="container">
-        <div class="section__header">
-          <h2 class="section__title">Presentes Para o Mês das Crianças</h2>
-          <p class="section__subtitle">Do primeiro console ao próximo jogo favorito, a ideia aqui é encontrar presentes que realmente combinem com quem vai receber.</p>
+        <div class="group-cta">
+          <h2 class="group-cta__title">⏰ Aviso Importante</h2>
+          <p class="group-cta__subtitle">Quer receber as melhores ofertas ANTES de todo mundo?</p>
+          <div class="group-cta__content">
+            <p>De 5 a 11 de outubro, teremos um presente especial e 80% de desconto em selecionadas. Mas anunciaremos PRIMEIRO no nosso grupo exclusivo.</p>
+            <p>Além disso, no grupo você tem acesso a:</p>
+            <ul class="group-cta__list">
+              <li>${Icons.check} Ofertas exclusivas diárias</li>
+              <li>${Icons.check} Avisos de Relâmpago</li>
+              <li>${Icons.check} Cupons e cashback</li>
+              <li>${Icons.check} Suporte para escolher o melhor PS5</li>
+            </ul>
+          </div>
+          <a href="${CONFIG.channelUrl}" class="cta-button cta-button--large" target="_blank" rel="noopener noreferrer">
+            [ ENTRAR NO GRUPO AGORA ]
+          </a>
         </div>
-        <div class="gift-grid">${cards}</div>
-      </div>
-    </section>`;
-}
-
-// ─── Campanha ────────────────────────────────────────────────────────────────
-
-function CampaignSection() {
-  return `
-    <section class="section section--campaign" id="campanha">
-      <div class="container">
-        <div class="campaign-hero">
-          <p class="campaign-hero__label">5 a 11 de Outubro</p>
-          <h2 class="campaign-hero__title">Fique Atento à Curadoria Especial</h2>
-          <p class="campaign-hero__text">Durante esses dias, vamos acompanhar as oportunidades e selecionar ofertas de PlayStation, jogos e acessórios que realmente chamarem atenção.</p>
-          <div class="campaign-hero__highlight">ATÉ 80% OFF</div>
-          <p class="campaign-hero__complement">Entre no canal e fique atento. As oportunidades serão divulgadas por lá durante a campanha.</p>
-          ${ChannelCTA('ENTRAR NO CANAL →', 'campanha', 'large', 'primary')}
-        </div>
-      </div>
-    </section>`;
-}
-
-// ─── CTA Final ───────────────────────────────────────────────────────────────
-
-function FinalCTA() {
-  return `
-    <section class="final-cta">
-      <div class="container final-cta__content">
-        <h2 class="final-cta__title">Não Deixe Para Procurar Depois.</h2>
-        <p class="final-cta__text">
-          De 5 a 11 de outubro, vamos acompanhar as oportunidades e selecionar as ofertas que realmente chamarem atenção.
-        </p>
-        <div class="final-cta__highlight">ATÉ 80% OFF</div>
-        <p class="final-cta__complement">Entre no canal e acompanhe as oportunidades.</p>
-        ${ChannelCTA('QUERO RECEBER AS OFERTAS →', 'cta-final', 'large', 'primary')}
       </div>
     </section>`;
 }
@@ -506,86 +361,20 @@ function Footer() {
   return `
     <footer class="footer">
       <div class="container">
-        <p class="footer__disclaimer">
-          Este site é uma curadoria independente de ofertas e não possui vínculo oficial com a Sony ou PlayStation.
-          Todas as ofertas são selecionadas e divulgadas em nosso canal parceiro.
-        </p>
         <div class="footer__links">
-          <a href="#" class="footer__link">Sobre</a>
-          <a href="#" class="footer__link">Contato</a>
-          <a href="#" class="footer__link">Privacidade</a>
+          <a href="#destaque">Oferta em Destaque</a>
+          <a href="#consoles">Consoles PS5</a>
+          <a href="#guia">Guia de Compra</a>
+          <a href="#bundles">Bundles</a>
+          <a href="#jogos">Jogos</a>
+          <a href="#acessorios">Acessórios</a>
+          <a href="${CONFIG.channelUrl}" target="_blank" rel="noopener noreferrer">Entrar no Grupo</a>
         </div>
+        <p class="footer__disclaimer">
+          Somos afiliados Amazon e Mercado Livre. Você paga o mesmo, mas nos ajuda a manter este site.
+        </p>
       </div>
     </footer>`;
-}
-
-// ─── Carousel Logic ──────────────────────────────────────────────────────────
-
-const Carousel = {
-  scroll(id, direction) {
-    const carousel = document.getElementById(id);
-    if (!carousel) return;
-    const track = carousel.querySelector('.carousel__track');
-    const cards = track.querySelectorAll('.product-card');
-    if (cards.length === 0) return;
-    const cardWidth = cards[0].offsetWidth + 24;
-    const visibleCards = Math.floor(track.offsetWidth / cardWidth);
-    const maxScroll = Math.max(0, cards.length - visibleCards);
-    const currentScroll = parseInt(track.dataset.scroll || '0');
-    const newScroll = Math.max(0, Math.min(maxScroll, currentScroll + direction));
-    track.dataset.scroll = newScroll;
-    track.style.transform = `translateX(-${newScroll * cardWidth}px)`;
-    this.updateIndicators(id, newScroll, maxScroll);
-  },
-
-  updateIndicators(id, current, max) {
-    const carousel = document.getElementById(id);
-    if (!carousel) return;
-    const indicators = carousel.querySelector('.carousel__indicators');
-    if (!indicators) return;
-    const total = max + 1;
-    indicators.innerHTML = Array.from({ length: total }, (_, i) =>
-      `<span class="carousel__dot ${i === current ? 'active' : ''}"></span>`
-    ).join('');
-  },
-
-  init(id) {
-    const carousel = document.getElementById(id);
-    if (!carousel) return;
-    const track = carousel.querySelector('.carousel__track');
-    track.dataset.scroll = '0';
-    track.style.transition = 'transform 0.3s ease';
-    this.updateIndicators(id, 0, Math.max(0, track.querySelectorAll('.product-card').length - 1));
-  }
-};
-
-// ─── Countdown Logic ─────────────────────────────────────────────────────────
-
-function initCountdown() {
-  const timerEl = document.getElementById('countdown-timer');
-  if (!timerEl) return;
-  const target = new Date(timerEl.dataset.target);
-  function update() {
-    const now = new Date();
-    const diff = target - now;
-    if (diff <= 0) {
-      timerEl.innerHTML = `<p class="countdown__expired">${CONFIG.countdownExpiredMessage}</p>`;
-      return;
-    }
-    const days = Math.floor(diff / 86400000);
-    const hours = Math.floor((diff % 86400000) / 3600000);
-    const minutes = Math.floor((diff % 3600000) / 60000);
-    const seconds = Math.floor((diff % 60000) / 1000);
-    const dEl = document.getElementById('cd-days');
-    if (dEl) {
-      dEl.textContent = String(days).padStart(2, '0');
-      document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
-      document.getElementById('cd-minutes').textContent = String(minutes).padStart(2, '0');
-      document.getElementById('cd-seconds').textContent = String(seconds).padStart(2, '0');
-    }
-  }
-  update();
-  setInterval(update, 1000);
 }
 
 // ─── Init ───────────────────────────────────────────────────────────────────
@@ -595,87 +384,14 @@ document.addEventListener('DOMContentLoaded', () => {
     ${Header()}
     <main>
       ${Hero()}
-      ${CampaignCountdown()}
-      ${FeaturedOffersSection()}
-      ${ChannelCTASection(
-        'Você não precisa procurar em todo lugar.',
-        'Nós vamos acompanhar diferentes lojas e selecionar as ofertas que realmente fizerem sentido para cada produto. Quando encontrarmos uma oportunidade interessante, você poderá conferir diretamente na loja.',
-        'apos-destaque',
-        'VER AS OFERTAS'
-      )}
-      ${OfferCategorySection()}
-      ${PS5Section()}
-      ${ChannelCTASection(
-        'Encontrou o console que estava procurando?',
-        'Agora fique atento às próximas oportunidades.',
-        'apos-ps5'
-      )}
+      ${FeaturedOfferSection()}
+      ${ConsolesSection()}
+      ${GuideSection()}
       ${BundlesSection()}
-      ${ChannelCTASection(
-        'Um bundle pode ser mais vantajoso do que comprar tudo separado.',
-        'Fique de olho nas oportunidades de kits e bundles.',
-        'apos-bundles'
-      )}
-      ${PS4Section()}
-      ${ChannelCTASection(
-        'O PS4 ainda tem muito para oferecer.',
-        'Acompanhe também as oportunidades para a geração anterior.',
-        'apos-ps4'
-      )}
-      ${KidsGamesSection()}
-      ${ChannelCTASection(
-        'Quer encontrar um presente sem ficar procurando por horas?',
-        'Nossa curadoria separa os melhores jogos para cada idade.',
-        'apos-kids',
-        'VER AS OFERTAS'
-      )}
-      ${TeenGamesSection()}
-      ${ChannelCTASection(
-        'O próximo desconto pode estar justamente naquele jogo da sua lista.',
-        'Fique atento às oportunidades.',
-        'apos-teens',
-        'RECEBER OFERTAS'
-      )}
+      ${GamesSection()}
       ${AccessoriesSection()}
-      ${ChannelCTASection(
-        'E se aparecer aquela oportunidade que você não estava esperando?',
-        'Ela vai para o canal.',
-        'apos-acessorios'
-      )}
-      ${PremiumSection()}
-      ${ChannelCTASection(
-        'Algumas oportunidades aparecem e desaparecem rápido.',
-        'Fique de olho.',
-        'apos-premium',
-        'FICAR DE OLHO'
-      )}
-      ${SpecialEditionsSection()}
-      ${ChannelCTASection(
-        'Quer descobrir edições especiais e produtos temáticos?',
-        'Também entram na nossa curadoria e serão divulgados no canal.',
-        'apos-edicoes',
-        'QUERO DESCOBRIR AS OFERTAS'
-      )}
-      ${InnerChildSection()}
-      ${GiftIdeasSection()}
-      ${CampaignSection()}
-      ${FinalCTA()}
+      ${GroupCTASection()}
     </main>
     ${Footer()}
   `;
-
-  // Inicializa carrosséis
-  document.querySelectorAll('.carousel').forEach(carousel => {
-    Carousel.init(carousel.id);
-  });
-
-  // Re-inicializa carrosséis após imagens carregarem
-  window.addEventListener('load', () => {
-    document.querySelectorAll('.carousel').forEach(carousel => {
-      Carousel.init(carousel.id);
-    });
-  });
-
-  initCountdown();
-  Tracking.viewLanding();
 });

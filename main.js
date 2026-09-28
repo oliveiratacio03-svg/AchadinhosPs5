@@ -75,23 +75,14 @@ function Hero() {
           </h1>
           <p class="hero__subtitle">Toda criança merece começar sua jornada nos games com o console certo.</p>
           <p class="hero__text">
-            Mas com tantas opções, preços variados e promoções espalhadas, fica complicado saber qual escolher. Por isso separamos as MELHORES OFERTAS que encontramos na Amazon e Mercado Livre agora.
+            Mas com tantas opções, fica complicado saber qual escolher. Por isso, fizemos uma curadoria das MELHORES OFERTAS que encontramos agora.
           </p>
           <p class="hero__text">
-            Aqui você encontra:
-          </p>
-          <ul class="hero__list">
-            <li>${Icons.check} Consoles com melhor custo-benefício</li>
-            <li>${Icons.check} Bundlers pré-montados (console + jogos)</li>
-            <li>${Icons.check} Preços atualizados HOJE</li>
-            <li>${Icons.check} Guia rápido para escolher a versão certa</li>
-          </ul>
-          <p class="hero__text">
-            Sem enrolação. Sem artigos infinitos. Só informação útil.
+            Sem enrolação. Só informação útil.
           </p>
           <div class="hero__actions">
             <a href="${CONFIG.featuredOffer.affiliateUrl}" class="cta-button cta-button--primary" target="_blank" rel="noopener noreferrer">
-              Consultar Preço Atualizado na Amazon
+              🔥 VER OFERTA EM DESTAQUE
             </a>
             <a href="#consoles" class="cta-button cta-button--outline">
               Comparar Versões
@@ -115,18 +106,17 @@ function Hero() {
 // ─── Alerta de Promoção ──────────────────────────────────────────────────────
 
 function PromoAlert() {
-  const alert = CONFIG.promoAlert;
   return `
     <section class="promo-alert">
       <div class="container">
         <div class="promo-alert__box">
           <div class="promo-alert__content">
-            <h2 class="promo-alert__title">${alert.title}</h2>
-            <p class="promo-alert__text">${alert.text}</p>
-            <p class="promo-alert__text">${alert.text2}</p>
-            <p class="promo-alert__text">${alert.text3}</p>
-            <a href="${CONFIG.whatsappUrl}" class="cta-button cta-button--primary" target="_blank" rel="noopener noreferrer">
-              ${alert.button}
+            <h2 class="promo-alert__title">🔔 AVISO: OFERTA ESPECIAL DE ATÉ 80% OFF</h2>
+            <p class="promo-alert__text">De 5 a 11 de OUTUBRO teremos presentes exclusivos para nossa comunidade no WhatsApp.</p>
+            <p class="promo-alert__text">Cupons extras e avisos de ofertas relâmpago.</p>
+            <p class="promo-alert__text">Entre agora para não perder!</p>
+            <a href="${CONFIG.whatsappUrl}" class="cta-button cta-button--whatsapp" target="_blank" rel="noopener noreferrer">
+              [ ENTRAR NO GRUPO WHATSAPP ]
             </a>
           </div>
         </div>
@@ -196,7 +186,7 @@ function ConsolesSection() {
             </ul>
           </div>
           <a href="${c.affiliateUrl}" class="cta-button cta-button--small cta-button--primary" target="_blank" rel="noopener noreferrer">
-            Consultar Preço Atualizado na Amazon
+            VER PREÇO ATUALIZADO
           </a>
         </div>
       </div>
@@ -251,7 +241,7 @@ function GuideSection() {
               <ul class="comparison__list">
                 ${comp.digitalVsLeitor.digital.ideal.map(i => `<li>→ ${i}</li>`).join('')}
               </ul>
-              <a href="#" class="cta-button cta-button--small cta-button--primary">Consultar Preço Atualizado na Amazon</a>
+              <a href="#" class="cta-button cta-button--small cta-button--primary">CONFERIR PREÇO</a>
             </div>
             <div class="comparison__card">
               <h4>🔵 COM LEITOR</h4>
@@ -266,7 +256,7 @@ function GuideSection() {
               <ul class="comparison__list">
                 ${comp.digitalVsLeitor.leitor.ideal.map(i => `<li>→ ${i}</li>`).join('')}
               </ul>
-              <a href="#" class="cta-button cta-button--small cta-button--primary">Consultar Preço Atualizado na Amazon</a>
+              <a href="#" class="cta-button cta-button--small cta-button--primary">CONFERIR PREÇO</a>
             </div>
           </div>
         </div>
@@ -288,7 +278,7 @@ function GuideSection() {
                 <p class="profile-panel__price">${formatPrice(p.price)}</p>
                 <p class="profile-panel__parcelado">Parcelado: ${p.parcelado}</p>
                 <p class="profile-panel__desc">"${p.desc}"</p>
-                <a href="#" class="cta-button cta-button--small cta-button--primary">Consultar Preço Atualizado na Amazon</a>
+                <a href="#" class="cta-button cta-button--small cta-button--primary">VER OFERTA NA AMAZON</a>
               </div>
             `).join('')}
           </div>
@@ -318,7 +308,7 @@ function BundlesSection() {
         </ul>
         <p class="bundle-card__price">Por apenas: ${formatPrice(b.price)}</p>
         <a href="${b.affiliateUrl}" class="cta-button cta-button--small cta-button--primary" target="_blank" rel="noopener noreferrer">
-          Consultar Preço Atualizado na Amazon
+          VER OFERTA NA AMAZON
         </a>
       </div>
     </div>
@@ -357,7 +347,7 @@ function GamesSection() {
         <h3 class="game-card__name">${g.name}</h3>
         ${g.desc ? `<p class="game-card__desc">${g.desc}</p>` : ''}
         <p class="game-card__price">${formatPrice(g.price)}</p>
-        <a href="#" class="cta-button cta-button--small cta-button--primary">Consultar Preço Atualizado na Amazon</a>
+        <a href="#" class="cta-button cta-button--small cta-button--primary">VER PREÇO DE HOJE</a>
       </div>
     </div>
   `).join('');
@@ -431,7 +421,7 @@ function PS4Section() {
       <h3 class="ps4-card__name">${p.name}</h3>
       <p class="ps4-card__price">${formatPrice(p.price)}</p>
       <p class="ps4-card__desc">${p.desc}</p>
-      <a href="#" class="cta-button cta-button--small cta-button--primary">Consultar Preço Atualizado na Amazon</a>
+      <a href="#" class="cta-button cta-button--small cta-button--primary">CONFERIR DISPONIBILIDADE</a>
     </div>
   `).join('');
 

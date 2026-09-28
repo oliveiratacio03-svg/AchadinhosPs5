@@ -63,9 +63,9 @@ function Hero() {
           <h1 class="hero__title">
             🎮 O Presente Perfeito para o Mês das Crianças
           </h1>
-          <p class="hero__subtitle">Não perca horas comparando anúncios confusos. Nós separamos os consoles e bundles mais procurados na Amazon para você escolher com calma e comprar com segurança.</p>
+          <p class="hero__subtitle">A gente sabe que escolher um videogame pode ser confuso. São tantas versões e modelos que é fácil se perder. Por isso, fizemos o trabalho duro por você: vasculhamos a Amazon e selecionamos as melhores ofertas, com entrega rápida e segurança total.</p>
           <p class="hero__text">
-            Sem enrolação. Só informação útil.
+            Sem termos técnicos complicados. Só as melhores escolhas para você acertar no presente.
           </p>
           <div class="hero__actions">
             <a href="${CONFIG.featuredOffer.affiliateUrl}" class="cta-button cta-button--primary" target="_blank" rel="sponsored noopener">
@@ -197,7 +197,7 @@ function ConsolesSection() {
       <div class="container">
         <div class="section__header">
           <h2 class="section__title">🎮 PS5 QUE ENCONTRAMOS AGORA</h2>
-          <p class="section__subtitle">Existem versões para cada tipo de família. Deixe a gente te mostrar qual delas vai fazer seu filho ou sua filha sorrir mais.</p>
+          <p class="section__subtitle">Não existe o 'melhor' console, existe aquele que faz mais sentido para o seu bolso e para o jeito que seu filho joga.</p>
         </div>
         <div class="consoles-carousel" id="consoles-carousel" role="region" aria-roledescription="carrossel">
           ${consoles}
@@ -388,7 +388,7 @@ function GamesSection() {
       <div class="container">
         <div class="section__header">
           <h2 class="section__title">🎮 OS JOGOS QUE AS CRIANÇAS MAIS AMAM</h2>
-          <p class="section__subtitle">O console é o coração, mas os jogos são a alma. Separamos os títulos que as crianças mais pedem, divididos por idade para você acertar no presente.</p>
+          <p class="section__subtitle">O console é o presente, mas o jogo é onde a diversão acontece. Separamos os favoritos por idade para você não errar.</p>
         </div>
         
         <div class="games-category">
@@ -453,7 +453,7 @@ function AccessoriesSection() {
       <div class="container">
         <div class="section__header">
           <h2 class="section__title">🎧 COMPLETE SEU PS5</h2>
-          <p class="section__subtitle">Um bom headset muda tudo. E um controle extra? Essencial.</p>
+          <p class="section__subtitle">Um detalhe que faz toda a diferença. Um controle extra para jogarem juntos ou um headset para a criança mergulhar no jogo.</p>
         </div>
         <div class="accessories-carousel" data-autoplay="false">${accessories}</div>
       </div>
@@ -493,7 +493,7 @@ function PS4Section() {
       <div class="container">
         <div class="section__header">
           <h2 class="section__title">A Escolha Inteligente</h2>
-          <p class="section__subtitle">Qualidade PlayStation que cabe no bolso. O PS4 continua sendo uma ótima porta de entrada para quem quer diversão sem gastar tanto.</p>
+          <p class="section__subtitle">O PS5 é incrível, mas o PS4 continua sendo uma máquina fantástica.</p>
         </div>
         <div class="ps4-carousel" data-autoplay="false">${ps4}</div>
         <div class="ps4-copy">

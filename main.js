@@ -73,7 +73,7 @@ function Hero() {
           <h1 class="hero__title">
             🎮 O Presente Perfeito para o Mês das Crianças
           </h1>
-          <p class="hero__subtitle">Não perca horas procurando. Nós vasculhamos as melhores lojas e selecionamos os consoles e jogos com os preços mais baixos de hoje.</p>
+          <p class="hero__subtitle">Não perca horas procurando. Nós separamos os consoles e jogos mais procurados da Amazon para você escolher com calma e comprar com segurança.</p>
           <p class="hero__text">
             Sem enrolação. Só informação útil.
           </p>
@@ -182,7 +182,7 @@ function ConsolesSection() {
               ${c.bestFor.map(b => `<li>${b}</li>`).join('')}
             </ul>
           </div>
-          <a href="${c.affiliateUrl}" class="cta-button cta-button--small cta-button--primary" target="_blank" rel="noopener noreferrer">
+          <a href="${c.affiliateUrl}" class="cta-button cta-button--small cta-button--primary" target="_blank" rel="sponsored noopener">
             CONSULTAR PREÇO ATUALIZADO
           </a>
         </div>
@@ -238,7 +238,7 @@ function GuideSection() {
               <ul class="comparison__list">
                 ${comp.digitalVsLeitor.digital.ideal.map(i => `<li>→ ${i}</li>`).join('')}
               </ul>
-              <a href="#" class="cta-button cta-button--small cta-button--primary">VER DISPONIBILIDADE NA AMAZON</a>
+              <a href="#" class="cta-button cta-button--small cta-button--primary" rel="sponsored noopener">VER DISPONIBILIDADE NA AMAZON</a>
             </div>
             <div class="comparison__card">
               <h4>🔵 COM LEITOR</h4>
@@ -253,7 +253,7 @@ function GuideSection() {
               <ul class="comparison__list">
                 ${comp.digitalVsLeitor.leitor.ideal.map(i => `<li>→ ${i}</li>`).join('')}
               </ul>
-              <a href="#" class="cta-button cta-button--small cta-button--primary">VER DISPONIBILIDADE NA AMAZON</a>
+              <a href="#" class="cta-button cta-button--small cta-button--primary" rel="sponsored noopener">VER DISPONIBILIDADE NA AMAZON</a>
             </div>
           </div>
         </div>
@@ -275,7 +275,7 @@ function GuideSection() {
                 <p class="profile-panel__price">${formatPrice(p.price)}</p>
                 <p class="profile-panel__parcelado">Parcelado: ${p.parcelado}</p>
                 <p class="profile-panel__desc">"${p.desc}"</p>
-                <a href="#" class="cta-button cta-button--small cta-button--primary">GARANTIR MEU EXEMPLAR</a>
+                <a href="#" class="cta-button cta-button--small cta-button--primary" rel="sponsored noopener">GARANTIR MEU EXEMPLAR</a>
               </div>
             `).join('')}
           </div>
@@ -304,8 +304,8 @@ function BundlesSection() {
           ${b.includes.map(i => `<li>${Icons.check} ${i}</li>`).join('')}
         </ul>
         <p class="bundle-card__price">Por apenas: ${formatPrice(b.price)}</p>
-        <a href="${b.affiliateUrl}" class="cta-button cta-button--small cta-button--primary" target="_blank" rel="noopener noreferrer">
-          VER ECONOMIA DO COMBO
+        <a href="${b.affiliateUrl}" class="cta-button cta-button--small cta-button--primary" target="_blank" rel="sponsored noopener">
+          VER COMBO NA AMAZON
         </a>
       </div>
     </div>
@@ -344,7 +344,7 @@ function GamesSection() {
         <h3 class="game-card__name">${g.name}</h3>
         ${g.desc ? `<p class="game-card__desc">${g.desc}</p>` : ''}
         <p class="game-card__price">${formatPrice(g.price)}</p>
-        <a href="#" class="cta-button cta-button--small cta-button--primary">GARANTIR MEU EXEMPLAR</a>
+        <a href="#" class="cta-button cta-button--small cta-button--primary" rel="sponsored noopener">VER PREÇO DE HOJE</a>
       </div>
     </div>
   `).join('');
@@ -418,7 +418,7 @@ function PS4Section() {
       <h3 class="ps4-card__name">${p.name}</h3>
       <p class="ps4-card__price">${formatPrice(p.price)}</p>
       <p class="ps4-card__desc">${p.desc}</p>
-      <a href="#" class="cta-button cta-button--small cta-button--primary">CONFERIR OFERTA DO KIT</a>
+      <a href="#" class="cta-button cta-button--small cta-button--primary" rel="sponsored noopener">VER NA AMAZON</a>
     </div>
   `).join('');
 

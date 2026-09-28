@@ -71,12 +71,9 @@ function Hero() {
         <div class="hero__content">
           <span class="hero__eyebrow">🎮 MÊS DAS CRIANÇAS - 2026</span>
           <h1 class="hero__title">
-            O presente perfeito para o Mês das Crianças: Guia Completo de PlayStation 5
+            🎮 O Presente Perfeito para o Mês das Crianças
           </h1>
-          <p class="hero__subtitle">Toda criança merece começar sua jornada nos games com o console certo.</p>
-          <p class="hero__text">
-            Mas com tantas opções, fica complicado saber qual escolher. Por isso, fizemos uma curadoria das MELHORES OFERTAS que encontramos agora.
-          </p>
+          <p class="hero__subtitle">Não perca horas procurando. Nós vasculhamos as melhores lojas e selecionamos os consoles e jogos com os preços mais baixos de hoje.</p>
           <p class="hero__text">
             Sem enrolação. Só informação útil.
           </p>
@@ -186,7 +183,7 @@ function ConsolesSection() {
             </ul>
           </div>
           <a href="${c.affiliateUrl}" class="cta-button cta-button--small cta-button--primary" target="_blank" rel="noopener noreferrer">
-            VER PREÇO ATUALIZADO
+            CONSULTAR PREÇO ATUALIZADO
           </a>
         </div>
       </div>
@@ -241,7 +238,7 @@ function GuideSection() {
               <ul class="comparison__list">
                 ${comp.digitalVsLeitor.digital.ideal.map(i => `<li>→ ${i}</li>`).join('')}
               </ul>
-              <a href="#" class="cta-button cta-button--small cta-button--primary">CONFERIR PREÇO</a>
+              <a href="#" class="cta-button cta-button--small cta-button--primary">VER DISPONIBILIDADE NA AMAZON</a>
             </div>
             <div class="comparison__card">
               <h4>🔵 COM LEITOR</h4>
@@ -256,7 +253,7 @@ function GuideSection() {
               <ul class="comparison__list">
                 ${comp.digitalVsLeitor.leitor.ideal.map(i => `<li>→ ${i}</li>`).join('')}
               </ul>
-              <a href="#" class="cta-button cta-button--small cta-button--primary">CONFERIR PREÇO</a>
+              <a href="#" class="cta-button cta-button--small cta-button--primary">VER DISPONIBILIDADE NA AMAZON</a>
             </div>
           </div>
         </div>
@@ -278,7 +275,7 @@ function GuideSection() {
                 <p class="profile-panel__price">${formatPrice(p.price)}</p>
                 <p class="profile-panel__parcelado">Parcelado: ${p.parcelado}</p>
                 <p class="profile-panel__desc">"${p.desc}"</p>
-                <a href="#" class="cta-button cta-button--small cta-button--primary">VER OFERTA NA AMAZON</a>
+                <a href="#" class="cta-button cta-button--small cta-button--primary">GARANTIR MEU EXEMPLAR</a>
               </div>
             `).join('')}
           </div>
@@ -308,7 +305,7 @@ function BundlesSection() {
         </ul>
         <p class="bundle-card__price">Por apenas: ${formatPrice(b.price)}</p>
         <a href="${b.affiliateUrl}" class="cta-button cta-button--small cta-button--primary" target="_blank" rel="noopener noreferrer">
-          VER OFERTA NA AMAZON
+          VER ECONOMIA DO COMBO
         </a>
       </div>
     </div>
@@ -347,7 +344,7 @@ function GamesSection() {
         <h3 class="game-card__name">${g.name}</h3>
         ${g.desc ? `<p class="game-card__desc">${g.desc}</p>` : ''}
         <p class="game-card__price">${formatPrice(g.price)}</p>
-        <a href="#" class="cta-button cta-button--small cta-button--primary">VER PREÇO DE HOJE</a>
+        <a href="#" class="cta-button cta-button--small cta-button--primary">GARANTIR MEU EXEMPLAR</a>
       </div>
     </div>
   `).join('');
@@ -421,7 +418,7 @@ function PS4Section() {
       <h3 class="ps4-card__name">${p.name}</h3>
       <p class="ps4-card__price">${formatPrice(p.price)}</p>
       <p class="ps4-card__desc">${p.desc}</p>
-      <a href="#" class="cta-button cta-button--small cta-button--primary">CONFERIR DISPONIBILIDADE</a>
+      <a href="#" class="cta-button cta-button--small cta-button--primary">CONFERIR OFERTA DO KIT</a>
     </div>
   `).join('');
 

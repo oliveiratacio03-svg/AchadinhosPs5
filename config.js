@@ -11,6 +11,7 @@ const CONFIG = {
 
   // ─── Links ─────────────────────────────────────────────────────────────────
   amazonTag: 'oliveirat-20',
+  defaultAffiliateUrl: 'https://link.amazon/A08766HJb',
   whatsappUrl: 'https://wa.me/5500000000000',
   channelUrl: 'https://t.me/seu-canal-de-ofertas',
 
@@ -61,7 +62,7 @@ const CONFIG = {
       name: 'PS5 Slim Digital',
       specs: '1TB SSD • Branco',
       image: '/images/produtos/ps5-slim-digital.webp',
-      affiliateUrl: 'https://www.amazon.com.br/Sony-PlayStation-Edi%C3%A7%C3%A3o-Digital-Controle/dp/B0GWNKJDCZ?dib=eyJ2IjoiMSJ9.c1P2n-sBpSVWo60U69soAAvZc_MH3zlPhUMrUNdO2QYnPZmkUS-HMRNMjTGGAMwvExqm6bOCGVD_GoxdAy2vstAvZgudlFw6WPjZG2f3Et48-iY55N3YQwngmcqP3nd566gkG8ntTtFJ6OkXT_Pm7sLM06JL8WvbtTckessTY9KSLIrObA842KJ-Kcxnc6H2.jbqD-7bRqtXo5dTc2T-rpZKk5KpPNUjAjTj_-EoujFU&dib_tag=se&keywords=PlayStation+5+Slim+Digital+825GB&qid=1790571365&s=videogames&sr=1-4&ufe=app_do%3Aamzn1.fos.95de73c3-5dda-43a7-bd1f-63af03b14751&utm_source=chatgpt.com&linkCode=ll2&tag=oliveirat-20&linkId=d933c412012b78008e901205b5b2017c&ref_=as_li_ss_tl',
+      affiliateUrl: 'https://link.amazon/A08766HJb',
       badge: 'Mais compacto',
       bestFor: ['Quem compra jogos na Store', 'Quer economia máxima', 'Prefere design compacto']
     },
@@ -70,7 +71,7 @@ const CONFIG = {
       name: 'PS5 Slim Com Leitor',
       specs: '1TB SSD • Branco',
       image: '/images/produtos/ps5-slim-leitor.webp',
-      affiliateUrl: 'https://www.amazon.com.br/gp/aw/d/B0FPGF9J2J?pd_rd_plhdr=t&hsa_cr_id=0&qid=1790564133&sr=1-1-fec03104-6f11-4242-8f79-15fae2896f66&i=videogames&aref=qSZduTclaX&_encoding=UTF8&pd_rd_w=tFqrJ&content-id=amzn1.sym.6cdfbb79-51ae-4c0d-8769-7c90679f83e4%3Aamzn1.sym.6cdfbb79-51ae-4c0d-8769-7c90679f83e4&pf_rd_p=6cdfbb79-51ae-4c0d-8769-7c90679f83e4&pf_rd_r=TAQVHZKYWT6QHM5YFQNW&pd_rd_wg=VS3Sm&pd_rd_r=12b7f119-fa2a-40b2-ab4f-e563cf9b5580&linkCode=ll2&tag=oliveirat-20&linkId=34d01548720932fd7f15f7a07b5dd1e6&ref_=as_li_ss_tl',
+      affiliateUrl: 'https://link.amazon/A08766HJb',
       badge: 'Jogos físicos',
       bestFor: ['Quem quer jogar físicos', 'Aprecia flexibilidade', 'Pode comprar jogos usados']
     },
@@ -79,7 +80,7 @@ const CONFIG = {
       name: 'PS5 Pro',
       specs: '2TB SSD • Preto',
       image: '/images/produtos/ps5-pro.webp',
-      affiliateUrl: 'https://www.amazon.com.br/dp/B0FPGF9J2J?tag=oliveirat-20',
+      affiliateUrl: 'https://link.amazon/A08766HJb',
       badge: 'Máximo desempenho',
       bestFor: ['Máximo desempenho', '4K 120fps garantido', 'Hardcore gamers', 'Futuro-prova']
     },
@@ -88,7 +89,7 @@ const CONFIG = {
       name: 'Bundle PS5 Digital + GTA6',
       specs: 'Inclusos: Astro Bot + GT7 + GTA6',
       image: '/images/produtos/bundle-gta6.webp',
-      affiliateUrl: 'https://www.amazon.com.br/Bundle-PlayStation-Digital-Pacote-Turismo/dp/B0H6LVH152?dib=eyJ2IjoiMSJ9.AEB0uzujtV1-21Nt0m-SxhnjkLeew8H1SNdKtJCsPD7GjHj071QN20LucGBJIEps.6x9FqE20OtN6pVlvg0hQtFMqfp2cWxQmjslJXFj4Qjw&dib_tag=se&keywords=PlayStation+5+Slim+Digital+825GB+ASTRO+BOT+Gran+Turismo+7&qid=1790571280&s=videogames&sr=1-3&utm_source=chatgpt.com&linkCode=ll2&tag=oliveirat-20&linkId=ee4793671760295add1fbd564fa92526&ref_=as_li_ss_tl',
+      affiliateUrl: 'https://link.amazon/A08766HJb',
       badge: 'MELHOR VALOR',
       bestFor: ['Console + 2 jogos iniciais', 'GTA6 (quhen lançar)', 'Setup completo']
     },
@@ -97,7 +98,7 @@ const CONFIG = {
       name: 'Bundle PS5 Leitor + 2 Controles',
       specs: 'Para jogar com amigos',
       image: '/images/produtos/bundle-2-controles.webp',
-      affiliateUrl: 'https://www.amazon.com.br/dp/B0FPGF9J2J?tag=oliveirat-20',
+      affiliateUrl: 'https://link.amazon/A08766HJb',
       badge: null,
       bestFor: ['2 controles inclusos', 'Multijogador local', 'Melhor para famílias']
     }
@@ -138,7 +139,7 @@ const CONFIG = {
       includes: ['Console 1TB', 'Astro Bot (Jogo do Ano)', 'Gran Turismo 7', 'DualSense'],
       price: 4277.90,
       badge: 'MELHOR CUSTO-BENEFÍCIO',
-      affiliateUrl: 'https://www.amazon.com.br/gp/aw/d/B0FPGF9J2J?pd_rd_plhdr=t&hsa_cr_id=0&qid=1790564133&sr=1-1-fec03104-6f11-4242-8f79-15fae2896f66&i=videogames&aref=qSZduTclaX&_encoding=UTF8&pd_rd_w=tFqrJ&content-id=amzn1.sym.6cdfbb79-51ae-4c0d-8769-7c90679f83e4%3Aamzn1.sym.6cdfbb79-51ae-4c0d-8769-7c90679f83e4&pf_rd_p=6cdfbb79-51ae-4c0d-8769-7c90679f83e4&pf_rd_r=TAQVHZKYWT6QHM5YFQNW&pd_rd_wg=VS3Sm&pd_rd_r=12b7f119-fa2a-40b2-ab4f-e563cf9b5580&linkCode=ll2&tag=oliveirat-20&linkId=34d01548720932fd7f15f7a07b5dd1e6&ref_=as_li_ss_tl'
+      affiliateUrl: 'https://link.amazon/A08766HJb'
     },
     {
       id: 'bundle-gta6',
@@ -147,7 +148,7 @@ const CONFIG = {
       includes: ['Console 1TB', 'Astro Bot', 'Gran Turismo 7', 'GTA6 (pré-venda)'],
       price: 4727.82,
       badge: 'RECOMENDADO',
-      affiliateUrl: 'https://www.amazon.com.br/Bundle-PlayStation-Digital-Pacote-Turismo/dp/B0H6LVH152?dib=eyJ2IjoiMSJ9.AEB0uzujtV1-21Nt0m-SxhnjkLeew8H1SNdKtJCsPD7GjHj071QN20LucGBJIEps.6x9FqE20OtN6pVlvg0hQtFMqfp2cWxQmjslJXFj4Qjw&dib_tag=se&keywords=PlayStation+5+Slim+Digital+825GB+ASTRO+BOT+Gran+Turismo+7&qid=1790571280&s=videogames&sr=1-3&utm_source=chatgpt.com&linkCode=ll2&tag=oliveirat-20&linkId=ee4793671760295add1fbd564fa92526&ref_=as_li_ss_tl'
+      affiliateUrl: 'https://link.amazon/A08766HJb'
     },
     {
       id: 'bundle-pro-completo',
@@ -156,7 +157,7 @@ const CONFIG = {
       includes: ['Console Pro 2TB', 'Headset Pulse 3D', '2 Controles extras', 'GTA6 (pré-venda)'],
       price: 8848.70,
       badge: 'SETUP COMPLETO',
-      affiliateUrl: 'https://www.amazon.com.br/dp/B0FPGF9J2J?tag=oliveirat-20'
+      affiliateUrl: 'https://link.amazon/A08766HJb'
     }
   ],
 

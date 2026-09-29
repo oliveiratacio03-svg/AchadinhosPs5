@@ -45,7 +45,7 @@ const CONFIG = {
     id: 'featured-ps5-bundle',
     name: 'PS5 Slim Digital + Astro Bot + Gran Turismo 7',
     image: '/images/produtos/ps5-slim-digital-astro-gt7.webp',
-    affiliateUrl: 'https://www.amazon.com.br/gp/aw/d/B0FPGF9J2J?pd_rd_plhdr=t&hsa_cr_id=0&qid=1790564133&sr=1-1-fec03104-6f11-4242-8f79-15fae2896f66&i=videogames&aref=qSZduTclaX&_encoding=UTF8&pd_rd_w=tFqrJ&content-id=amzn1.sym.6cdfbb79-51ae-4c0d-8769-7c90679f83e4%3Aamzn1.sym.6cdfbb79-51ae-4c0d-8769-7c90679f83e4&pf_rd_p=6cdfbb79-51ae-4c0d-8769-7c90679f83e4&pf_rd_r=TAQVHZKYWT6QHM5YFQNW&pd_rd_wg=VS3Sm&pd_rd_r=12b7f119-fa2a-40b2-ab4f-e563cf9b5580&linkCode=ll2&tag=oliveirat-20&linkId=34d01548720932fd7f15f7a07b5dd1e6&ref_=as_li_ss_tl',
+    affiliateUrl: 'https://link.amazon/A08766HJb',
     badge: 'MELHOR CUSTO-BENEFÍCIO',
     price: 4277.90,
     pixPrice: 4277.90,

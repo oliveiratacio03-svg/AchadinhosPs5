@@ -46,7 +46,7 @@ const CONFIG = {
     id: 'featured-ps5-bundle',
     name: 'PS5 Slim Digital + Astro Bot + Gran Turismo 7',
     image: '/images/produtos/ps5-slim-digital-astro-gt7.webp',
-    affiliateUrl: 'https://link.amazon/A08766HJb',
+    affiliateUrl: 'https://link.amazon/A09KY4FIw',
     badge: 'MELHOR CUSTO-BENEFÍCIO',
     price: 4277.90,
     pixPrice: 4277.90,
@@ -62,7 +62,7 @@ const CONFIG = {
       name: 'PS5 Slim Digital',
       specs: '1TB SSD • Branco',
       image: '/images/produtos/ps5-slim-digital.webp',
-      affiliateUrl: 'https://link.amazon/A08766HJb',
+      affiliateUrl: 'https://link.amazon/A09KY4FIw',
       badge: 'Mais compacto',
       bestFor: ['Quem compra jogos na Store', 'Quer economia máxima', 'Prefere design compacto']
     },
@@ -71,7 +71,7 @@ const CONFIG = {
       name: 'PS5 Slim Com Leitor',
       specs: '1TB SSD • Branco',
       image: '/images/produtos/ps5-slim-leitor.webp',
-      affiliateUrl: 'https://link.amazon/A08766HJb',
+      affiliateUrl: 'https://link.amazon/A09KY4FIw',
       badge: 'Jogos físicos',
       bestFor: ['Quem quer jogar físicos', 'Aprecia flexibilidade', 'Pode comprar jogos usados']
     },
@@ -80,7 +80,7 @@ const CONFIG = {
       name: 'PS5 Pro',
       specs: '2TB SSD • Preto',
       image: '/images/produtos/ps5-pro.webp',
-      affiliateUrl: 'https://link.amazon/A08766HJb',
+      affiliateUrl: 'https://link.amazon/A09KY4FIw',
       badge: 'Máximo desempenho',
       bestFor: ['Máximo desempenho', '4K 120fps garantido', 'Hardcore gamers', 'Futuro-prova']
     },
@@ -89,7 +89,7 @@ const CONFIG = {
       name: 'Bundle PS5 Digital + GTA6',
       specs: 'Inclusos: Astro Bot + GT7 + GTA6',
       image: '/images/produtos/bundle-gta6.webp',
-      affiliateUrl: 'https://link.amazon/A08766HJb',
+      affiliateUrl: 'https://link.amazon/A09KY4FIw',
       badge: 'MELHOR VALOR',
       bestFor: ['Console + 2 jogos iniciais', 'GTA6 (quhen lançar)', 'Setup completo']
     },
@@ -98,7 +98,7 @@ const CONFIG = {
       name: 'Bundle PS5 Leitor + 2 Controles',
       specs: 'Para jogar com amigos',
       image: '/images/produtos/bundle-2-controles.webp',
-      affiliateUrl: 'https://link.amazon/A08766HJb',
+      affiliateUrl: 'https://link.amazon/A09KY4FIw',
       badge: null,
       bestFor: ['2 controles inclusos', 'Multijogador local', 'Melhor para famílias']
     }
@@ -139,7 +139,7 @@ const CONFIG = {
       includes: ['Console 1TB', 'Astro Bot (Jogo do Ano)', 'Gran Turismo 7', 'DualSense'],
       price: 4277.90,
       badge: 'MELHOR CUSTO-BENEFÍCIO',
-      affiliateUrl: 'https://link.amazon/A08766HJb'
+      affiliateUrl: 'https://link.amazon/A09KY4FIw'
     },
     {
       id: 'bundle-gta6',
@@ -148,7 +148,7 @@ const CONFIG = {
       includes: ['Console 1TB', 'Astro Bot', 'Gran Turismo 7', 'GTA6 (pré-venda)'],
       price: 4727.82,
       badge: 'RECOMENDADO',
-      affiliateUrl: 'https://link.amazon/A08766HJb'
+      affiliateUrl: 'https://link.amazon/A09KY4FIw'
     },
     {
       id: 'bundle-pro-completo',
@@ -157,7 +157,7 @@ const CONFIG = {
       includes: ['Console Pro 2TB', 'Headset Pulse 3D', '2 Controles extras', 'GTA6 (pré-venda)'],
       price: 8848.70,
       badge: 'SETUP COMPLETO',
-      affiliateUrl: 'https://link.amazon/A08766HJb'
+      affiliateUrl: 'https://link.amazon/A09KY4FIw'
     }
   ],
 

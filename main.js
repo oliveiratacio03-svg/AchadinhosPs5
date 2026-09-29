@@ -155,16 +155,10 @@ function FeaturedOfferSection() {
 // ─── Consoles PS5 ────────────────────────────────────────────────────────────
 
 function ConsolesSection() {
-  const consoles = CONFIG.consoles.map((c, i) => {
-    const badges = ['⭐ Nossa recomendação', '🔥 Muito procurado', '🎁 Ótimo para presente'];
-    const badge = badges[i % badges.length];
-    const microBenefits = [
-      'Eu recomendo para quem quer a tecnologia mais nova sem pagar a mais pelo leitor.',
-      'Nosso achado favorito para quem quer comprar jogos em mídia física e revender depois.',
-      'Para quem quer o máximo de desempenho e já tem uma TV 4K.',
-      'Escolha certa se você quer um combo completo com jogos inclusos.',
-      'Perfeito para famílias que querem jogar juntas com controles extras.'
-    ];
+  const consoles = CONFIG.consoles.map((c) => {
+    const typeLabel = c.type === 'digital' ? 'Digital' : c.type === 'disc' ? 'Com Leitor' : 'Pro';
+    const gamesInfo = c.games > 0 ? `• Inclui ${c.games} jogo${c.games > 1 ? 's' : ''}` : '';
+    
     return `
       <div class="console-card">
         <div class="console-card__image">
@@ -172,20 +166,14 @@ function ConsolesSection() {
           <div class="console-card__placeholder" style="display:none;align-items:center;justify-content:center;height:100%;color:var(--color-text-muted);">
             <span>${c.name}</span>
           </div>
-          <span class="console-card__badge">${badge}</span>
+          <span class="console-card__badge">${c.badge}</span>
         </div>
         <div class="console-card__content">
           <h3 class="console-card__name">${c.name}</h3>
-          <p class="console-card__micro">${microBenefits[i]}</p>
-          <p class="console-card__specs">${c.specs}</p>
-          <div class="console-card__bestfor">
-            <p class="console-card__bestfor-label">Melhor para:</p>
-            <ul>
-              ${c.bestFor.map(b => `<li>${b}</li>`).join('')}
-            </ul>
-          </div>
+          <p class="console-card__specs">${c.capacity} • ${typeLabel} ${gamesInfo}</p>
+          <p class="console-card__copy">${c.copy}</p>
           <a href="${c.affiliateUrl}" class="cta-button cta-button--small cta-button--primary" target="_blank" rel="sponsored noopener">
-            ${i % 2 === 0 ? 'CONSULTAR PREÇO ATUALIZADO' : 'VER DISPONIBILIDADE NA AMAZON'}
+            ${c.cta}
           </a>
         </div>
       </div>
@@ -196,15 +184,14 @@ function ConsolesSection() {
     <section class="section" id="consoles">
       <div class="container">
         <div class="section__header">
-          <h2 class="section__title">🎮 PS5 QUE ENCONTRAMOS AGORA</h2>
-          <p class="section__subtitle">Não existe o 'melhor' console, existe aquele que faz mais sentido para o seu bolso e para o jeito que seu filho joga.</p>
+          <h2 class="section__title">🎮 PS5 para fazer a alegria da criançada</h2>
+          <p class="section__subtitle">Selecionamos algumas das opções que mais fazem sentido para quem está procurando um PS5 para presentear, sem precisar ficar horas comparando dezenas de anúncios.</p>
         </div>
         <div class="consoles-carousel" id="consoles-carousel" role="region" aria-roledescription="carrossel">
           ${consoles}
         </div>
         <div class="section__cta">
-          <p>Ainda em dúvida qual escolher?</p>
-          <p>Veja nosso GUIA DE DECISÃO abaixo para saber exatamente qual console é certo para sua criança.</p>
+          <p>Não sabe qual escolher? Veja o guia abaixo.</p>
         </div>
       </div>
     </section>`;

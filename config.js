@@ -1,7 +1,11 @@
 /**
  * PlayStation Mês das Crianças — Landing Page
- * Afiliado Amazon + Mercado Livre
+ * Afiliado Amazon Brasil
  * Setembro - Outubro 2026
+ * 
+ * Dados oficiais da Amazon fornecidos pelo usuário.
+ * ZERO preços no site — apenas CTAs.
+ * Curadoria enxuta: 5 consoles, 2 bundles, 3 jogos, 4 acessórios.
  */
 
 const CONFIG = {
@@ -10,15 +14,14 @@ const CONFIG = {
   siteTagline: 'Curadoria Independente',
 
   // ─── Links ─────────────────────────────────────────────────────────────────
-  amazonTag: 'oliveirat-20',
-  defaultAffiliateUrl: 'https://link.amazon/A08766HJb',
+  AFFILIATE_TAG: 'SEU-TAG-20',
   whatsappUrl: 'https://wa.me/5500000000000',
   channelUrl: 'https://t.me/seu-canal-de-ofertas',
 
   // ─── Datas ─────────────────────────────────────────────────────────────────
   campaignStart: '2026-10-05T00:00:00-03:00',
   campaignEnd: '2026-10-12T23:59:59-03:00',
-  priceCheckDate: '28/09/2026',
+  PRICE_DATE: '29/09/2026',
 
   // ─── Fases ─────────────────────────────────────────────────────────────────
   getPhase() {
@@ -43,163 +46,189 @@ const CONFIG = {
 
   // ─── Oferta em Destaque ───────────────────────────────────────────────────
   featuredOffer: {
-    id: 'featured-ps5-bundle',
-    name: 'PS5 Slim Digital + Astro Bot + Gran Turismo 7',
-    image: '/images/produtos/ps5-slim-digital-astro-gt7.webp',
-    affiliateUrl: 'https://link.amazon/A09KY4FIw',
-    badge: 'MELHOR CUSTO-BENEFÍCIO',
-    price: 4277.90,
-    pixPrice: 4277.90,
-    parcelado: '12x R$ 383,38',
-    description: 'Dois jogos aclamados inclusos. O Astro Bot foi Jogo do Ano.',
-    includes: ['SSD 1TB', '2 jogos aclamados', 'DualSense incluso', 'Design slim + fino']
+    id: 'featured-ps5-slim-digital-bundle',
+    asin: 'B0FPGF9J2J',
+    name: 'PS5 Slim Digital 825GB + Astro Bot + Gran Turismo 7',
+    image: 'https://m.media-amazon.com/images/I/71WCygaQDAL._AC_UL320_.jpg',
+    affiliateUrl: 'https://www.amazon.com.br/PlayStation%C2%AE5-Slim-Digital-825GB-Turismo/dp/B0FPGF9J2J/',
+    badge: '⭐ MELHOR CUSTO-BENEFÍCIO',
+    specs: '825GB SSD • Digital Slim • Inclui 2 Jogos',
+    copy: 'Para quem quer deixar o presente ainda mais completo, esta versão já vem acompanhada de jogos para começar a aproveitar o console.'
   },
 
-  // ─── Consoles PS5 ─────────────────────────────────────────────────────────
+  // ─── Consoles PS5 (Curadoria Enxuta — 5 opções) ───────────────────────────
   consoles: [
     {
       id: 'ps5-slim-digital',
+      asin: 'B0CQKJN2C6',
       name: 'PS5 Slim Digital',
-      specs: '1TB SSD • Branco',
-      image: '/images/produtos/ps5-slim-digital.webp',
-      affiliateUrl: 'https://link.amazon/A09KY4FIw',
-      badge: 'Mais compacto',
-      bestFor: ['Quem compra jogos na Store', 'Quer economia máxima', 'Prefere design compacto']
+      capacity: '825 GB',
+      type: 'digital',
+      games: 0,
+      badge: '💰 OPÇÃO ECONÔMICA',
+      specs: '825GB SSD • Digital Slim',
+      image: 'https://m.media-amazon.com/images/I/51SM5xU-M1L._AC_UL320_.jpg',
+      affiliateUrl: 'https://www.amazon.com.br/PlayStation-CFI-2014B01X-PlayStation%C2%AE5-Edi%C3%A7%C3%A3o-Digital/dp/B0CQKJN2C6/',
+      cta: 'VER OFERTA NA AMAZON',
+      copy: 'Uma opção prática para quem quer presentear com um dos consoles mais desejados da geração, sem precisar escolher uma versão com leitor de discos.'
     },
     {
-      id: 'ps5-slim-leitor',
-      name: 'PS5 Slim Com Leitor',
-      specs: '1TB SSD • Branco',
-      image: '/images/produtos/ps5-slim-leitor.webp',
-      affiliateUrl: 'https://link.amazon/A09KY4FIw',
-      badge: 'Jogos físicos',
-      bestFor: ['Quem quer jogar físicos', 'Aprecia flexibilidade', 'Pode comprar jogos usados']
+      id: 'ps5-slim-digital-bundle',
+      asin: 'B0FPGF9J2J',
+      name: 'PS5 Slim Digital + Astro Bot + Gran Turismo 7',
+      capacity: '825 GB',
+      type: 'digital',
+      games: 2,
+      badge: '🎁 PRESENTE COMPLETO',
+      specs: '825GB SSD • Digital Slim • Inclui 2 Jogos',
+      image: 'https://m.media-amazon.com/images/I/71WCygaQDAL._AC_UL320_.jpg',
+      affiliateUrl: 'https://www.amazon.com.br/PlayStation%C2%AE5-Slim-Digital-825GB-Turismo/dp/B0FPGF9J2J/',
+      cta: 'VER OFERTA NA AMAZON',
+      copy: 'Para quem quer deixar o presente ainda mais completo, esta versão já vem acompanhada de jogos para começar a aproveitar o console.'
+    },
+    {
+      id: 'ps5-slim-disk',
+      asin: 'B0GWNFMG5L',
+      name: 'PS5 Slim com Leitor',
+      capacity: '1 TB',
+      type: 'disc',
+      games: 0,
+      badge: '💿 MÍDIA FÍSICA',
+      specs: '1TB SSD • Versão com Leitor Slim',
+      image: 'https://m.media-amazon.com/images/I/51dYyIDySDL._AC_UL320_.jpg',
+      affiliateUrl: 'https://www.amazon.com.br/PlayStation-Slim-Controle-Branco-Sony/dp/B0GWNFMG5L/',
+      cta: 'VER OFERTA NA AMAZON',
+      copy: 'Para quem gosta de ter o disco do jogo na estante ou quer a liberdade de comprar jogos usados e emprestar.'
+    },
+    {
+      id: 'ps5-slim-disk-bundle',
+      asin: 'B0CKZGY5B6',
+      name: 'PS5 Slim com Leitor + Spider-Man 2',
+      capacity: '1 TB',
+      type: 'disc',
+      games: 1,
+      badge: '🕷️ BUNDLE EXCLUSIVO',
+      specs: '1TB SSD • Com Leitor • Inclui Spider-Man 2',
+      image: 'https://m.media-amazon.com/images/I/71rWPpdhwgL._AC_UL320_.jpg',
+      affiliateUrl: 'https://www.amazon.com.br/Sony-PlayStation-Slim-1TB-Spider-Man/dp/B0CKZGY5B6/',
+      cta: 'VER OFERTA NA AMAZON',
+      copy: 'Uma opção interessante para quem quer aproveitar o presente para já levar alguns jogos junto.'
     },
     {
       id: 'ps5-pro',
+      asin: 'B0DH8J5YGH',
       name: 'PS5 Pro',
-      specs: '2TB SSD • Preto',
-      image: '/images/produtos/ps5-pro.webp',
-      affiliateUrl: 'https://link.amazon/A09KY4FIw',
-      badge: 'Máximo desempenho',
-      bestFor: ['Máximo desempenho', '4K 120fps garantido', 'Hardcore gamers', 'Futuro-prova']
-    },
-    {
-      id: 'bundle-gta6',
-      name: 'Bundle PS5 Digital + GTA6',
-      specs: 'Inclusos: Astro Bot + GT7 + GTA6',
-      image: '/images/produtos/bundle-gta6.webp',
-      affiliateUrl: 'https://link.amazon/A09KY4FIw',
-      badge: 'MELHOR VALOR',
-      bestFor: ['Console + 2 jogos iniciais', 'GTA6 (quhen lançar)', 'Setup completo']
-    },
-    {
-      id: 'bundle-2-controles',
-      name: 'Bundle PS5 Leitor + 2 Controles',
-      specs: 'Para jogar com amigos',
-      image: '/images/produtos/bundle-2-controles.webp',
-      affiliateUrl: 'https://link.amazon/A09KY4FIw',
-      badge: null,
-      bestFor: ['2 controles inclusos', 'Multijogador local', 'Melhor para famílias']
+      capacity: '2 TB',
+      type: 'pro',
+      games: 0,
+      badge: '🔥 MÁXIMO DESEMPENHO',
+      specs: '2TB SSD • Versão Pro',
+      image: 'https://m.media-amazon.com/images/I/51dfg52K-cL._AC_UL320_.jpg',
+      affiliateUrl: 'https://www.amazon.com.br/PlayStation-1000046552-Console-PlayStation%C2%AE5-Pro/dp/B0DH8J5YGH/',
+      cta: 'VER OFERTA NA AMAZON',
+      copy: 'Se você está procurando algo mais completo e quer investir em uma versão mais potente, o PS5 Pro é a alternativa para considerar.'
     }
   ],
 
-  // ─── Comparações ───────────────────────────────────────────────────────────
-  comparisons: {
-    digitalVsLeitor: {
-      digital: {
-        name: 'PS5 Digital',
-        price: 4277.90,
-        pros: ['Mais econômico', 'Design mais compacto', 'Mais leve', 'Perfeito para Store'],
-        cons: ['Sem jogos físicos', 'Sem blu-ray', 'Sem mídia física'],
-        ideal: ['Criança é digital-first', 'Quer economizar', 'Ama inovação']
-      },
-      leitor: {
-        name: 'PS5 Com Leitor',
-        price: 4649.06,
-        pros: ['Flexibilidade máxima', 'Compra jogos usados', 'Jogos em físico', 'Resale value alto'],
-        cons: ['Um pouco mais caro', 'Leitor pode estragar', 'Menos compacto'],
-        ideal: ['Quer máxima liberdade', 'Gosta de física', 'Quer economizar jogos']
-      }
-    },
-    profiles: [
-      { id: 'economizar', label: '💰 Quero economizar', product: 'PS5 Slim Digital', price: 4277.90, parcelado: '12x R$ 383,38', desc: 'A entrada perfeita. Astro Bot é Jogo do Ano. Gran Turismo 7 oferece diversão garantida. Ambos com alta replay value.' },
-      { id: 'fisicos', label: '🎮 Criança já gama jogos físicos', product: 'PS5 Slim Com Leitor', price: 4649.06, parcelado: '12x R$ 416,62', desc: 'Máxima flexibilidade. Compra jogos usados por metade do preço. Seu filho/filha não sente falta de nada.' },
-      { id: 'presente', label: '🎁 Quero dar o melhor', product: 'Bundle (Digital + GTA6)', price: 4727.82, parcelado: '12x R$ 427,16', desc: 'Console + 2 jogos iniciais + GTA6 (quando lançar em nov). Setup completo sem gastar mais.' },
-      { id: 'pro', label: '🚀 Máximo poder / Futuro', product: 'PS5 Pro', price: 7399.00, parcelado: '10x R$ 739,90', desc: 'GPU 67% mais potente. 4K 120fps em praticamente tudo. 2TB de SSD. O console mais poderoso da geração.' }
-    ]
-  },
-
-  // ─── Bundles ──────────────────────────────────────────────────────────────
+  // ─── Bundles Especiais (2 opções) ──────────────────────────────────────────
   bundles: [
     {
-      id: 'bundle-astro-gt7',
-      name: 'PS5 Slim Digital + Astro Bot + Gran Turismo 7',
-      image: '/images/produtos/bundle-astro-gt7.webp',
-      includes: ['Console 1TB', 'Astro Bot (Jogo do Ano)', 'Gran Turismo 7', 'DualSense'],
-      price: 4277.90,
-      badge: 'MELHOR CUSTO-BENEFÍCIO',
-      affiliateUrl: 'https://link.amazon/A09KY4FIw'
-    },
-    {
       id: 'bundle-gta6',
-      name: 'PS5 Slim Digital + GTA6 + Astro Bot + GT7',
-      image: '/images/produtos/bundle-gta6.webp',
-      includes: ['Console 1TB', 'Astro Bot', 'Gran Turismo 7', 'GTA6 (pré-venda)'],
-      price: 4727.82,
-      badge: 'RECOMENDADO',
-      affiliateUrl: 'https://link.amazon/A09KY4FIw'
+      asin: 'B0H6LVH152',
+      name: 'Combo GTA VI + PS5 Slim Digital (Astro Bot + GT7)',
+      badge: '🎁 PRESENTE DEFINITIVO',
+      specs: 'O combo mais completo com pré-venda do GTA VI',
+      image: 'https://m.media-amazon.com/images/I/71j0ScLcfLL._AC_UL320_.jpg',
+      affiliateUrl: 'https://www.amazon.com.br/Bundle-PlayStation-Digital-Pacote-Turismo/dp/B0H6LVH152/',
+      cta: 'CONFERIR COMBO'
     },
     {
-      id: 'bundle-pro-completo',
-      name: 'PS5 Pro + Headset Pulse 3D + 2 DualSense + GTA6',
-      image: '/images/produtos/bundle-pro-completo.webp',
-      includes: ['Console Pro 2TB', 'Headset Pulse 3D', '2 Controles extras', 'GTA6 (pré-venda)'],
-      price: 8848.70,
-      badge: 'SETUP COMPLETO',
-      affiliateUrl: 'https://link.amazon/A09KY4FIw'
+      id: 'bundle-astro-gt7',
+      asin: 'B0F8R9NDXC',
+      name: 'PS5 Slim com Leitor + Astro Bot + Gran Turismo 7',
+      badge: '🎮 BUNDLE EXCLUSIVO',
+      specs: 'Console com leitor + 2 jogos aclamados',
+      image: 'https://m.media-amazon.com/images/I/71IkUBtdDGL._AC_UL320_.jpg',
+      affiliateUrl: 'https://www.amazon.com.br/PlayStation%C2%AE5-Slim-Disk-Pacote-Turismo/dp/B0F8R9NDXC/',
+      cta: 'VER OFERTA NA AMAZON'
     }
   ],
 
-  // ─── Jogos ─────────────────────────────────────────────────────────────────
-  games: {
-    kids: [
-      { id: 'astro-bot', name: 'Astro Bot', rating: 'L', image: '/images/produtos/astro-bot.webp', desc: '⭐ Jogo do Ano 2024' },
-      { id: 'ratchet-clank', name: 'Ratchet & Clank', rating: '10', image: '/images/produtos/ratchet-clank.webp', desc: 'Aventura divertida' },
-      { id: 'sackboy', name: 'Sackboy: A Big Adventure', rating: 'L', image: '/images/produtos/sackboy.webp', desc: '' },
-      { id: 'sonic', name: 'Sonic Superstars', rating: 'L', image: '/images/produtos/sonic-superstars.webp', desc: '' },
-      { id: 'minecraft', name: 'Minecraft', rating: 'L', image: '/images/produtos/minecraft.webp', desc: '' }
-    ],
-    older: [
-      { id: 'spiderman-miles', name: 'Spider-Man: Miles Morales', rating: '12', image: '/images/produtos/spiderman-miles.webp', desc: '' },
-      { id: 'spiderman-2', name: 'Spider-Man 2', rating: '12', image: '/images/produtos/spiderman-2.webp', desc: 'Dois heróis, dobro da diversão' },
-      { id: 'gt7', name: 'Gran Turismo 7', rating: '3', image: '/images/produtos/gran-turismo-7.webp', desc: 'Incluído em bundles' },
-      { id: 'sackboy-2', name: 'Sackboy: A Big Adventure', rating: 'L', image: '/images/produtos/sackboy.webp', desc: '' },
-      { id: 'horizon-zd', name: 'Horizon Zero Dawn', rating: '12', image: '/images/produtos/horizon-zero-dawn.webp', desc: '' }
-    ],
-    teens: [
-      { id: 'gta6', name: 'GTA 6', rating: '18', image: '/images/produtos/gta-6.webp', desc: '⚠️ SOMENTE MAIORES DE IDADE', isNew: true },
-      { id: 'gow-ragnarok', name: 'God of War Ragnarök', rating: '16', image: '/images/produtos/god-of-war-ragnarok.webp', desc: '' },
-      { id: 'ff7', name: 'Final Fantasy VII Rebirth', rating: '16', image: '/images/produtos/final-fantasy-7-rebirth.webp', desc: '' },
-      { id: 'wolverine', name: "Marvel's Wolverine", rating: '16', image: '/images/produtos/marvels-wolverine.webp', desc: 'Pré-venda' },
-      { id: 'tekken8', name: 'Tekken 8', rating: '12', image: '/images/produtos/tekken-8.webp', desc: '' }
-    ]
-  },
-
-  // ─── Acessórios ───────────────────────────────────────────────────────────
-  accessories: [
-    { id: 'dualsense-branco', name: 'DualSense Branco', category: 'Controle', image: '/images/produtos/dualsense-branco.webp', desc: 'Feedback háptico + gatilhos adaptativos' },
-    { id: 'dualsense-camo', name: 'DualSense Gray Camouflage', category: 'Controle', image: '/images/produtos/dualsense-camo.webp', desc: '' },
-    { id: 'base-carregamento', name: 'Base de Carregamento (2 Controles)', category: 'Controle', image: '/images/produtos/base-carregamento.webp', desc: '' },
-    { id: 'pulse-3d', name: 'Pulse 3D Headset', category: 'Headset', image: '/images/produtos/pulse-3d.webp', desc: 'Áudio 3D, microfone built-in' },
-    { id: 'arctis-nova', name: 'SteelSeries Arctis Nova', category: 'Headset', image: '/images/produtos/arctis-nova.webp', desc: '' },
-    { id: 'ssd-1tb', name: 'SSD M.2 1TB', category: 'Armazenamento', image: '/images/produtos/ssd-m2-1tb.webp', desc: 'Expanda seu armazenamento' },
-    { id: 'leitor-slim', name: 'Leitor Externo (Slim)', category: 'Armazenamento', image: '/images/produtos/leitor-slim.webp', desc: 'Para versão Digital' }
+  // ─── Jogos (Seleção Enxuta — 3 títulos) ─────────────────────────────────────
+  games: [
+    {
+      id: 'spider-man-miles',
+      asin: 'B08QV3XK76',
+      name: 'Spider-Man: Miles Morales',
+      badge: '👶 FAMÍLIA',
+      specs: 'Aventura do Homem-Aranha',
+      image: 'https://m.media-amazon.com/images/I/81FBIrIvLVL._AC_UL320_.jpg',
+      affiliateUrl: 'https://www.amazon.com.br/Marvels-Spider-Man-Miles-Morales-PlayStation/dp/B08QV3XK76/',
+      cta: 'VER PREÇO'
+    },
+    {
+      id: 'gran-turismo-7',
+      asin: 'B09C4T66X3',
+      name: 'Gran Turismo 7',
+      badge: '👶 FAMÍLIA',
+      specs: 'Simulador de corrida',
+      image: 'https://m.media-amazon.com/images/I/61o3TmIqogL._AC_UL320_.jpg',
+      affiliateUrl: 'https://www.amazon.com.br/Gran-Turismo-Edi%C3%A7%C3%A3o-Padr%C3%A3o-PlayStation/dp/B09C4T66X3/',
+      cta: 'VER PREÇO'
+    },
+    {
+      id: 'gta-6',
+      asin: 'B0H6KT2RWH',
+      name: 'Grand Theft Auto VI (GTA 6)',
+      badge: '🔞 ADULTOS',
+      specs: 'O lançamento mais esperado da década',
+      image: 'https://m.media-amazon.com/images/I/81o4MCqBv5L._AC_UL320_.jpg',
+      affiliateUrl: 'https://www.amazon.com.br/Grand-Theft-Auto-VI-PlayStation/dp/B0H6KT2RWH/',
+      cta: 'VER PREÇO DE HOJE'
+    }
   ],
 
-  // ─── PS4 ──────────────────────────────────────────────────────────────────
-  ps4: [
-    { id: 'ps4-slim', name: 'PS4 Slim 1TB', image: '/images/produtos/ps4-slim.webp', desc: '4.000+ jogos disponíveis' },
-    { id: 'ps4-slim-2jogos', name: 'PS4 Slim 1TB + 2 Jogos', image: '/images/produtos/ps4-slim-2-jogos.webp', desc: '' }
+  // ─── Acessórios (Seleção Enxuta — 4 opções) ───────────────────────────────
+  accessories: [
+    {
+      id: 'controle-dualsense',
+      asin: 'B088GNW267',
+      name: 'Controle DualSense',
+      badge: '🎮 ESSENCIAL',
+      specs: 'Controle oficial do PS5',
+      image: 'https://m.media-amazon.com/images/I/5102Pp-TfHL._AC_UL320_.jpg',
+      affiliateUrl: 'https://www.amazon.com.br/PlayStation-Controle-5-DualSense/dp/B088GNW267/',
+      cta: 'VER NA AMAZON'
+    },
+    {
+      id: 'base-carregamento',
+      asin: 'B09JH4PD8Q',
+      name: 'Base de Carregamento DualSense',
+      badge: '⚡ PRATICIDADE',
+      specs: 'Carregamento rápido para 2 controles',
+      image: 'https://m.media-amazon.com/images/I/41y-G-g+dVL._AC_UL320_.jpg',
+      affiliateUrl: 'https://www.amazon.com.br/Base-Carregamento-Do-Dualsense-PlayStation/dp/B09JH4PD8Q/',
+      cta: 'VER NA AMAZON'
+    },
+    {
+      id: 'headset-pulse-elite',
+      asin: 'B0DSWL1FH8',
+      name: 'Headset PULSE Elite',
+      badge: '🎧 ÁUDIO',
+      specs: 'Áudio espacial 3D e cancelamento de ruído',
+      image: 'https://m.media-amazon.com/images/I/61dHx9xitSL._AC_UL320_.jpg',
+      affiliateUrl: 'https://www.amazon.com.br/Headset-sem-fio-PULSE-EliteTM/dp/B0DSWL1FH8/',
+      cta: 'VER NA AMAZON'
+    },
+    {
+      id: 'playstation-portal',
+      asin: 'B0CJT5DJ16',
+      name: 'PlayStation Portal',
+      badge: '📱 PORTÁTIL',
+      specs: 'Jogue seus jogos PS5 em qualquer lugar da casa',
+      image: 'https://m.media-amazon.com/images/I/61S0ZRxKJFL._AC_UL320_.jpg',
+      affiliateUrl: 'https://www.amazon.com.br/PlayStation-Portal-Remote-Player-PS5/dp/B0CJT5DJ16/',
+      cta: 'VER NA AMAZON'
+    }
   ]
 };

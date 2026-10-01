@@ -363,8 +363,8 @@ document.addEventListener('DOMContentLoaded', () => {
       ${Hero()}
       ${FeaturedOfferSection()}
       ${ConsolesSection()}
-      ${GuideSection()}
       ${BundlesSection()}
+      ${GuideSection()}
       ${AccessoriesSection()}
       ${FinalCTASection()}
     </main>

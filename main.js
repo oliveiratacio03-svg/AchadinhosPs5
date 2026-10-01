@@ -102,14 +102,25 @@ function filterConsoles(type) {
   const grid = document.querySelector('.consoles-grid');
   const cards = grid.querySelectorAll('.console-card');
   
+  let visibleCount = 0;
   cards.forEach(card => {
     const type = card.dataset.type;
     if (type === 'all' || type === currentFilter || currentFilter === 'all') {
       card.style.display = 'flex';
+      visibleCount++;
     } else {
       card.style.display = 'none';
     }
   });
+
+  const dots = grid.parentNode.querySelector('.carousel-dots');
+  if (dots) {
+    Array.from(dots.children).forEach((dot, i) => {
+      dot.style.display = i < visibleCount ? '' : 'none';
+      dot.classList.toggle('active', i === 0 && visibleCount > 0);
+    });
+    grid.scrollTo({ left: 0 });
+  }
   
   document.querySelectorAll('.consoles-filter__btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.filter === type);
@@ -315,6 +326,34 @@ function Footer() {
     </footer>`;
 }
 
+// ─── Carrosséis Mobile (indicadores de posição) ─────────────────────────────
+
+function initMobileCarousels() {
+  const grids = document.querySelectorAll('.consoles-grid, .bundles__grid, .accessories__grid');
+
+  grids.forEach((grid) => {
+    const total = grid.children.length;
+    if (total < 2) return;
+
+    const dots = document.createElement('div');
+    dots.className = 'carousel-dots';
+    for (let i = 0; i < total; i++) {
+      const dot = document.createElement('span');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dots.appendChild(dot);
+    }
+    grid.parentNode.insertBefore(dots, grid.nextSibling);
+
+    grid.addEventListener('scroll', () => {
+      const cardWidth = grid.children[0].offsetWidth + 16;
+      const index = Math.min(Math.round(grid.scrollLeft / cardWidth), total - 1);
+      Array.from(dots.children).forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    }, { passive: true });
+  });
+}
+
 // ─── Init ───────────────────────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -331,4 +370,5 @@ document.addEventListener('DOMContentLoaded', () => {
     </main>
     ${Footer()}
   `;
+  initMobileCarousels();
 });

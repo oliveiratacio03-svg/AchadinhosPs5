@@ -915,3 +915,67 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--color-text-muted);
   text-align: center;
 }
+
+/* ─── Carrosséis Mobile (somente <= 767px) ─────────────────────────────────── */
+
+.carousel-dots {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .consoles-grid,
+  .bundles__grid,
+  .accessories__grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: var(--space-md);
+    padding: 0 0 var(--space-sm);
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+
+  .consoles-grid::-webkit-scrollbar,
+  .bundles__grid::-webkit-scrollbar,
+  .accessories__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .consoles-grid > *,
+  .bundles__grid > *,
+  .accessories__grid > * {
+    flex: 0 0 84%;
+    max-width: 84%;
+    scroll-snap-align: start;
+    box-sizing: border-box;
+  }
+
+  .consoles-grid > *:first-child,
+  .bundles__grid > *:first-child,
+  .accessories__grid > *:first-child {
+    margin-left: 0;
+  }
+
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: var(--space-sm);
+  }
+
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-border);
+    transition: background var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .carousel-dot.active {
+    background: var(--color-accent);
+    transform: scale(1.25);
+  }
+}

@@ -203,6 +203,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   align-items: center;
 }
 
+@media (max-width: 767px) {
+  .hero__visual {
+    display: none;
+  }
+}
+
 .hero__image {
   width: 100%;
   max-width: 480px;

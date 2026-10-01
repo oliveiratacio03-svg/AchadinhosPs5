@@ -120,7 +120,7 @@ const CONFIG = {
       asin: 'B0H6LVH152',
       name: 'Combo GTA VI + PS5 Slim Digital (Astro Bot + GT7)',
       badge: 'PRESENTE DEFINITIVO',
-      specs: 'O combo mais completo com GTA VI + 2 jogos inclusos',
+      specs: 'Um presente para toda a família. As crianças aproveitam o PS5, enquanto os adultos podem se divertir com GTA VI. Um combo pensado para todo mundo aproveitar.',
       image: 'https://m.media-amazon.com/images/I/71j0ScLcfLL._AC_UL320_.jpg',
       affiliateUrl: 'https://www.amazon.com.br/Bundle-PlayStation-Digital-Pacote-Turismo/dp/B0H6LVH152?&linkCode=ll2&tag=oliveirata-20&linkId=7f3e19158426c0b463605ff02ac48d57&ref_=as_li_ss_tl',
       cta: 'CONFERIR COMBO NA AMAZON'

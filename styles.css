@@ -683,6 +683,24 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+@media (max-width: 767px) {
+  .bundle-card__image {
+    aspect-ratio: auto;
+    height: auto;
+    min-height: 180px;
+    padding: var(--space-lg) var(--space-sm);
+  }
+  
+  .bundle-card__image img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+  }
 }
 
 .bundle-card__image img {

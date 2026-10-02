@@ -916,6 +916,43 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   text-align: center;
 }
 
+/* ─── Banner Desktop "Mais Opções" (entre Consoles e Bundles) ─────────────── */
+
+.section--desktop-promo {
+  padding: var(--space-lg) 0;
+}
+
+/* Oculto no mobile — o banner mobile nos carrosséis já cumpre esse papel */
+@media (max-width: 767px) {
+  .section--desktop-promo {
+    display: none;
+  }
+}
+
+.desktop-promo-banner {
+  display: block;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-base);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+}
+
+@media (hover: hover) {
+  .desktop-promo-banner:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 40px rgba(0, 217, 255, 0.15);
+  }
+}
+
+.desktop-promo-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
 /* ─── Banner "Mais Opções" (último card dos carrosséis) ────────────────────── */
 
 .more-options-card {

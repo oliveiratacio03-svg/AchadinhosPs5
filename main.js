@@ -232,6 +232,21 @@ function GuideSection() {
     </section>`;
 }
 
+// ─── Banner Desktop "Mais Opções" (entre Consoles e Bundles) ────────────────
+
+function DesktopPromoBanner() {
+  const url = 'https://www.amazon.com.br/s?k=playstation+5&ascsubtag=srctok-5fda3d2ce1464eb7&btn_ref=srctok-5fda3d2ce1464eb7&btn_type=ss&crid=C6Z0YRPFCE0H&sprefix=pla%2Caps%2C322&linkCode=ll2&tag=oliveirata-20&linkId=bc15bf8dcb6f2b534b8c6d6085103f07&ref_=as_li_ss_tl';
+  return `
+    <section class="section section--desktop-promo" aria-label="Mais opções de PlayStation 5 na Amazon">
+      <div class="container">
+        <a href="${url}" class="desktop-promo-banner" target="_blank" rel="noopener noreferrer" aria-label="Ver mais modelos e ofertas de PlayStation 5 na Amazon">
+          <img src="images/wide_promotional_banner_clean_commercial_graphic.png.png" alt="Mais opções de PlayStation 5 na Amazon - clique para ver a categoria completa" loading="lazy">
+        </a>
+      </div>
+    </section>
+  `;
+}
+
 // ─── Bundles ─────────────────────────────────────────────────────────────────
 
 function BundlesSection() {
@@ -380,6 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ${Hero()}
       ${FeaturedOfferSection()}
       ${ConsolesSection()}
+      ${DesktopPromoBanner()}
       ${BundlesSection()}
       ${GuideSection()}
       ${AccessoriesSection()}

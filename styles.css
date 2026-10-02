@@ -916,6 +916,34 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   text-align: center;
 }
 
+/* ─── Banner "Mais Opções" (último card dos carrosséis) ────────────────────── */
+
+.more-options-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+@media (hover: hover) {
+  .more-options-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-accent);
+    box-shadow: 0 8px 32px rgba(0, 217, 255, 0.12);
+  }
+}
+
+.more-options-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 /* ─── Carrosséis Mobile (somente <= 767px) ─────────────────────────────────── */
 
 .carousel-dots {

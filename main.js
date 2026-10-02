@@ -93,6 +93,16 @@ function FeaturedOfferSection() {
     </section>`;
 }
 
+// ─── Banner "Mais Opções" (sempre o último card dos carrosséis) ─────────────
+
+function MoreOptionsBanner(extraClass) {
+  return `
+    <a href="${CONFIG.categoryPS5Url}" class="more-options-card ${extraClass || ''}" data-type="all" target="_blank" rel="noopener noreferrer" aria-label="Quer ver mais modelos e ofertas? Ver categoria PlayStation 5 na Amazon">
+      <img src="images/prime-mais-opcoes-mobile.png" alt="Quer ver mais modelos e ofertas? Acesse a categoria PlayStation 5 na Amazon" loading="lazy">
+    </a>
+  `;
+}
+
 // ─── Consoles PS5 ────────────────────────────────────────────────────────────
 
 let currentFilter = 'all';
@@ -101,11 +111,12 @@ function filterConsoles(type) {
   currentFilter = type;
   const grid = document.querySelector('.consoles-grid');
   const cards = grid.querySelectorAll('.console-card');
+  const banner = grid.querySelector('.more-options-card');
   
   let visibleCount = 0;
   cards.forEach(card => {
-    const type = card.dataset.type;
-    if (type === 'all' || type === currentFilter || currentFilter === 'all') {
+    const cardType = card.dataset.type;
+    if (cardType === currentFilter || currentFilter === 'all') {
       card.style.display = 'flex';
       visibleCount++;
     } else {
@@ -113,11 +124,17 @@ function filterConsoles(type) {
     }
   });
 
+  // Garante que o banner "Mais Opções" seja sempre o ÚLTIMO elemento do carrossel
+  if (banner) {
+    grid.appendChild(banner);
+  }
+
   const dots = grid.parentNode.querySelector('.carousel-dots');
   if (dots) {
+    const totalVisible = visibleCount + 1; // +1 = banner "Mais Opções" (sempre visível e último)
     Array.from(dots.children).forEach((dot, i) => {
-      dot.style.display = i < visibleCount ? '' : 'none';
-      dot.classList.toggle('active', i === 0 && visibleCount > 0);
+      dot.style.display = i < totalVisible ? '' : 'none';
+      dot.classList.toggle('active', i === 0);
     });
     grid.scrollTo({ left: 0 });
   }
@@ -171,7 +188,7 @@ function ConsolesSection() {
           <button class="consoles-filter__btn" data-filter="pro" onclick="filterConsoles('pro')">PRO</button>
         </div>
         
-        <div class="consoles-grid">${consoles}</div>
+        <div class="consoles-grid">${consoles}${MoreOptionsBanner()}</div>
       </div>
     </section>`;
 }
@@ -246,7 +263,7 @@ function BundlesSection() {
           <h2 class="section__title">Quer um presente de PlayStation 5 que já venha completo?</h2>
           <p class="section__subtitle">Console + jogos em um único pacote.</p>
         </div>
-        <div class="bundles__grid">${bundles}</div>
+        <div class="bundles__grid">${bundles}${MoreOptionsBanner()}</div>
       </div>
     </section>`;
 }

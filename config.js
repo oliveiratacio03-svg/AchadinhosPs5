@@ -16,6 +16,7 @@ const CONFIG = {
   // ─── Links ─────────────────────────────────────────────────────────────────
   AFFILIATE_TAG: 'oliveirata-20',
   PRICE_DATE: '30/09/2026',
+  categoryPS5Url: 'https://www.amazon.com.br/s?k=playstation+5&ascsubtag=srctok-5fda3d2ce1464eb7&btn_ref=srctok-5fda3d2ce1464eb7&btn_type=ss&crid=C6Z0YRPFCE0H&sprefix=pla%2Caps%2C322&linkCode=ll2&tag=oliveirata-20&linkId=887f286bc808de2701ee75d876ce2255&ref_=as_li_ss_tl',
 
   // ─── Oferta em Destaque ───────────────────────────────────────────────────
   featuredOffer: {

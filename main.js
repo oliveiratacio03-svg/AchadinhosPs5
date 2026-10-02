@@ -395,8 +395,8 @@ document.addEventListener('DOMContentLoaded', () => {
       ${Hero()}
       ${FeaturedOfferSection()}
       ${ConsolesSection()}
-      ${DesktopPromoBanner()}
       ${BundlesSection()}
+      ${DesktopPromoBanner()}
       ${GuideSection()}
       ${AccessoriesSection()}
       ${FinalCTASection()}

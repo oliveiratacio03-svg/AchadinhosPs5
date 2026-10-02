@@ -955,6 +955,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* ─── Banner "Mais Opções" (último card dos carrosséis) ────────────────────── */
 
+/* No desktop o banner horizontal já cumpre esse papel — ocultar o card mobile */
+@media (min-width: 768px) {
+  .more-options-card {
+    display: none !important;
+  }
+}
+
 .more-options-card {
   /* Bloco simples — sem flex de centralização, sem fundo branco artificial */
   display: block;

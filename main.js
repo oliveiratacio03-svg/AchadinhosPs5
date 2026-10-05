@@ -34,16 +34,17 @@ function Hero() {
     <section class="hero">
       <div class="container hero__layout">
         <div class="hero__content">
+          <span class="hero__promo-badge">🔥 MEGA OFERTA PRIME • 5 A 11 DE OUTUBRO</span>
           <span class="hero__eyebrow">GUIA DE PRESENTES • MÊS DAS CRIANÇAS</span>
           <h1 class="hero__title">
             Um PlayStation 5 pode ser um presente inesquecível.
           </h1>
           <p class="hero__subtitle">
-            A gente filtra os modelos para você escolher sem precisar entender tudo de PS5.
+            A Mega Oferta Prime começou. Selecionamos modelos de PS5 para você conferir as ofertas e escolher o presente do Mês das Crianças.
           </p>
           <div class="hero__actions">
-            <a href="#consoles" class="cta-button cta-button--primary">
-              VER OFERTAS NA AMAZON
+            <a href="#consoles" class="cta-button cta-button--primary" onclick="event.preventDefault(); document.querySelector('#consoles').scrollIntoView({behavior:'smooth'});">
+              CONFERIR PS5
             </a>
             <a href="#guia" class="cta-button cta-button--outline">
               ENTENDER OS MODELOS

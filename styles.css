@@ -140,6 +140,23 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   max-width: 580px;
 }
 
+.hero__promo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #fff;
+  background: linear-gradient(90deg, #ff6b00, #ff3d00);
+  padding: 5px 14px;
+  border-radius: 50px;
+  box-shadow: 0 2px 12px rgba(255, 107, 0, 0.45);
+  margin-bottom: var(--space-sm);
+  white-space: nowrap;
+}
+
 .hero__eyebrow {
   display: inline-block;
   font-size: var(--font-size-xs);

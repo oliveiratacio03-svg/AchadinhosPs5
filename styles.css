@@ -6,34 +6,37 @@
    ============================================================ */
 
 :root {
-  /* Cores principais - base editorial clara */
-  --color-bg: #ffffff;
-  --color-bg-alt: #f6f8fb;
+  /* Paleta de apoio "luxo" - base clara editorial */
+  --color-bg: #fcfcfd;
+  --color-bg-alt: #f4f5f7;
   --color-surface: #ffffff;
-  --color-surface-alt: #f8fafc;
-  --color-border: #e6eaf2;
+  --color-surface-alt: #f8f8fa;
+  --color-border: #e7e7ea;
+  --color-border-strong: #d9dce3;
   --color-text: #0a0a14;
-  --color-text-muted: #5b6475;
+  --color-text-soft: #1f2430;
+  --color-text-muted: #667085;
 
   /* Seções escuras estratégicas */
   --color-dark: #0a0a14;
-  --color-dark-alt: #101422;
-  --color-dark-surface: #141826;
-  --color-dark-border: #232a3d;
-  --color-dark-text: #ffffff;
-  --color-dark-text-muted: #b3bdd3;
-  
-  /* Ciano como acento (assinatura) */
+  --color-dark-alt: #111522;
+  --color-dark-surface: #161b2b;
+  --color-dark-border: rgba(255,255,255,0.08);
+  --color-dark-text: #f8fafc;
+  --color-dark-text-muted: #a7b0c3;
+
+  /* Ciano como assinatura (uso pontual) */
   --color-accent: #00d9ff;
-  --color-accent-hover: #00c4e6;
-  --color-accent-dark: #0a1628;
-  --color-accent-glow: rgba(0, 217, 255, 0.18);
-  --color-accent-subtle: rgba(0, 217, 255, 0.08);
-  
-  /* Cores auxiliares */
-  --color-success: #00a86b;
-  --color-warning: #b7791f;
-  
+  --color-accent-hover: #18cfee;
+  --color-accent-ink: #04313d;
+  --color-accent-glow: rgba(0, 217, 255, 0.14);
+  --color-accent-subtle: rgba(0, 217, 255, 0.07);
+
+  /* Auxiliares discretos */
+  --color-success: #0f766e;
+  --color-warning: #9a6700;
+  --color-white: #ffffff;
+
   /* Tipografia */
   --font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
   --font-family-display: 'Reem Kufi', 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -82,15 +85,16 @@ body {
 a { color: inherit; text-decoration: none; }
 main a:not(.cta-button):not(.guide__card):not(.console-card):not(.bundle-card):not(.accessory-card):hover { color: #0891b2; }
 
-h1, h2, h3, .section__title, .hero__title, .header nav a, .cta-button, .guide__card h3 {
+h1, h2, h3, .section__title, .hero__title, .header nav a, .cta-button, .guide__card h3, .footer__logo {
   font-family: var(--font-family-display);
 }
-h1, .hero__title { font-weight: 700; letter-spacing: -0.01em; line-height: 1.15; }
-h2, .section__title { font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
-h3 { font-weight: 600; line-height: 1.3; }
-.header nav a { font-weight: 500; }
-.cta-button { font-weight: 600; letter-spacing: 0.01em; }
-p, li { font-weight: 400; }
+h1, .hero__title { font-weight: 700; letter-spacing: -0.015em; line-height: 1.08; }
+h2, .section__title { font-weight: 600; letter-spacing: -0.01em; line-height: 1.18; }
+h3, .guide__card h3 { font-weight: 600; letter-spacing: -0.005em; line-height: 1.28; }
+.header nav a { font-weight: 500; letter-spacing: 0.01em; font-size: 0.94rem; }
+.cta-button { font-weight: 600; letter-spacing: 0.015em; }
+p, li { font-weight: 400; color: inherit; }
+small, .section__subtitle, .hero__subtitle { color: var(--color-text-muted); }
 
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; text-decoration: none; }

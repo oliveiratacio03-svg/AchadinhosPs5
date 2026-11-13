@@ -1,4 +1,4 @@
-﻿/**
+/**
  * PlayStation Mês das Crianças — Landing Page
  * Afiliado Amazon Brasil
  * Setembro - Outubro 2026
@@ -19,8 +19,16 @@ const Icons = {
 function Header() {
   return `
     <header class="header">
-      <div class="container header__inner">
-        <img src="images/Sol e Lua.png" alt="Sol e Lua" class="header__logo-img">
+      <div class="container header__inner" style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+        <a href="/" aria-label="Curadoria Gamer - Página inicial">
+          <img src="/images/Sol e Lua.png" alt="Curadoria Gamer" class="header__logo-img">
+        </a>
+        <nav aria-label="Navegação principal" style="display:flex;gap:.75rem;flex-wrap:wrap;font-size:.95rem;">
+          <a href="/playstation-5/">PlayStation 5</a>
+          <a href="/gta-6/">GTA 6</a>
+          <a href="/playstation-5/qual-playstation-5-comprar/">Guias</a>
+          <a href="/playstation-5/ofertas/">Ofertas</a>
+        </nav>
       </div>
     </header>`;
 }
@@ -29,28 +37,23 @@ function Header() {
 
 function Hero() {
   const destaque = CONFIG.featuredOffer;
-  
+
   return `
     <section class="hero">
       <div class="container hero__layout">
         <div class="hero__content">
-          <span class="hero__promo-badge">🔥 MEGA OFERTA PRIME • 5 A 11 DE OUTUBRO</span>
-          <span class="hero__eyebrow">GUIA DE PRESENTES • MÊS DAS CRIANÇAS</span>
+          <span class="hero__eyebrow">CURADORIA GAMER • PLAYSTATION</span>
           <h1 class="hero__title">
-            Um PlayStation 5 pode ser um presente inesquecível.
+            Compare, escolha e consulte opções de PlayStation 5 com mais clareza.
           </h1>
           <p class="hero__subtitle">
-            A Mega Oferta Prime começou. Selecionamos modelos de PS5 para você conferir as ofertas e escolher o presente do Mês das Crianças.
+            Guias, comparativos e recomendações para ajudar você a decidir entre modelos, formatos e acessórios — com transparência sobre ofertas e links afiliados.
           </p>
           <div class="hero__actions">
-            <a href="#consoles" class="cta-button cta-button--primary" onclick="event.preventDefault(); document.querySelector('#consoles').scrollIntoView({behavior:'smooth'});">
-              CONFERIR PS5
-            </a>
-            <a href="#guia" class="cta-button cta-button--outline">
-              ENTENDER OS MODELOS
-            </a>
+            <a href="/playstation-5/ps5-slim-vs-ps5-pro/" class="cta-button cta-button--primary">Comparar PS5 Slim vs Pro</a>
+            <a href="/playstation-5/qual-playstation-5-comprar/" class="cta-button cta-button--outline">Ver guia de compra</a>
           </div>
-          <p class="hero__trust">Links diretos para a Amazon, onde você compra com segurança</p>
+          <p class="hero__trust">Conteúdo editorial e curadoria de produtos do ecossistema PlayStation</p>
         </div>
         <div class="hero__visual">
           <div class="hero__image">
@@ -394,6 +397,23 @@ function initMobileCarousels() {
 
 // ─── Tracking & Init ────────────────────────────────────────────────────────
 
+function Gta6HighlightSection() {
+  return `
+    <section class="section" id="gta6" aria-label="GTA 6 e preparação no PlayStation">
+      <div class="container">
+        <div class="section__header">
+          <h2 class="section__title">GTA 6 e PlayStation 5</h2>
+          <p class="section__subtitle">Guias para entender compatibilidade, escolher o PS5 e preparar seu setup com foco no que for confirmado oficialmente.</p>
+        </div>
+        <div class="guide__grid">
+          <a href="/gta-6/" class="guide__card"><h3>HUB GTA 6</h3><p>Veja todos os guias e caminhos de preparação.</p><span class="guide__link">Explorar hub →</span></a>
+          <a href="/gta-6/qual-ps5-comprar-para-gta-6/" class="guide__card"><h3>QUAL PS5 PARA GTA 6?</h3><p>Critérios por perfil para escolher entre Slim e Pro.</p><span class="guide__link">Ler guia →</span></a>
+          <a href="/gta-6/plataformas-e-compatibilidade/" class="guide__card"><h3>COMPATIBILIDADE</h3><p>Como verificar informações com base em fontes oficiais.</p><span class="guide__link">Ver orientações →</span></a>
+        </div>
+      </div>
+    </section>`;
+}
+
 function renderPage() {
   const app = document.getElementById('app');
   if (!app) return;
@@ -401,6 +421,7 @@ function renderPage() {
     ${Header()}
     <main>
       ${Hero()}
+      ${Gta6HighlightSection()}
       ${FeaturedOfferSection()}
       ${ConsolesSection()}
       ${BundlesSection()}

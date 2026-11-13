@@ -194,41 +194,41 @@ function ConsolesSection() {
     </section>`;
 }
 
-// ─── Guia: Digital ou Leitor? ────────────────────────────────────────────────
+// ─── Guia: Digital ou Leitor? ───────────────────────────────────────────────
 
 function GuideSection() {
   return `
     <section class="section section--guide" id="guia">
       <div class="container">
         <div class="section__header">
-          <h2 class="section__title">PlayStation 5: Digital ou com leitor?</h2>
-          <p class="section__subtitle">A diferença principal está em como a pessoa pretende jogar.</p>
+          <h2 class="section__title">Guias para escolher seu PlayStation 5</h2>
+          <p class="section__subtitle">Compare modelos e formatos com critérios práticos antes de consultar ofertas.</p>
         </div>
-        
+
         <div class="guide__grid">
-          <a href="#consoles" class="guide__card" onclick="filterConsoles('digital'); document.querySelector('#consoles').scrollIntoView({behavior: 'smooth'}); return false;">
-            <div class="guide__icon">${Icons.gamepad}</div>
-            <h3>DIGITAL</h3>
-            <p>Para quem compra jogos pela internet.</p>
-            <span class="guide__link">Ver modelos →</span>
-          </a>
-          
-          <a href="#consoles" class="guide__card" onclick="filterConsoles('disc'); document.querySelector('#consoles').scrollIntoView({behavior: 'smooth'}); return false;">
+          <a href="/playstation-5/ps5-digital-vs-com-leitor/" class="guide__card">
             <div class="guide__icon">${Icons.disc}</div>
-            <h3>COM LEITOR</h3>
-            <p>Para quem quer usar mídia física e também jogos digitais.</p>
-            <span class="guide__link">Ver modelos →</span>
+            <h3>DIGITAL OU COM LEITOR?</h3>
+            <p>Entenda qual formato combina com a forma como você compra e usa jogos.</p>
+            <span class="guide__link">Ler comparativo →</span>
           </a>
-          
-          <a href="#consoles" class="guide__card" onclick="filterConsoles('pro'); document.querySelector('#consoles').scrollIntoView({behavior: 'smooth'}); return false;">
+
+          <a href="/playstation-5/ps5-slim-vs-ps5-pro/" class="guide__card">
             <div class="guide__icon">${Icons.zap}</div>
-            <h3>PRO</h3>
-            <p>Para quem procura o modelo mais avançado da linha.</p>
-            <span class="guide__link">Ver modelo →</span>
+            <h3>PS5 SLIM OU PS5 PRO?</h3>
+            <p>Veja diferenças por perfil, prioridades e pontos de atenção.</p>
+            <span class="guide__link">Ler comparativo →</span>
+          </a>
+
+          <a href="/playstation-5/qual-playstation-5-comprar/" class="guide__card">
+            <div class="guide__icon">${Icons.gamepad}</div>
+            <h3>QUAL PS5 COMPRAR?</h3>
+            <p>Um guia rápido para escolher o modelo ideal para o seu uso.</p>
+            <span class="guide__link">Ler guia →</span>
           </a>
         </div>
-        
-        <p class="guide__note">Preços e disponibilidade sujeitos a alteração na Amazon.</p>
+
+        <p class="guide__note">As recomendações ajudam na decisão. Preços, condições e disponibilidade devem ser confirmados na loja.</p>
       </div>
     </section>`;
 }

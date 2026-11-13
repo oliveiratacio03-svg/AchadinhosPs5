@@ -1,7 +1,6 @@
 /**
- * PlayStation Mês das Crianças - Landing Page
- * Afiliado Amazon Brasil e Parceiros Digitais
- * Setembro - Outubro 2026
+ * Curadoria Gamer - Aplicação Principal
+ * Renderização dinâmica, tracking de afiliados e carrosséis responsivos.
  */
 
 // ─── Ícones SVG ──────────────────────────────────────────────────────────────
@@ -23,12 +22,12 @@ function Header() {
         <a href="/" aria-label="Curadoria Gamer - Página inicial">
           <img src="/images/Sol e Lua.png" alt="Curadoria Gamer" class="header__logo-img">
         </a>
-        <nav aria-label="Navegação principal" style="display:flex;gap:.75rem;flex-wrap:wrap;font-size:.95rem;">
-          <a href="/playstation-5/">PlayStation 5</a>
-          <a href="/gta-6/">GTA 6</a>
-          <a href="/acessorios-ps5/">Acessórios</a>
-          <a href="/playstation-5/qual-playstation-5-comprar/">Guias</a>
-          <a href="/playstation-5/ofertas/">Ofertas</a>
+        <nav aria-label="Navegação principal" class="site-nav" style="display:flex;gap:.75rem;flex-wrap:wrap;font-size:.95rem;">
+          <a href="/playstation-5/"><strong>PlayStation 5</strong></a>
+          <a href="/gta-6/"><strong>GTA 6</strong></a>
+          <a href="/acessorios-ps5/"><strong>Acessórios</strong></a>
+          <a href="/playstation-5/qual-playstation-5-comprar/"><strong>Guias</strong></a>
+          <a href="/playstation-5/ofertas/"><strong>Ofertas</strong></a>
         </nav>
       </div>
     </header>`;
@@ -48,11 +47,11 @@ function Hero() {
             Compare, escolha e consulte opções de PlayStation 5 com mais clareza.
           </h1>
           <p class="hero__subtitle">
-            Guias, comparativos e recomendações editoriais para ajudar você a decidir entre modelos, formatos e acessórios: com transparência sobre condições, disponibilidade e links afiliados.
+            Guias práticos, comparativos técnicos e recomendações editoriais para ajudar você a decidir entre modelos Slim, Pro, opções digitais ou com leitor de disco, com transparência total de afiliados.
           </p>
           <div class="hero__actions">
-            <a href="/playstation-5/ps5-slim-vs-ps5-pro/" class="cta-button cta-button--primary">Comparar PS5 Slim vs Pro</a>
-            <a href="/playstation-5/qual-playstation-5-comprar/" class="cta-button cta-button--outline">Ver guia de compra</a>
+            <a href="/playstation-5/ps5-slim-vs-ps5-pro/" class="cta-button cta-button--primary"><strong>Comparar PS5 Slim vs Pro</strong></a>
+            <a href="/playstation-5/qual-playstation-5-comprar/" class="cta-button cta-button--outline"><strong>Ver guia de compra</strong></a>
           </div>
           <p class="hero__trust">Curadoria independente do ecossistema PlayStation, com foco em decisão informada</p>
         </div>
@@ -87,10 +86,10 @@ function FeaturedOfferSection() {
             <span class="featured-offer__tag">Destaque da curadoria</span>
             <h2 class="featured-offer__name">${offer.name}</h2>
             <ul class="featured-offer__includes">
-              <li>${Icons.check} ${offer.copy}</li>
+              <li>${Icons.check} <span>${offer.copy}</span></li>
             </ul>
             <a href="${offer.affiliateUrl}" class="cta-button cta-button--primary" target="_blank" rel="sponsored noopener">
-              Consultar na Amazon
+              <strong>Consultar na Amazon</strong>
             </a>
           </div>
         </div>
@@ -115,6 +114,7 @@ let currentFilter = 'all';
 function filterConsoles(type) {
   currentFilter = type;
   const grid = document.querySelector('.consoles-grid');
+  if (!grid) return;
   const cards = grid.querySelectorAll('.console-card');
   const banner = grid.querySelector('.more-options-card');
   
@@ -136,7 +136,7 @@ function filterConsoles(type) {
 
   const dots = grid.parentNode.querySelector('.carousel-dots');
   if (dots) {
-    const totalVisible = visibleCount + 1; // +1 = banner "Mais Opções" (sempre visível e último)
+    const totalVisible = visibleCount + 1; // +1 = banner "Mais Opções"
     Array.from(dots.children).forEach((dot, i) => {
       dot.style.display = i < totalVisible ? '' : 'none';
       dot.classList.toggle('active', i === 0);
@@ -171,7 +171,7 @@ function ConsolesSection() {
           ${benefits.length > 0 ? `<ul class="console-card__benefits">${benefits.map(b => `<li>${b}</li>`).join('')}</ul>` : ''}
           ${idealFor ? `<p class="console-card__ideal">${idealFor}</p>` : ''}
           <a href="${c.affiliateUrl}" class="cta-button cta-button--small cta-button--primary" target="_blank" rel="sponsored noopener">
-            ${c.cta}
+            <strong>${c.cta}</strong>
           </a>
         </div>
       </div>
@@ -187,10 +187,10 @@ function ConsolesSection() {
         </div>
         
         <div class="consoles-filter">
-          <button class="consoles-filter__btn active" data-filter="all" onclick="filterConsoles('all')">TODOS</button>
-          <button class="consoles-filter__btn" data-filter="digital" onclick="filterConsoles('digital')">DIGITAL</button>
-          <button class="consoles-filter__btn" data-filter="disc" onclick="filterConsoles('disc')">COM LEITOR</button>
-          <button class="consoles-filter__btn" data-filter="pro" onclick="filterConsoles('pro')">PRO</button>
+          <button class="consoles-filter__btn active" data-filter="all" onclick="filterConsoles('all')"><strong>TODOS</strong></button>
+          <button class="consoles-filter__btn" data-filter="digital" onclick="filterConsoles('digital')"><strong>DIGITAL</strong></button>
+          <button class="consoles-filter__btn" data-filter="disc" onclick="filterConsoles('disc')"><strong>COM LEITOR</strong></button>
+          <button class="consoles-filter__btn" data-filter="pro" onclick="filterConsoles('pro')"><strong>PRO</strong></button>
         </div>
         
         <div class="consoles-grid">${consoles}${MoreOptionsBanner()}</div>
@@ -214,21 +214,21 @@ function GuideSection() {
             <div class="guide__icon">${Icons.disc}</div>
             <h3>DIGITAL OU COM LEITOR?</h3>
             <p>Entenda qual formato combina com a forma como você compra e usa jogos.</p>
-            <span class="guide__link">Ler comparativo →</span>
+            <span class="guide__link"><strong>Ler comparativo →</strong></span>
           </a>
 
           <a href="/playstation-5/ps5-slim-vs-ps5-pro/" class="guide__card">
             <div class="guide__icon">${Icons.zap}</div>
             <h3>PS5 SLIM OU PS5 PRO?</h3>
-            <p>Veja diferenças por perfil, prioridades e pontos de atenção.</p>
-            <span class="guide__link">Ler comparativo →</span>
+            <p>Veja diferenças por perfil, prioridades gráficas e pontos de atenção.</p>
+            <span class="guide__link"><strong>Ler comparativo →</strong></span>
           </a>
 
           <a href="/playstation-5/qual-playstation-5-comprar/" class="guide__card">
             <div class="guide__icon">${Icons.gamepad}</div>
             <h3>QUAL PS5 COMPRAR?</h3>
-            <p>Um guia rápido para escolher o modelo ideal para o seu uso.</p>
-            <span class="guide__link">Ler guia →</span>
+            <p>Um guia em 3 etapas para definir o modelo ideal para seu perfil.</p>
+            <span class="guide__link"><strong>Ler guia →</strong></span>
           </a>
         </div>
 
@@ -263,13 +263,13 @@ function BundlesSection() {
           <div class="bundle-card__placeholder" style="display:none;align-items:center;justify-content:center;height:100%;color:#999;">
             <span>${b.name}</span>
           </div>
-          <span class="bundle-card__badge">Bundle</span>
+          <span class="bundle-card__badge">${b.badge}</span>
         </div>
         <div class="bundle-card__content">
           <h3 class="bundle-card__name">${b.name}</h3>
           <p class="bundle-card__desc">${b.specs}</p>
           <a href="${b.affiliateUrl}" class="cta-button cta-button--small cta-button--primary" target="_blank" rel="sponsored noopener">
-            Consultar na Amazon
+            <strong>${b.cta || 'Consultar na Amazon'}</strong>
           </a>
         </div>
       </div>
@@ -304,7 +304,7 @@ function AccessoriesSection() {
           <h3 class="accessory-card__name">${a.name}</h3>
           <p class="accessory-card__desc">${a.specs}</p>
           <a href="${a.affiliateUrl}" class="cta-button cta-button--small cta-button--primary" target="_blank" rel="sponsored noopener">
-            Consultar na Amazon
+            <strong>${a.cta || 'Consultar na Amazon'}</strong>
           </a>
         </div>
       </div>
@@ -315,8 +315,8 @@ function AccessoriesSection() {
     <section class="section" id="acessorios">
       <div class="container">
         <div class="section__header">
-          <h2 class="section__title">Acessórios que podem complementar sua experiência</h2>
-          <p class="section__subtitle">Escolhas orientadas por uso real: conforto, áudio, recarga e praticidade no dia a dia.</p>
+          <h2 class="section__title">Acessórios que complementam sua experiência no PS5</h2>
+          <p class="section__subtitle">Escolhas orientadas por utilidade real: áudio de estúdio, recarga inteligente e ergonomia para longas sessões.</p>
         </div>
         <div class="accessories__grid">${accessories}</div>
       </div>
@@ -340,7 +340,7 @@ function DigitalPartnersSection() {
           </ul>
           <div class="partner-card__footer">
             <a href="${p.affiliateUrl}" class="cta-button cta-button--small cta-button--primary" target="_blank" rel="sponsored noopener">
-              ${p.cta}
+              <strong>${p.cta}</strong>
             </a>
           </div>
         </div>
@@ -372,7 +372,7 @@ function FinalCTASection() {
           <h2 class="cta-final__title">Pronto para definir sua configuração PlayStation?</h2>
           <p class="cta-final__text">Compare modelos e guias, depois consulte preço e condições atualizadas diretamente na loja antes de finalizar.</p>
           <a href="#consoles" class="cta-button cta-button--primary">
-            Ver opções selecionadas
+            <strong>Ver opções selecionadas</strong>
           </a>
         </div>
       </div>
@@ -387,20 +387,20 @@ function Footer() {
       <div class="container">
         <div class="footer__logo">Curadoria <span>Gamer</span></div>
         <div class="footer__links">
-          <a href="/playstation-5/">PlayStation 5</a>
-          <a href="/gta-6/">GTA 6</a>
-          <a href="/acessorios-ps5/">Acessórios</a>
-          <a href="#destaque">Destaque</a>
-          <a href="#consoles">Consoles</a>
-          <a href="#guia">Guias</a>
-          <a href="#bundles">Bundles</a>
-          <a href="#acessorios">Acessórios</a>
-          <a href="/sobre.html">Sobre</a>
-          <a href="/metodologia-de-curadoria.html">Metodologia</a>
-          <a href="/links-afiliados.html">Links afiliados</a>
+          <a href="/playstation-5/"><strong>PlayStation 5</strong></a>
+          <a href="/gta-6/"><strong>GTA 6</strong></a>
+          <a href="/acessorios-ps5/"><strong>Acessórios</strong></a>
+          <a href="#destaque"><strong>Destaque</strong></a>
+          <a href="#consoles"><strong>Consoles</strong></a>
+          <a href="#guia"><strong>Guias</strong></a>
+          <a href="#bundles"><strong>Bundles</strong></a>
+          <a href="#acessorios"><strong>Acessórios</strong></a>
+          <a href="/sobre.html"><strong>Sobre</strong></a>
+          <a href="/metodologia-de-curadoria.html"><strong>Metodologia</strong></a>
+          <a href="/links-afiliados.html"><strong>Links afiliados</strong></a>
         </div>
         <p class="footer__disclaimer">
-          Curadoria Gamer participa do Programa de Associados da Amazon. Podemos receber comissão por compras qualificadas realizadas por meio dos links indicados, sem custo adicional para você. Preços, condições e disponibilidade são definidos pela loja e podem mudar a qualquer momento.
+          Curadoria Gamer participa do Programa de Associados da Amazon e de redes parceiras de afiliados. Podemos receber comissão por compras qualificadas realizadas por meio dos links indicados, sem nenhum custo adicional para você. Preços, condições e disponibilidade são definidos pelas lojas parceiras e podem mudar a qualquer momento.
         </p>
         <p class="footer__copyright">
           © 2026 Curadoria Gamer. Todos os direitos reservados.
@@ -437,7 +437,7 @@ function initMobileCarousels() {
   });
 }
 
-// ─── Tracking & Init ────────────────────────────────────────────────────────
+// ─── Seções Complementares ──────────────────────────────────────────────────
 
 function Gta6HighlightSection() {
   return `
@@ -448,9 +448,9 @@ function Gta6HighlightSection() {
           <p class="section__subtitle">Guias para entender compatibilidade, escolher o PS5 e preparar seu setup com foco no que for confirmado oficialmente.</p>
         </div>
         <div class="guide__grid">
-          <a href="/gta-6/" class="guide__card"><h3>HUB GTA 6</h3><p>Veja todos os guias e caminhos de preparação.</p><span class="guide__link">Explorar hub →</span></a>
-          <a href="/gta-6/qual-ps5-comprar-para-gta-6/" class="guide__card"><h3>QUAL PS5 PARA GTA 6?</h3><p>Critérios por perfil para escolher entre Slim e Pro.</p><span class="guide__link">Ler guia →</span></a>
-          <a href="/gta-6/plataformas-e-compatibilidade/" class="guide__card"><h3>COMPATIBILIDADE</h3><p>Como verificar informações com base em fontes oficiais.</p><span class="guide__link">Ver orientações →</span></a>
+          <a href="/gta-6/" class="guide__card"><h3>HUB GTA 6</h3><p>Veja todos os guias e caminhos de preparação.</p><span class="guide__link"><strong>Explorar hub →</strong></span></a>
+          <a href="/gta-6/qual-ps5-comprar-para-gta-6/" class="guide__card"><h3>QUAL PS5 PARA GTA 6?</h3><p>Critérios por perfil para escolher entre Slim e Pro.</p><span class="guide__link"><strong>Ler guia →</strong></span></a>
+          <a href="/gta-6/plataformas-e-compatibilidade/" class="guide__card"><h3>COMPATIBILIDADE</h3><p>Como verificar informações com base em fontes oficiais.</p><span class="guide__link"><strong>Ver orientações →</strong></span></a>
         </div>
       </div>
     </section>`;
@@ -474,13 +474,13 @@ function QuickCompareSection() {
               </tr>
             </thead>
             <tbody>
-              <tr><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">Perfil</td><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">Equilíbrio para a maioria</td><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">Quem prioriza o modelo mais avançado</td></tr>
-              <tr><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">Decisão comum</td><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">Bom custo-benefício conforme uso e oferta</td><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">Investimento maior por prioridades específicas</td></tr>
-              <tr><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">Próximo passo</td><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);"><a href="/playstation-5/ps5-slim/">Ver página do PS5 Slim</a></td><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);"><a href="/playstation-5/ps5-pro/">Ver página do PS5 Pro</a></td></tr>
+              <tr><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">Perfil</td><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">Equilíbrio para a maioria dos jogadores</td><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">Entusiastas que priorizam máximo framerate e fidelidade</td></tr>
+              <tr><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">Decisão comum</td><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">Excelente custo-benefício em jogos atuais</td><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">Investimento de longo prazo com PSSR e 2TB nativos</td></tr>
+              <tr><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">Próximo passo</td><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);"><a href="/playstation-5/ps5-slim/"><strong>Ver página do PS5 Slim</strong></a></td><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);"><a href="/playstation-5/ps5-pro/"><strong>Ver página do PS5 Pro</strong></a></td></tr>
             </tbody>
           </table>
         </div>
-        <p style="margin-top:1rem;"><a href="/playstation-5/ps5-slim-vs-ps5-pro/" class="cta-button cta-button--primary">Abrir comparativo completo</a> <a href="/playstation-5/ps5-digital-vs-com-leitor/" class="cta-button cta-button--outline" style="margin-left:.5rem;">Digital ou com leitor</a></p>
+        <p style="margin-top:1rem;"><a href="/playstation-5/ps5-slim-vs-ps5-pro/" class="cta-button cta-button--primary"><strong>Abrir comparativo completo</strong></a> <a href="/playstation-5/ps5-digital-vs-com-leitor/" class="cta-button cta-button--outline" style="margin-left:.5rem;"><strong>Digital ou com leitor</strong></a></p>
       </div>
     </section>`;
 }
@@ -494,10 +494,10 @@ function FeaturedGuidesSection() {
           <p class="section__subtitle">Acesse os principais caminhos para comparar, escolher e se preparar.</p>
         </div>
         <div class="guide__grid">
-          <a href="/playstation-5/" class="guide__card"><h3>HUB PLAYSTATION 5</h3><p>Comparativos, modelos e páginas de consulta de compra.</p><span class="guide__link">Explorar →</span></a>
-          <a href="/gta-6/" class="guide__card"><h3>HUB GTA 6</h3><p>Guias de preparação e escolha de PS5 com foco no confirmado.</p><span class="guide__link">Explorar →</span></a>
-          <a href="/acessorios-ps5/" class="guide__card"><h3>ACESSÓRIOS PS5</h3><p>SSD, headsets, controles e dicas de setup.</p><span class="guide__link">Explorar →</span></a>
-          <a href="/gta-6/qual-ps5-comprar-para-gta-6/" class="guide__card"><h3>QUAL PS5 PARA GTA 6?</h3><p>Critérios por perfil para decidir com clareza.</p><span class="guide__link">Ler guia →</span></a>
+          <a href="/playstation-5/" class="guide__card"><h3>HUB PLAYSTATION 5</h3><p>Comparativos, modelos e páginas de consulta de compra.</p><span class="guide__link"><strong>Explorar →</strong></span></a>
+          <a href="/gta-6/" class="guide__card"><h3>HUB GTA 6</h3><p>Guias de preparação e escolha de PS5 com foco no confirmado.</p><span class="guide__link"><strong>Explorar →</strong></span></a>
+          <a href="/acessorios-ps5/" class="guide__card"><h3>ACESSÓRIOS PS5</h3><p>SSD, headsets, controles e dicas de setup.</p><span class="guide__link"><strong>Explorar →</strong></span></a>
+          <a href="/gta-6/qual-ps5-comprar-para-gta-6/" class="guide__card"><h3>QUAL PS5 PARA GTA 6?</h3><p>Critérios por perfil para decidir com clareza.</p><span class="guide__link"><strong>Ler guia →</strong></span></a>
         </div>
       </div>
     </section>`;
@@ -509,14 +509,14 @@ function HomeFaqSection() {
       <div class="container" style="max-width: 920px;">
         <div class="section__header">
           <h2 class="section__title">Perguntas frequentes</h2>
-          <p class="section__subtitle">Respostas rápidas para dúvidas comuns antes de comparar ou consultar ofertas.</p>
+          <p class="section__subtitle">Respostas diretas para dúvidas comuns antes de comparar ou consultar ofertas.</p>
         </div>
         <div style="display:grid;gap:.75rem;">
-          <details style="border:1px solid var(--color-border,#334155);border-radius:12px;padding:1rem;"><summary><strong>Qual PlayStation 5 devo escolher?</strong></summary><p style="margin-top:.5rem;">Depende do seu perfil: formato (digital ou com leitor), orçamento e prioridades de uso. Comece pelo guia <a href="/playstation-5/qual-playstation-5-comprar/">qual PS5 comprar</a> e pelo comparativo <a href="/playstation-5/ps5-slim-vs-ps5-pro/">Slim vs Pro</a>.</p></details>
-          <details style="border:1px solid var(--color-border,#334155);border-radius:12px;padding:1rem;"><summary><strong>PS5 digital ou com leitor: qual é melhor?</strong></summary><p style="margin-top:.5rem;">Digital faz sentido para quem compra tudo online; com leitor oferece mais flexibilidade para mídia física. Veja o <a href="/playstation-5/ps5-digital-vs-com-leitor/">comparativo completo</a>.</p></details>
-          <details style="border:1px solid var(--color-border,#334155);border-radius:12px;padding:1rem;"><summary><strong>Os preços e ofertas são garantidos?</strong></summary><p style="margin-top:.5rem;">Não. Preços, condições e disponibilidade são definidos pela loja e podem mudar a qualquer momento. Sempre confirme na página da loja antes de comprar.</p></details>
-          <details style="border:1px solid var(--color-border,#334155);border-radius:12px;padding:1rem;"><summary><strong>Como funcionam as opções de jogos digitais e gift cards?</strong></summary><p style="margin-top:.5rem;">Recomendamos opções em parceiros autorizados, como a Hype Games e a Amazon, para recarregar saldo na carteira da PlayStation Store e obter créditos digitais com facilidade de pagamento (como Pix ou cartão).</p></details>
-          <details style="border:1px solid var(--color-border,#334155);border-radius:12px;padding:1rem;"><summary><strong>O site usa links de afiliados?</strong></summary><p style="margin-top:.5rem;">Sim. Podemos receber comissão por compras qualificadas, sem custo adicional para você. Saiba mais em <a href="/links-afiliados.html">como funcionam os links afiliados</a>.</p></details>
+          <details style="border:1px solid var(--color-border,#334155);border-radius:12px;padding:1rem;"><summary><strong>Qual PlayStation 5 devo escolher?</strong></summary><p style="margin-top:.5rem;">Depende do seu perfil: formato (digital ou com leitor), orçamento e prioridades de uso. Comece pelo guia <a href="/playstation-5/qual-playstation-5-comprar/"><strong>qual PS5 comprar</strong></a> e pelo comparativo <a href="/playstation-5/ps5-slim-vs-ps5-pro/"><strong>Slim vs Pro</strong></a>.</p></details>
+          <details style="border:1px solid var(--color-border,#334155);border-radius:12px;padding:1rem;"><summary><strong>PS5 digital ou com leitor: qual é melhor?</strong></summary><p style="margin-top:.5rem;">Digital faz sentido para quem compra tudo online; com leitor oferece mais flexibilidade para mídia física e discos usados. Veja o <a href="/playstation-5/ps5-digital-vs-com-leitor/"><strong>comparativo completo</strong></a>.</p></details>
+          <details style="border:1px solid var(--color-border,#334155);border-radius:12px;padding:1rem;"><summary><strong>Os preços e ofertas são garantidos?</strong></summary><p style="margin-top:.5rem;">Não. Preços, condições e disponibilidade são definidos pela loja e podem mudar a qualquer momento. Sempre confirme na página da loja parceira antes de comprar.</p></details>
+          <details style="border:1px solid var(--color-border,#334155);border-radius:12px;padding:1rem;"><summary><strong>Como funcionam as opções de jogos digitais e gift cards?</strong></summary><p style="margin-top:.5rem;">Recomendamos opções em parceiros autorizados, como a Hype Games e a Amazon, para recarregar saldo na carteira da PlayStation Store e obter créditos digitais com facilidade de pagamento (como Pix ou cartão de crédito).</p></details>
+          <details style="border:1px solid var(--color-border,#334155);border-radius:12px;padding:1rem;"><summary><strong>O site usa links de afiliados?</strong></summary><p style="margin-top:.5rem;">Sim. Podemos receber comissão por compras qualificadas, sem nenhum custo adicional para você. Saiba mais em <a href="/links-afiliados.html"><strong>como funcionam os links afiliados</strong></a>.</p></details>
         </div>
       </div>
     </section>`;
@@ -545,6 +545,8 @@ function renderPage() {
     ${Footer()}
   `;
 }
+
+// ─── Tracking de Afiliados ──────────────────────────────────────────────────
 
 function initAffiliateTracking() {
   document.addEventListener('click', (event) => {

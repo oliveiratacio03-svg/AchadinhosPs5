@@ -1,5 +1,5 @@
 /**
- * Produtos reais — Amazon Brasil
+ * Produtos reais: Amazon Brasil
  * 
  * Links de afiliado fornecidos pelo usuário (preservados exatamente).
  * Imagens oficiais obtidas diretamente da Amazon.
@@ -14,7 +14,7 @@
 const AMAZON_PRODUCTS = [
   {
     id: "ps5-slim-digital-astro-gt7",
-    name: "PlayStation®5 Slim Digital 825GB – Pacote ASTRO BOT e Gran Turismo 7",
+    name: "PlayStation®5 Slim Digital 825GB - Pacote ASTRO BOT e Gran Turismo 7",
     asin: "B0FPGF9J2J",
     image: "/images/products/ps5-slim-digital-astro-gt7.webp",
     affiliateUrl: "https://www.amazon.com.br/gp/aw/d/B0FPGF9J2J?pd_rd_plhdr=t&hsa_cr_id=0&qid=1790564133&sr=1-1-fec03104-6f11-4242-8f79-15fae2896f66&i=videogames&aref=qSZduTclaX&_encoding=UTF8&pd_rd_w=tFqrJ&content-id=amzn1.sym.6cdfbb79-51ae-4c0d-8769-7c90679f83e4%3Aamzn1.sym.6cdfbb79-51ae-4c0d-8769-7c90679f83e4&pf_rd_p=6cdfbb79-51ae-4c0d-8769-7c90679f83e4&pf_rd_r=TAQVHZKYWT6QHM5YFQNW&pd_rd_wg=VS3Sm&pd_rd_r=12b7f119-fa2a-40b2-ab4f-e563cf9b5580&linkCode=ll2&tag=oliveirat-20&linkId=34d01548720932fd7f15f7a07b5dd1e6&ref_=as_li_ss_tl",

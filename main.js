@@ -1,4 +1,4 @@
-/**
+﻿/**
  * PlayStation Mês das Crianças — Landing Page
  * Afiliado Amazon Brasil
  * Setembro - Outubro 2026
@@ -98,7 +98,7 @@ function FeaturedOfferSection() {
 
 function MoreOptionsBanner(extraClass) {
   return `
-    <a href="${CONFIG.categoryPS5Url}" class="more-options-card ${extraClass || ''}" data-type="all" target="_blank" rel="noopener noreferrer" aria-label="Quer ver mais modelos e ofertas? Ver categoria PlayStation 5 na Amazon">
+    <a href="${CONFIG.categoryPS5Url}" class="more-options-card ${extraClass || ''}" data-type="all" target="_blank" rel="sponsored noopener noreferrer" aria-label="Quer ver mais modelos e ofertas? Ver categoria PlayStation 5 na Amazon">
       <img src="images/prime-mais-opcoes-mobile.png" alt="Quer ver mais modelos e ofertas? Acesse a categoria PlayStation 5 na Amazon" loading="lazy">
     </a>
   `;
@@ -341,19 +341,19 @@ function Footer() {
   return `
     <footer class="footer">
       <div class="container">
-        <div class="footer__logo">PS5 <span>Mês das Crianças</span></div>
+        <div class="footer__logo">Curadoria <span>Gamer</span></div>
         <div class="footer__links">
-          <a href="#destaque">Uma opção para presentear</a>
-          <a href="#consoles">Qual PS5 escolher</a>
-          <a href="#guia">Digital ou Leitor?</a>
-          <a href="#bundles">Combos completos</a>
+          <a href="#destaque">Destaque</a>
+          <a href="#consoles">Consoles</a>
+          <a href="#guia">Guia de escolha</a>
+          <a href="#bundles">Bundles</a>
           <a href="#acessorios">Acessórios</a>
         </div>
         <p class="footer__disclaimer">
-          Como associado da Amazon, recebemos comissões por compras qualificadas. O preço para você não muda. Preços e disponibilidade podem mudar a qualquer momento na Amazon.
+          Curadoria Gamer participa do Programa de Associados da Amazon. Podemos receber comissão por compras qualificadas realizadas por meio dos links indicados, sem custo adicional para você. Preços, condições e disponibilidade são definidos pela loja e podem mudar a qualquer momento.
         </p>
         <p class="footer__copyright">
-          © 2026 PS5 Mês das Crianças. Todos os direitos reservados.
+          © 2026 Curadoria Gamer. Todos os direitos reservados.
         </p>
       </div>
     </footer>`;
@@ -387,10 +387,12 @@ function initMobileCarousels() {
   });
 }
 
-// ─── Init ───────────────────────────────────────────────────────────────────
+// ─── Tracking & Init ────────────────────────────────────────────────────────
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('app').innerHTML = `
+function renderPage() {
+  const app = document.getElementById('app');
+  if (!app) return;
+  app.innerHTML = `
     ${Header()}
     <main>
       ${Hero()}
@@ -404,5 +406,37 @@ document.addEventListener('DOMContentLoaded', () => {
     </main>
     ${Footer()}
   `;
+}
+
+function initAffiliateTracking() {
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('a[href]');
+    if (!link) return;
+    const href = link.getAttribute('href') || '';
+    const isAffiliate = (link.rel && link.rel.includes('sponsored')) || /amazon\./i.test(href);
+    if (!isAffiliate) return;
+
+    const payload = {
+      destination_url: href,
+      link_text: (link.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 120),
+      link_location: link.closest('section')?.id || link.className || 'unknown',
+      page_path: location.pathname
+    };
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'affiliate_click', ...payload });
+
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'affiliate_click', payload);
+    }
+    if (typeof window.clarity === 'function') {
+      window.clarity('event', 'affiliate_click');
+    }
+  }, { capture: true });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderPage();
   initMobileCarousels();
+  initAffiliateTracking();
 });

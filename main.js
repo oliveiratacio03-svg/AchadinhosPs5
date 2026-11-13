@@ -445,6 +445,24 @@ function QuickCompareSection() {
     </section>`;
 }
 
+function FeaturedGuidesSection() {
+  return `
+    <section class="section" id="guias-destaque" aria-label="Guias e conteúdos em destaque">
+      <div class="container">
+        <div class="section__header">
+          <h2 class="section__title">Guias e hubs em destaque</h2>
+          <p class="section__subtitle">Acesse os principais caminhos para comparar, escolher e se preparar.</p>
+        </div>
+        <div class="guide__grid">
+          <a href="/playstation-5/" class="guide__card"><h3>HUB PLAYSTATION 5</h3><p>Comparativos, modelos e páginas de consulta de compra.</p><span class="guide__link">Explorar →</span></a>
+          <a href="/gta-6/" class="guide__card"><h3>HUB GTA 6</h3><p>Guias de preparação e escolha de PS5 com foco no confirmado.</p><span class="guide__link">Explorar →</span></a>
+          <a href="/acessorios-ps5/" class="guide__card"><h3>ACESSÓRIOS PS5</h3><p>SSD, headsets, controles e dicas de setup.</p><span class="guide__link">Explorar →</span></a>
+          <a href="/gta-6/qual-ps5-comprar-para-gta-6/" class="guide__card"><h3>QUAL PS5 PARA GTA 6?</h3><p>Critérios por perfil para decidir com clareza.</p><span class="guide__link">Ler guia →</span></a>
+        </div>
+      </div>
+    </section>`;
+}
+
 function HomeFaqSection() {
   return `
     <section class="section" id="faq" aria-label="Perguntas frequentes">
@@ -478,6 +496,7 @@ function renderPage() {
       ${DesktopPromoBanner()}
       ${GuideSection()}
       ${AccessoriesSection()}
+      ${FeaturedGuidesSection()}
       ${HomeFaqSection()}
       ${FinalCTASection()}
     </main>

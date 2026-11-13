@@ -1,6 +1,6 @@
 /**
- * PlayStation Mês das Crianças — Landing Page
- * Afiliado Amazon Brasil
+ * PlayStation Mês das Crianças - Landing Page
+ * Afiliado Amazon Brasil e Parceiros Digitais
  * Setembro - Outubro 2026
  */
 
@@ -48,7 +48,7 @@ function Hero() {
             Compare, escolha e consulte opções de PlayStation 5 com mais clareza.
           </h1>
           <p class="hero__subtitle">
-            Guias, comparativos e recomendações editoriais para ajudar você a decidir entre modelos, formatos e acessórios — com transparência sobre condições, disponibilidade e links afiliados.
+            Guias, comparativos e recomendações editoriais para ajudar você a decidir entre modelos, formatos e acessórios: com transparência sobre condições, disponibilidade e links afiliados.
           </p>
           <div class="hero__actions">
             <a href="/playstation-5/ps5-slim-vs-ps5-pro/" class="cta-button cta-button--primary">Comparar PS5 Slim vs Pro</a>
@@ -58,7 +58,7 @@ function Hero() {
         </div>
         <div class="hero__visual">
           <div class="hero__image">
-            <img src="${destaque.image}" alt="${destaque.name}" decoding="async" fetchpriority="high" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <img src="${destaque.image}" alt="${destaque.name}" width="320" height="240" decoding="async" fetchpriority="high" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
             <div class="hero__placeholder" style="display:none;align-items:center;justify-content:center;width:100%;height:100%;color:#999;">
               <span>${destaque.name}</span>
             </div>
@@ -78,7 +78,7 @@ function FeaturedOfferSection() {
       <div class="container">
         <div class="featured-offer">
           <div class="featured-offer__image">
-            <img src="${offer.image}" alt="${offer.name}" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <img src="${offer.image}" alt="${offer.name}" width="320" height="200" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
             <div class="featured-offer__placeholder" style="display:none;align-items:center;justify-content:center;height:100%;color:#999;">
               <span>${offer.name}</span>
             </div>
@@ -159,7 +159,7 @@ function ConsolesSection() {
     return `
       <div class="console-card" data-type="${typeClass}">
         <div class="console-card__image">
-          <img src="${c.image}" alt="${c.name}" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <img src="${c.image}" alt="${c.name}" width="320" height="240" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
           <div class="console-card__placeholder" style="display:none;align-items:center;justify-content:center;height:100%;color:#999;">
             <span>${c.name}</span>
           </div>
@@ -244,7 +244,7 @@ function DesktopPromoBanner() {
   return `
     <section class="section section--desktop-promo" aria-label="Mais opções de PlayStation 5 na Amazon">
       <div class="container">
-        <a href="${url}" class="desktop-promo-banner" target="_blank" rel="noopener noreferrer" aria-label="Ver mais modelos e ofertas de PlayStation 5 na Amazon">
+        <a href="${url}" class="desktop-promo-banner" target="_blank" rel="sponsored noopener noreferrer" aria-label="Ver mais modelos e ofertas de PlayStation 5 na Amazon">
           <img src="images/wide_promotional_banner_clean_commercial_graphic.webp" alt="Consultar mais opções de PlayStation 5 na Amazon" loading="lazy" decoding="async" width="1774" height="887">
         </a>
       </div>
@@ -259,7 +259,7 @@ function BundlesSection() {
     return `
       <div class="bundle-card">
         <div class="bundle-card__image">
-          <img src="${b.image}" alt="${b.name}" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <img src="${b.image}" alt="${b.name}" width="320" height="200" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
           <div class="bundle-card__placeholder" style="display:none;align-items:center;justify-content:center;height:100%;color:#999;">
             <span>${b.name}</span>
           </div>
@@ -295,7 +295,7 @@ function AccessoriesSection() {
     return `
       <div class="accessory-card">
         <div class="accessory-card__image">
-          <img src="${a.image}" alt="${a.name}" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <img src="${a.image}" alt="${a.name}" width="280" height="280" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
           <div class="accessory-card__placeholder" style="display:none;align-items:center;justify-content:center;height:100%;color:#999;">
             <span>${a.name}</span>
           </div>
@@ -319,6 +319,45 @@ function AccessoriesSection() {
           <p class="section__subtitle">Escolhas orientadas por uso real: conforto, áudio, recarga e praticidade no dia a dia.</p>
         </div>
         <div class="accessories__grid">${accessories}</div>
+      </div>
+    </section>`;
+}
+
+function DigitalPartnersSection() {
+  const partners = (CONFIG.digitalPartners || []).map((p) => {
+    const benefits = (p.benefits || []).map((b) => `<li>${Icons.check} <span>${b}</span></li>`).join('');
+    return `
+      <div class="partner-card" id="${p.id}">
+        <div class="partner-card__header">
+          <span class="partner-card__store">${p.store}</span>
+          <span class="partner-card__badge">${p.badge}</span>
+        </div>
+        <div class="partner-card__body">
+          <h3 class="partner-card__title">${p.name}</h3>
+          <p class="partner-card__desc">${p.description}</p>
+          <ul class="partner-card__list">
+            ${benefits}
+          </ul>
+          <div class="partner-card__footer">
+            <a href="${p.affiliateUrl}" class="cta-button cta-button--small cta-button--primary" target="_blank" rel="sponsored noopener">
+              ${p.cta}
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  return `
+    <section class="section section--partners" id="jogos-digitais" aria-label="Jogos digitais e créditos PlayStation">
+      <div class="container">
+        <div class="section__header">
+          <h2 class="section__title">Jogos digitais, assinaturas e créditos na PSN</h2>
+          <p class="section__subtitle">Opções em parceiros autorizados para recarregar saldo, assinar a PlayStation Plus ou comprar jogos digitais com flexibilidade de pagamento.</p>
+        </div>
+        <div class="partners__grid">
+          ${partners}
+        </div>
       </div>
     </section>`;
 }
@@ -476,6 +515,7 @@ function HomeFaqSection() {
           <details style="border:1px solid var(--color-border,#334155);border-radius:12px;padding:1rem;"><summary><strong>Qual PlayStation 5 devo escolher?</strong></summary><p style="margin-top:.5rem;">Depende do seu perfil: formato (digital ou com leitor), orçamento e prioridades de uso. Comece pelo guia <a href="/playstation-5/qual-playstation-5-comprar/">qual PS5 comprar</a> e pelo comparativo <a href="/playstation-5/ps5-slim-vs-ps5-pro/">Slim vs Pro</a>.</p></details>
           <details style="border:1px solid var(--color-border,#334155);border-radius:12px;padding:1rem;"><summary><strong>PS5 digital ou com leitor: qual é melhor?</strong></summary><p style="margin-top:.5rem;">Digital faz sentido para quem compra tudo online; com leitor oferece mais flexibilidade para mídia física. Veja o <a href="/playstation-5/ps5-digital-vs-com-leitor/">comparativo completo</a>.</p></details>
           <details style="border:1px solid var(--color-border,#334155);border-radius:12px;padding:1rem;"><summary><strong>Os preços e ofertas são garantidos?</strong></summary><p style="margin-top:.5rem;">Não. Preços, condições e disponibilidade são definidos pela loja e podem mudar a qualquer momento. Sempre confirme na página da loja antes de comprar.</p></details>
+          <details style="border:1px solid var(--color-border,#334155);border-radius:12px;padding:1rem;"><summary><strong>Como funcionam as opções de jogos digitais e gift cards?</strong></summary><p style="margin-top:.5rem;">Recomendamos opções em parceiros autorizados, como a Hype Games e a Amazon, para recarregar saldo na carteira da PlayStation Store e obter créditos digitais com facilidade de pagamento (como Pix ou cartão).</p></details>
           <details style="border:1px solid var(--color-border,#334155);border-radius:12px;padding:1rem;"><summary><strong>O site usa links de afiliados?</strong></summary><p style="margin-top:.5rem;">Sim. Podemos receber comissão por compras qualificadas, sem custo adicional para você. Saiba mais em <a href="/links-afiliados.html">como funcionam os links afiliados</a>.</p></details>
         </div>
       </div>
@@ -497,6 +537,7 @@ function renderPage() {
       ${DesktopPromoBanner()}
       ${GuideSection()}
       ${AccessoriesSection()}
+      ${DigitalPartnersSection()}
       ${FeaturedGuidesSection()}
       ${HomeFaqSection()}
       ${FinalCTASection()}
@@ -510,7 +551,7 @@ function initAffiliateTracking() {
     const link = event.target.closest('a[href]');
     if (!link) return;
     const href = link.getAttribute('href') || '';
-    const isAffiliate = (link.rel && link.rel.includes('sponsored')) || /amazon\./i.test(href);
+    const isAffiliate = (link.rel && link.rel.includes('sponsored')) || /amazon\./i.test(href) || /hype\.games/i.test(href);
     if (!isAffiliate) return;
 
     const payload = {
@@ -533,7 +574,10 @@ function initAffiliateTracking() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  renderPage();
+  const app = document.getElementById('app');
+  if (app && app.children.length === 0) {
+    renderPage();
+  }
   initMobileCarousels();
   initAffiliateTracking();
 });

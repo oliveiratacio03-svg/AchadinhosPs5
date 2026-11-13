@@ -1,11 +1,10 @@
 /**
- * PlayStation Mês das Crianças — Landing Page
- * Afiliado Amazon Brasil
+ * PlayStation Mês das Crianças - Landing Page
+ * Afiliado Amazon Brasil e Parceiros Digitais
  * Setembro - Outubro 2026
  * 
- * Dados oficiais da Amazon.
- * ZERO preços no site.
- * Somente Amazon.
+ * Dados oficiais de parceiros.
+ * ZERO preços fixos no site.
  */
 
 const CONFIG = {
@@ -179,6 +178,40 @@ const CONFIG = {
       image: 'https://m.media-amazon.com/images/I/61S0ZRxKJFL._AC_UL320_.jpg',
       affiliateUrl: 'https://www.amazon.com.br/PlayStation-Portal-Remote-Player-PS5/dp/B0CJT5DJ16?&linkCode=ll2&tag=oliveirata-20&linkId=a576ea9da9193af70ff0cace5e8c80d0&ref_=as_li_ss_tl',
       cta: 'VER NA AMAZON'
+    }
+  ],
+
+  // ─── Parceiros Digitais (Jogos Digitais e Gift Cards) ──────────────────────
+  digitalPartners: [
+    {
+      id: 'hype-games-psn',
+      store: 'Hype Games',
+      badge: 'PARCEIRO OFICIAL',
+      name: 'PlayStation Store e Gift Cards via Hype Games',
+      tagline: 'Revendedor digital autorizado Level Up no Brasil',
+      description: 'Ideal para donos de PS5 Edição Digital e para quem busca recarregar a carteira da PSN ou assinar a PlayStation Plus com praticidade.',
+      benefits: [
+        'Códigos e chaves oficiais com ativação direta na conta PSN',
+        'Pagamento via Pix (com liberação rápida) ou parcelamento no cartão',
+        'Flexibilidade para comprar jogos, expansões ou assinar a PS Plus'
+      ],
+      affiliateUrl: 'https://hype.games/br',
+      cta: 'CONSULTAR NA HYPE GAMES'
+    },
+    {
+      id: 'amazon-gift-cards',
+      store: 'Amazon Brasil',
+      badge: 'CÓDIGO DIGITAL',
+      name: 'Cartões Virtuais PlayStation na Amazon',
+      tagline: 'Créditos digitais oficiais com envio rápido por e-mail',
+      description: 'Opção direta para presentear ou adicionar saldo à sua conta PlayStation sem precisar cadastrar cartão no console.',
+      benefits: [
+        'Valores variados para recarga pontual de saldo',
+        'Envio imediato do código de resgate por e-mail',
+        'Compatível com contas da PlayStation Store Brasil'
+      ],
+      affiliateUrl: 'https://www.amazon.com.br/s?k=cartao+playstation+gift+card&tag=oliveirata-20&linkCode=ll2&ref_=as_li_ss_tl',
+      cta: 'CONSULTAR NA AMAZON'
     }
   ]
 };

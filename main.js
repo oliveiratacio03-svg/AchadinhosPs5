@@ -343,9 +343,10 @@ function Footer() {
       <div class="container">
         <div class="footer__logo">Curadoria <span>Gamer</span></div>
         <div class="footer__links">
+          <a href="/playstation-5/">PlayStation 5</a>
           <a href="#destaque">Destaque</a>
           <a href="#consoles">Consoles</a>
-          <a href="#guia">Guia de escolha</a>
+          <a href="#guia">Guias</a>
           <a href="#bundles">Bundles</a>
           <a href="#acessorios">Acessórios</a>
           <a href="/sobre.html">Sobre</a>

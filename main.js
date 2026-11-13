@@ -329,10 +329,10 @@ function FinalCTASection() {
     <section class="section section--cta" id="cta-final">
       <div class="container">
         <div class="cta-final">
-          <h2 class="cta-final__title">Encontrou o PlayStation 5 que faz sentido?</h2>
-          <p class="cta-final__text">Confira a oferta atual diretamente na Amazon.</p>
+          <h2 class="cta-final__title">Pronto para escolher sua próxima configuração PlayStation?</h2>
+          <p class="cta-final__text">Compare as opções, consulte condições atualizadas na loja e avance com mais segurança na sua escolha.</p>
           <a href="#consoles" class="cta-button cta-button--primary">
-            Ver ofertas na Amazon
+            Consultar opções na loja
           </a>
         </div>
       </div>

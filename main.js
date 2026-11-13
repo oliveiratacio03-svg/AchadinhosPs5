@@ -26,6 +26,7 @@ function Header() {
         <nav aria-label="Navegação principal" style="display:flex;gap:.75rem;flex-wrap:wrap;font-size:.95rem;">
           <a href="/playstation-5/">PlayStation 5</a>
           <a href="/gta-6/">GTA 6</a>
+          <a href="/acessorios-ps5/">Acessórios</a>
           <a href="/playstation-5/qual-playstation-5-comprar/">Guias</a>
           <a href="/playstation-5/ofertas/">Ofertas</a>
         </nav>
@@ -348,6 +349,7 @@ function Footer() {
         <div class="footer__links">
           <a href="/playstation-5/">PlayStation 5</a>
           <a href="/gta-6/">GTA 6</a>
+          <a href="/acessorios-ps5/">Acessórios</a>
           <a href="#destaque">Destaque</a>
           <a href="#consoles">Consoles</a>
           <a href="#guia">Guias</a>
@@ -414,6 +416,53 @@ function Gta6HighlightSection() {
     </section>`;
 }
 
+function QuickCompareSection() {
+  return `
+    <section class="section" id="comparativo-rapido" aria-label="Comparativo rápido PS5 Slim vs PS5 Pro">
+      <div class="container">
+        <div class="section__header">
+          <h2 class="section__title">PS5 Slim vs PS5 Pro: comparativo rápido</h2>
+          <p class="section__subtitle">Um resumo por perfil para orientar sua decisão antes de ver o comparativo completo.</p>
+        </div>
+        <div style="overflow:auto;">
+          <table style="width:100%;border-collapse:collapse;min-width:640px;">
+            <thead>
+              <tr>
+                <th style="text-align:left;padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">Critério</th>
+                <th style="text-align:left;padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">PS5 Slim</th>
+                <th style="text-align:left;padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">PS5 Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">Perfil</td><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">Equilíbrio para a maioria</td><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">Quem prioriza o modelo mais avançado</td></tr>
+              <tr><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">Decisão comum</td><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">Bom custo-benefício conforme uso e oferta</td><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">Investimento maior por prioridades específicas</td></tr>
+              <tr><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);">Próximo passo</td><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);"><a href="/playstation-5/ps5-slim/">Ver página do PS5 Slim</a></td><td style="padding:.75rem;border-bottom:1px solid var(--color-border,#334155);"><a href="/playstation-5/ps5-pro/">Ver página do PS5 Pro</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:1rem;"><a href="/playstation-5/ps5-slim-vs-ps5-pro/" class="cta-button cta-button--primary">Abrir comparativo completo</a> <a href="/playstation-5/ps5-digital-vs-com-leitor/" class="cta-button cta-button--outline" style="margin-left:.5rem;">Digital ou com leitor</a></p>
+      </div>
+    </section>`;
+}
+
+function HomeFaqSection() {
+  return `
+    <section class="section" id="faq" aria-label="Perguntas frequentes">
+      <div class="container" style="max-width: 920px;">
+        <div class="section__header">
+          <h2 class="section__title">Perguntas frequentes</h2>
+          <p class="section__subtitle">Respostas rápidas para dúvidas comuns antes de comparar ou consultar ofertas.</p>
+        </div>
+        <div style="display:grid;gap:.75rem;">
+          <details style="border:1px solid var(--color-border,#334155);border-radius:12px;padding:1rem;"><summary><strong>Qual PlayStation 5 devo escolher?</strong></summary><p style="margin-top:.5rem;">Depende do seu perfil: formato (digital ou com leitor), orçamento e prioridades de uso. Comece pelo guia <a href="/playstation-5/qual-playstation-5-comprar/">qual PS5 comprar</a> e pelo comparativo <a href="/playstation-5/ps5-slim-vs-ps5-pro/">Slim vs Pro</a>.</p></details>
+          <details style="border:1px solid var(--color-border,#334155);border-radius:12px;padding:1rem;"><summary><strong>PS5 digital ou com leitor: qual é melhor?</strong></summary><p style="margin-top:.5rem;">Digital faz sentido para quem compra tudo online; com leitor oferece mais flexibilidade para mídia física. Veja o <a href="/playstation-5/ps5-digital-vs-com-leitor/">comparativo completo</a>.</p></details>
+          <details style="border:1px solid var(--color-border,#334155);border-radius:12px;padding:1rem;"><summary><strong>Os preços e ofertas são garantidos?</strong></summary><p style="margin-top:.5rem;">Não. Preços, condições e disponibilidade são definidos pela loja e podem mudar a qualquer momento. Sempre confirme na página da loja antes de comprar.</p></details>
+          <details style="border:1px solid var(--color-border,#334155);border-radius:12px;padding:1rem;"><summary><strong>O site usa links de afiliados?</strong></summary><p style="margin-top:.5rem;">Sim. Podemos receber comissão por compras qualificadas, sem custo adicional para você. Saiba mais em <a href="/links-afiliados.html">como funcionam os links afiliados</a>.</p></details>
+        </div>
+      </div>
+    </section>`;
+}
+
 function renderPage() {
   const app = document.getElementById('app');
   if (!app) return;
@@ -422,12 +471,14 @@ function renderPage() {
     <main>
       ${Hero()}
       ${Gta6HighlightSection()}
+      ${QuickCompareSection()}
       ${FeaturedOfferSection()}
       ${ConsolesSection()}
       ${BundlesSection()}
       ${DesktopPromoBanner()}
       ${GuideSection()}
       ${AccessoriesSection()}
+      ${HomeFaqSection()}
       ${FinalCTASection()}
     </main>
     ${Footer()}

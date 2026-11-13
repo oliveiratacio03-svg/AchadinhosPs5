@@ -48,17 +48,17 @@ function Hero() {
             Compare, escolha e consulte opções de PlayStation 5 com mais clareza.
           </h1>
           <p class="hero__subtitle">
-            Guias, comparativos e recomendações para ajudar você a decidir entre modelos, formatos e acessórios — com transparência sobre ofertas e links afiliados.
+            Guias, comparativos e recomendações editoriais para ajudar você a decidir entre modelos, formatos e acessórios — com transparência sobre condições, disponibilidade e links afiliados.
           </p>
           <div class="hero__actions">
             <a href="/playstation-5/ps5-slim-vs-ps5-pro/" class="cta-button cta-button--primary">Comparar PS5 Slim vs Pro</a>
             <a href="/playstation-5/qual-playstation-5-comprar/" class="cta-button cta-button--outline">Ver guia de compra</a>
           </div>
-          <p class="hero__trust">Conteúdo editorial e curadoria de produtos do ecossistema PlayStation</p>
+          <p class="hero__trust">Curadoria independente do ecossistema PlayStation, com foco em decisão informada</p>
         </div>
         <div class="hero__visual">
           <div class="hero__image">
-            <img src="${destaque.image}" alt="${destaque.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <img src="${destaque.image}" alt="${destaque.name}" decoding="async" fetchpriority="high" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
             <div class="hero__placeholder" style="display:none;align-items:center;justify-content:center;width:100%;height:100%;color:#999;">
               <span>${destaque.name}</span>
             </div>
@@ -78,19 +78,19 @@ function FeaturedOfferSection() {
       <div class="container">
         <div class="featured-offer">
           <div class="featured-offer__image">
-            <img src="${offer.image}" alt="${offer.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <img src="${offer.image}" alt="${offer.name}" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
             <div class="featured-offer__placeholder" style="display:none;align-items:center;justify-content:center;height:100%;color:#999;">
               <span>${offer.name}</span>
             </div>
           </div>
           <div class="featured-offer__content">
-            <span class="featured-offer__tag">JÁ VEM COM 2 JOGOS</span>
+            <span class="featured-offer__tag">Destaque da curadoria</span>
             <h2 class="featured-offer__name">${offer.name}</h2>
             <ul class="featured-offer__includes">
               <li>${Icons.check} ${offer.copy}</li>
             </ul>
             <a href="${offer.affiliateUrl}" class="cta-button cta-button--primary" target="_blank" rel="sponsored noopener">
-              Ver oferta na Amazon
+              Consultar na Amazon
             </a>
           </div>
         </div>
@@ -103,7 +103,7 @@ function FeaturedOfferSection() {
 function MoreOptionsBanner(extraClass) {
   return `
     <a href="${CONFIG.categoryPS5Url}" class="more-options-card ${extraClass || ''}" data-type="all" target="_blank" rel="sponsored noopener noreferrer" aria-label="Quer ver mais modelos e ofertas? Ver categoria PlayStation 5 na Amazon">
-      <img src="images/prime-mais-opcoes-mobile.webp" alt="Quer ver mais modelos e ofertas? Acesse a categoria PlayStation 5 na Amazon" loading="lazy" width="1024" height="1536">
+      <img src="images/prime-mais-opcoes-mobile.webp" alt="Mais modelos e opções de PlayStation 5 na Amazon" loading="lazy" decoding="async" width="1024" height="1536">
     </a>
   `;
 }
@@ -159,7 +159,7 @@ function ConsolesSection() {
     return `
       <div class="console-card" data-type="${typeClass}">
         <div class="console-card__image">
-          <img src="${c.image}" alt="${c.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <img src="${c.image}" alt="${c.name}" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
           <div class="console-card__placeholder" style="display:none;align-items:center;justify-content:center;height:100%;color:#999;">
             <span>${c.name}</span>
           </div>
@@ -182,8 +182,8 @@ function ConsolesSection() {
     <section class="section" id="consoles">
       <div class="container">
         <div class="section__header">
-          <h2 class="section__title">Qual PlayStation 5 faz mais sentido para o presente?</h2>
-          <p class="section__subtitle">Você não precisa entender todas as especificações.</p>
+          <h2 class="section__title">Qual PlayStation 5 faz mais sentido para o seu perfil?</h2>
+          <p class="section__subtitle">Compare formatos, versões e combinações com critérios práticos para encontrar a opção mais adequada.</p>
         </div>
         
         <div class="consoles-filter">
@@ -232,7 +232,7 @@ function GuideSection() {
           </a>
         </div>
 
-        <p class="guide__note">As recomendações ajudam na decisão. Preços, condições e disponibilidade devem ser confirmados na loja.</p>
+        <p class="guide__note">As recomendações têm caráter editorial. Confirme preço, condições, itens incluídos e disponibilidade diretamente na loja antes de concluir a compra.</p>
       </div>
     </section>`;
 }
@@ -245,7 +245,7 @@ function DesktopPromoBanner() {
     <section class="section section--desktop-promo" aria-label="Mais opções de PlayStation 5 na Amazon">
       <div class="container">
         <a href="${url}" class="desktop-promo-banner" target="_blank" rel="noopener noreferrer" aria-label="Ver mais modelos e ofertas de PlayStation 5 na Amazon">
-          <img src="images/wide_promotional_banner_clean_commercial_graphic.webp" alt="Mais opções de PlayStation 5 na Amazon - clique para ver a categoria completa" loading="lazy" width="1774" height="887">
+          <img src="images/wide_promotional_banner_clean_commercial_graphic.webp" alt="Consultar mais opções de PlayStation 5 na Amazon" loading="lazy" decoding="async" width="1774" height="887">
         </a>
       </div>
     </section>
@@ -259,17 +259,17 @@ function BundlesSection() {
     return `
       <div class="bundle-card">
         <div class="bundle-card__image">
-          <img src="${b.image}" alt="${b.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <img src="${b.image}" alt="${b.name}" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
           <div class="bundle-card__placeholder" style="display:none;align-items:center;justify-content:center;height:100%;color:#999;">
             <span>${b.name}</span>
           </div>
-          <span class="bundle-card__badge">COMBO</span>
+          <span class="bundle-card__badge">Bundle</span>
         </div>
         <div class="bundle-card__content">
           <h3 class="bundle-card__name">${b.name}</h3>
           <p class="bundle-card__desc">${b.specs}</p>
           <a href="${b.affiliateUrl}" class="cta-button cta-button--small cta-button--primary" target="_blank" rel="sponsored noopener">
-            Conferir combo na Amazon
+            Consultar na Amazon
           </a>
         </div>
       </div>
@@ -280,8 +280,8 @@ function BundlesSection() {
     <section class="section section--bundles" id="bundles">
       <div class="container">
         <div class="section__header">
-          <h2 class="section__title">Quer um presente de PlayStation 5 que já venha completo?</h2>
-          <p class="section__subtitle">Console + jogos em um único pacote.</p>
+          <h2 class="section__title">Bundles: opções que já reúnem console e jogos</h2>
+          <p class="section__subtitle">Combinações selecionadas para quem busca praticidade. Confirme conteúdo, versão e condições na loja.</p>
         </div>
         <div class="bundles__grid">${bundles}${MoreOptionsBanner()}</div>
       </div>
@@ -295,7 +295,7 @@ function AccessoriesSection() {
     return `
       <div class="accessory-card">
         <div class="accessory-card__image">
-          <img src="${a.image}" alt="${a.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <img src="${a.image}" alt="${a.name}" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
           <div class="accessory-card__placeholder" style="display:none;align-items:center;justify-content:center;height:100%;color:#999;">
             <span>${a.name}</span>
           </div>
@@ -304,7 +304,7 @@ function AccessoriesSection() {
           <h3 class="accessory-card__name">${a.name}</h3>
           <p class="accessory-card__desc">${a.specs}</p>
           <a href="${a.affiliateUrl}" class="cta-button cta-button--small cta-button--primary" target="_blank" rel="sponsored noopener">
-            Ver na Amazon
+            Consultar na Amazon
           </a>
         </div>
       </div>
@@ -315,7 +315,8 @@ function AccessoriesSection() {
     <section class="section" id="acessorios">
       <div class="container">
         <div class="section__header">
-          <h2 class="section__title">Depois do PlayStation 5, o que realmente vale considerar?</h2>
+          <h2 class="section__title">Acessórios que podem complementar sua experiência</h2>
+          <p class="section__subtitle">Escolhas orientadas por uso real: conforto, áudio, recarga e praticidade no dia a dia.</p>
         </div>
         <div class="accessories__grid">${accessories}</div>
       </div>
@@ -329,10 +330,10 @@ function FinalCTASection() {
     <section class="section section--cta" id="cta-final">
       <div class="container">
         <div class="cta-final">
-          <h2 class="cta-final__title">Pronto para escolher sua próxima configuração PlayStation?</h2>
-          <p class="cta-final__text">Compare as opções, consulte condições atualizadas na loja e avance com mais segurança na sua escolha.</p>
+          <h2 class="cta-final__title">Pronto para definir sua configuração PlayStation?</h2>
+          <p class="cta-final__text">Compare modelos e guias, depois consulte preço e condições atualizadas diretamente na loja antes de finalizar.</p>
           <a href="#consoles" class="cta-button cta-button--primary">
-            Consultar opções na loja
+            Ver opções selecionadas
           </a>
         </div>
       </div>

@@ -25,9 +25,9 @@ const CONFIG = {
     name: 'PS5 Slim Digital 825GB + Astro Bot + Gran Turismo 7',
     image: 'https://m.media-amazon.com/images/I/71WCygaQDAL._AC_UL320_.jpg',
     affiliateUrl: 'https://www.amazon.com.br/PlayStation%C2%AE5-Slim-Digital-825GB-Turismo/dp/B0FPGF9J2J?&linkCode=ll2&tag=oliveirata-20&linkId=22821174d8ed9d183a9b8b67eba39923&ref_=as_li_ss_tl',
-    badge: 'COM JOGOS',
-    specs: '825GB SSD • Digital Slim • Inclui 2 Jogos',
-    copy: 'Para quem quer deixar o presente ainda mais completo, esta versão já vem acompanhada de jogos para começar a aproveitar o console.'
+    badge: 'BUNDLE',
+    specs: '825GB SSD • Digital Slim • Inclui 2 jogos (conforme anúncio)',
+    copy: 'Opção que reúne console e jogos no mesmo pacote, indicada para quem busca praticidade. Confirme itens incluídos e condições na loja.'
   },
 
   // ─── Consoles PS5 (5 opções) ──────────────────────────────────────────────
@@ -120,11 +120,11 @@ const CONFIG = {
       id: 'bundle-gta6',
       asin: 'B0H6LVH152',
       name: 'Combo GTA VI + PS5 Slim Digital (Astro Bot + GT7)',
-      badge: 'PRESENTE DEFINITIVO',
-      specs: 'Um presente para toda a família. As crianças aproveitam o PS5, enquanto os adultos podem se divertir com GTA VI. Um combo pensado para todo mundo aproveitar.',
+      badge: 'BUNDLE',
+      specs: 'Pacote que combina console PS5 Slim Digital e conteúdos/jogos conforme o anúncio da loja. Verifique itens incluídos, compatibilidade e disponibilidade antes de comprar.',
       image: 'https://m.media-amazon.com/images/I/71j0ScLcfLL._AC_UL320_.jpg',
       affiliateUrl: 'https://www.amazon.com.br/Bundle-PlayStation-Digital-Pacote-Turismo/dp/B0H6LVH152?&linkCode=ll2&tag=oliveirata-20&linkId=7f3e19158426c0b463605ff02ac48d57&ref_=as_li_ss_tl',
-      cta: 'CONFERIR COMBO NA AMAZON'
+      cta: 'CONSULTAR NA AMAZON'
     },
     {
       id: 'bundle-astro-gt7',

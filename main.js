@@ -103,7 +103,7 @@ function FeaturedOfferSection() {
 function MoreOptionsBanner(extraClass) {
   return `
     <a href="${CONFIG.categoryPS5Url}" class="more-options-card ${extraClass || ''}" data-type="all" target="_blank" rel="sponsored noopener noreferrer" aria-label="Quer ver mais modelos e ofertas? Ver categoria PlayStation 5 na Amazon">
-      <img src="images/prime-mais-opcoes-mobile.png" alt="Quer ver mais modelos e ofertas? Acesse a categoria PlayStation 5 na Amazon" loading="lazy">
+      <img src="images/prime-mais-opcoes-mobile.webp" alt="Quer ver mais modelos e ofertas? Acesse a categoria PlayStation 5 na Amazon" loading="lazy" width="1024" height="1536">
     </a>
   `;
 }
@@ -245,7 +245,7 @@ function DesktopPromoBanner() {
     <section class="section section--desktop-promo" aria-label="Mais opções de PlayStation 5 na Amazon">
       <div class="container">
         <a href="${url}" class="desktop-promo-banner" target="_blank" rel="noopener noreferrer" aria-label="Ver mais modelos e ofertas de PlayStation 5 na Amazon">
-          <img src="images/wide_promotional_banner_clean_commercial_graphic.png.png" alt="Mais opções de PlayStation 5 na Amazon - clique para ver a categoria completa" loading="lazy">
+          <img src="images/wide_promotional_banner_clean_commercial_graphic.webp" alt="Mais opções de PlayStation 5 na Amazon - clique para ver a categoria completa" loading="lazy" width="1774" height="887">
         </a>
       </div>
     </section>

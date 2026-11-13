@@ -348,6 +348,9 @@ function Footer() {
           <a href="#guia">Guia de escolha</a>
           <a href="#bundles">Bundles</a>
           <a href="#acessorios">Acessórios</a>
+          <a href="/sobre.html">Sobre</a>
+          <a href="/metodologia-de-curadoria.html">Metodologia</a>
+          <a href="/links-afiliados.html">Links afiliados</a>
         </div>
         <p class="footer__disclaimer">
           Curadoria Gamer participa do Programa de Associados da Amazon. Podemos receber comissão por compras qualificadas realizadas por meio dos links indicados, sem custo adicional para você. Preços, condições e disponibilidade são definidos pela loja e podem mudar a qualquer momento.

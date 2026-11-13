@@ -344,6 +344,7 @@ function Footer() {
         <div class="footer__logo">Curadoria <span>Gamer</span></div>
         <div class="footer__links">
           <a href="/playstation-5/">PlayStation 5</a>
+          <a href="/gta-6/">GTA 6</a>
           <a href="#destaque">Destaque</a>
           <a href="#consoles">Consoles</a>
           <a href="#guia">Guias</a>
